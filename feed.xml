@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[ayapi.github.io]]></title><description><![CDATA[ayapi.github.io]]></description><link>http://ayapi.github.io/</link><generator>RSS for Node</generator><lastBuildDate>Mon, 18 Nov 2013 15:45:31 GMT</lastBuildDate><atom:link href="http://ayapi.github.io/feed.xml" rel="self" type="application/rss+xml"/><author><![CDATA[ayapi]]></author><pubDate>Mon, 18 Nov 2013 15:45:31 GMT</pubDate><copyright><![CDATA[2013 ayapi]]></copyright><language><![CDATA[en]]></language><managingEditor><![CDATA[ayapi]]></managingEditor><webMaster><![CDATA[ayapi]]></webMaster><ttl>60</ttl><item><title><![CDATA[CabinとGitHub Pagesでブログを作ってみてる]]></title><description><![CDATA[<h2><a name="jekyll" class="anchor" href="#jekyll"><span class="header-link"></span></a>Jekyllを見送った理由</h2>
+<p><a href="http://pages.github.com/">GitHub Pages</a>でブログをはじめたくて、<br>最初<a href="http://jekyllbootstrap.com/">Jekyll Bootstrap</a>で作ってみてたんですけど、<br>ちょっとなにか突っ込んだことをゃろーとすると<br>WindowsでのRuby系ってかなりゃばくて、エラーが多ぃってゅーか、<br>むしろエラーしかでなぃ、なんのコマンド打ってもエラー！ってかんじで<br>原因ゎぉそらくほとんど、文字エンコード周りなんですけど</p>
+<p>さらに<a href="http://gruntjs.com/">Grunt</a>との連携もLiveReload関係で謎に苦労して…<br>Winでも工夫してJekyll使ってる人ぃるみたぃなんですけど、<br>そこまでがんばれる気がしなくてゃめました<br>さくっと動く環境の人ゎ、ぜん②ぃぃと思ぅけどね</p>
+<h2><a name="gruntcabin" class="anchor" href="#gruntcabin"><span class="header-link"></span></a>Gruntで使ぅのが前提のCabin</h2>
+<h3><a name="" class="anchor" href="#"><span class="header-link"></span></a>インストールゎかんたん</h3>
+<p><a href="http://www.cabinjs.com/">Cabin</a>ゎ、NodeJSベースで、Gruntで使ぅことが前提でできてて、<br>最初に生成されるGruntfileに、watchもlivereloadも元々かぃてぁり<br>速攻動ぃたから、ぃぃなと思って、使ってみることにしました<br>インストールゎとてもかんたんで、Getting startedにぁるとーり、<br>数回コマンドを打つだけです</p>
+<h3><a name="python" class="anchor" href="#python"><span class="header-link"></span></a>Pythonのインストール</h3>
+<p>はじめてビルドする時に、<br><code>Cannot call method &#39;toString&#39; of null</code>ってエラーがでて、<br>Rubyで疲れてたから、今度ゎNodeでまでエラー…って思って、<br>ショックだったんですけど、Pythonをインストールしてなぃのが原因でした<br>エラーの内容からゎその原因がゎかりづらぃから、最初そこだけ注意が必要です</p>
+<p>NodeJSベースのCabinなんですけど、<br>シンタックスハイライト機能でだけPythonのライブラリが使ゎれてるから、<br>Pythonのインストールゎ必須みたぃです<br>けどほんとインストールするだけでょくて、<br>Pythonのコードを読むのが必要になることゎまったくなぃっぽぃです</p>
+<h3><a name="" class="anchor" href="#"><span class="header-link"></span></a>ゃたらシンプルだからカスタマイズゎたぶん必要</h3>
+<p>Jekyll Bootstrapゎもぅ最初から<a href="http://disqus.com/">DISQUS</a>ゃらCategoryゃらTagゃら入ってて、<br>ぃきなりぃかにもブログってかんじなんですけど、<br>それとくらべたらCabinゎ、なんもなぃってレベルにシンプル<br>デザインテーマも③っだけだし</p>
+<p>最初にできることゎ、記事がかけることと、シンタックスハイライト、<br>ぁと投稿日時順でのページ送り、ぐらぃで<br>けど一応内部でTagの実装ゎされてて、<br>ちょっとGruntfileでオプションをぃじれば、Tagごとのページ送りとかも作れます</p>
+<h3><a name="" class="anchor" href="#"><span class="header-link"></span></a>テンプレートエンジン</h3>
+<p>テンプレートゎ<a href="http://jade-lang.com/">Jade</a>か<a href="http://embeddedjs.com/">EJS</a>かの②択で、<br>ほかのエンジン使ぅ方法ゎ、まだぁんまり調べれてなぃけど、なぃかも<br>ぁゃぴゎ両方使ったことなくて、EJSにしてみたんですけど、<br>テンプレートファイルだけでなんとかしょーとすると、<br>だぃぶ悲惨なかんじになりました<br>カスタムヘルパーのjsをどこか別でかぃてぉければと思ぅんですけど、<br>ゃりかたがゎかんなぃです</p>
+<h3><a name="github-pagesgrunt" class="anchor" href="#github-pagesgrunt"><span class="header-link"></span></a>GitHub PagesへのデプロイもGruntタスクで</h3>
+<p>Cabinをインストールする時に、GitHub Pagesを使ぅと答ぇると、<br><a href="https://github.com/tschaub/grunt-gh-pages">grunt-gh-pages</a>とゅータスクが自動で入り、<br>GruntでGitHub Pagesにかんたんにpushできるょーになってます</p>
+<p>まぁgitでcommitしてpushするだけなんですけど、<br>ここまでGruntのタスクでできちゃぅのゎなんかラクでぃぃなと思ぃます</p>
+<p>GitHub Pagesにゎ、プロジェクト用のページと、ユーザー用のページがぁり、<br>ユーザーページに公開したぃ時ゎ、masterブランチにしなきゃなので、<br>Gruntfileでbranchを指定するオプションをかく必要がぁります</p>
+<h2><a name="" class="anchor" href="#"><span class="header-link"></span></a>具体的なカスタマイズ方法</h2>
+<p>まだぁんまり情報がなぃCabinなんですけど、<br>ぁゃぴがゃってみたカスタマイズゎぜんぶ、<br>コミットログをみればゎかりますので、<br>もし使ってみる時ゎ参考にしてみてくださぃ<br><a href="https://github.com/ayapi/ayapi-cabin/commits/master">https://github.com/ayapi/ayapi-cabin/commits/master</a></p>
+<h2><a name="" class="anchor" href="#"><span class="header-link"></span></a>まとめ</h2>
+<p>ぁくまで個人ブログ作る目的でしか考ぇてなぃけど、</p>
+<ul>
+<li>Jekyll使ぇるならそっちのがラクそー</li>
+<li>Gruntに慣れててぃろ②ゃる気がぁればCabinゎょぃ</li>
+<li>はてブロでぃぃと思ぅならもちろんそっちのがラクｗ</li>
+</ul>
+<p>てことでしばらく使ってみます</p>
+]]></description><link>http://ayapi.github.io/posts/cabingithub-pages/</link><guid isPermaLink="true">http://ayapi.github.io/posts/cabingithub-pages/</guid><category><![CDATA[Cabin]]></category><category><![CDATA[JavaScript]]></category><category><![CDATA[NodeJS]]></category><category><![CDATA[EJS]]></category><dc:creator><![CDATA[ayapi]]></dc:creator><pubDate>Mon, 18 Nov 2013 00:00:00 GMT</pubDate></item></channel></rss>

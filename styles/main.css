@@ -764,19 +764,19 @@ a {
   color: #eeeeee;
 }
 
-/* line 27, ../../src/styles/_base.scss */
+/* line 35, ../../src/styles/_base.scss */
 .group:after {
   content: "";
   display: table;
   clear: both;
 }
 
-/* line 33, ../../src/styles/_base.scss */
+/* line 41, ../../src/styles/_base.scss */
 html {
   height: 100%;
 }
 
-/* line 36, ../../src/styles/_base.scss */
+/* line 44, ../../src/styles/_base.scss */
 body {
   min-height: 100%;
   position: relative;
@@ -789,19 +789,19 @@ body {
   font-size: 17px;
 }
 @media (max-width: 1250px) {
-  /* line 36, ../../src/styles/_base.scss */
+  /* line 44, ../../src/styles/_base.scss */
   body {
     font-size: 16px;
   }
 }
 @media (max-width: 630px) {
-  /* line 36, ../../src/styles/_base.scss */
+  /* line 44, ../../src/styles/_base.scss */
   body {
     font-size: 12px;
   }
 }
 
-/* line 56, ../../src/styles/_base.scss */
+/* line 64, ../../src/styles/_base.scss */
 .wrapper {
   position: relative;
   margin: 0 auto;
@@ -810,45 +810,45 @@ body {
   padding-bottom: 130px;
 }
 @media (max-width: 1250px) {
-  /* line 56, ../../src/styles/_base.scss */
+  /* line 64, ../../src/styles/_base.scss */
   .wrapper {
     width: 98%;
   }
 }
 
-/* line 69, ../../src/styles/_base.scss */
+/* line 77, ../../src/styles/_base.scss */
 .content {
   margin-right: 200px;
 }
 @media (max-width: 630px) {
-  /* line 69, ../../src/styles/_base.scss */
+  /* line 77, ../../src/styles/_base.scss */
   .content {
     margin-right: 0;
   }
 }
 
-/* line 78, ../../src/styles/_base.scss */
+/* line 84, ../../src/styles/_base.scss */
+.pagination {
+  border-top: 1px solid black;
+  padding: 20px 0;
+  text-align: center;
+}
+/* line 88, ../../src/styles/_base.scss */
 .pagination a {
+  display: inline-block;
+  font-size: 0.9em;
   text-decoration: none;
-  font-size: 1.2em;
-  padding: 10px 0 20px;
-}
-/* line 83, ../../src/styles/_base.scss */
-.pagination a:hover {
-  text-decoration: underline;
-}
-
-/* line 89, ../../src/styles/_base.scss */
-.older {
-  float: left;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0 0.3em;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  line-height: 1.9;
 }
 
-/* line 93, ../../src/styles/_base.scss */
-.newer {
-  float: right;
-}
-
-/* line 97, ../../src/styles/_base.scss */
+/* line 95, ../../src/styles/_base.scss */
 .cabin {
   position: fixed;
   right: 0.55em;
@@ -857,13 +857,13 @@ body {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=30);
   opacity: 0.3;
 }
-/* line 104, ../../src/styles/_base.scss */
+/* line 102, ../../src/styles/_base.scss */
 .cabin:hover {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
   opacity: 0.6;
 }
 @media (max-width: 1250px) {
-  /* line 97, ../../src/styles/_base.scss */
+  /* line 95, ../../src/styles/_base.scss */
   .cabin {
     display: none;
   }
@@ -1039,13 +1039,8 @@ nav a {
   color: #eeeeee;
   text-decoration: none;
 }
-/* line 9, ../../src/styles/_nav.scss */
-nav a:hover {
-  color: #eeeeee;
-  text-decoration: underline;
-}
 
-/* line 16, ../../src/styles/_nav.scss */
+/* line 11, ../../src/styles/_nav.scss */
 .name {
   float: left;
   font-weight: normal;
@@ -1053,23 +1048,40 @@ nav a:hover {
   margin: 0;
   padding: 10px 0;
 }
-/* line 22, ../../src/styles/_nav.scss */
+/* line 17, ../../src/styles/_nav.scss */
 .name span {
   color: #d22ac5;
 }
 
-/* line 27, ../../src/styles/_nav.scss */
+/* line 22, ../../src/styles/_nav.scss */
 .nav-links {
   margin: 0;
   list-style: none;
   float: right;
-  font-size: 1.2em;
   padding: 12px 0 0;
 }
-/* line 34, ../../src/styles/_nav.scss */
+/* line 28, ../../src/styles/_nav.scss */
 .nav-links li {
   float: left;
   padding-right: 1.7em;
+}
+/* line 31, ../../src/styles/_nav.scss */
+.nav-links li:last-of-type {
+  padding-right: 0;
+}
+/* line 35, ../../src/styles/_nav.scss */
+.nav-links li a {
+  display: inline-block;
+  font-size: 0.9em;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0 0.3em;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  line-height: 1.9;
 }
 
 /* line 1, ../../src/styles/_post.scss */

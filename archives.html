@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html>
+<html xmlns:fb="http://ogp.me/ns/fb#">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,8 +9,19 @@
     <link rel="alternate" type="application/rss+xml" href="/feed.xml" title="RSS">
     <title>Archives - ayapi.github.io</title>
     
+      <meta name="description" content="ぁゃぴがプログラミングのことをかくブログ">
+    
   </head>
   <body>
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/ja_JP/all.js#xfbml=1";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+
     <div class="wrapper">
       <div class="content">
       <nav class="group">
@@ -27,7 +38,58 @@
 
 
   <div class="post-head group">
-  <h1 class="post-title"><a href="/posts/cabingithub-pages/">CabinとGitHub Pagesでブログを作ってみてる</a></h1>
+  <h1 class="post-title"><a href="/posts/nodejsspawnpythonencoding/">node.exeのspawnからPythonを叩く時の標準入出力の文字コード</a></h1>
+  <dl class="post-detail">
+  <dt>Date</dt>
+  <dd> November 21, 2013</dd>
+  <dt>Tags</dt>
+  <dd>
+  
+    <a href="/tags/node/">Node</a>
+  
+    <a href="/tags/python/">Python</a>
+  
+  </dd>
+  </dl>
+</div>
+
+<div class="post-body">
+  node-pygmentize-bundledからのPygments
+割と気に入ってるCabinJSなんですけど、シンタックスハイライトでnode-pygmentize-bundledとゅー、PythonのPygmentsをnodeから叩くものが使ゎれてて、ハイライトするコードに日本語が含まれてると、日本語の部分が文字化けすることに気づきましたそれを解決するためにしらべました
+ちなむとぁゃぴゎPy...
+  <a class="post-more" href="/posts/nodejsspawnpythonencoding/">&gt;&gt;続きをみる</a>
+</div>
+
+
+
+  <div class="post-head group">
+  <h1 class="post-title"><a href="/posts/usetimecategoryinspock/">Spockで@Use(TimeCategory)で時間のSpec</a></h1>
+  <dl class="post-detail">
+  <dt>Date</dt>
+  <dd> November 20, 2013</dd>
+  <dt>Tags</dt>
+  <dd>
+  
+    <a href="/tags/spock/">Spock</a>
+  
+    <a href="/tags/groovy/">Groovy</a>
+  
+  </dd>
+  </dl>
+</div>
+
+<div class="post-body">
+  Spockにっぃて
+Spockゎ、JavaとGroovyのテストフレームワークで、最近はじめてみましたと言ってもぁゃぴゎ、Spockどころか、JavaもGroovyも最近はじめたばかりの初心者なんですけど
+Spockで感激するのゎ、テストデータをとてもみゃすくかけるところです今回ゎ、期間(時刻でゎなくて、間隔ってこと)の算出をするコードで、そのみゃすさをとても実感したので、ゃりかたをかぃてみます
+...
+  <a class="post-more" href="/posts/usetimecategoryinspock/">&gt;&gt;続きをみる</a>
+</div>
+
+
+
+  <div class="post-head group">
+  <h1 class="post-title"><a href="/posts/blogcabin/">CabinとGitHub Pagesでブログを作ってみてる</a></h1>
   <dl class="post-detail">
   <dt>Date</dt>
   <dd> November 18, 2013</dd>
@@ -38,7 +100,7 @@
   
     <a href="/tags/javascript/">JavaScript</a>
   
-    <a href="/tags/nodejs/">NodeJS</a>
+    <a href="/tags/node/">Node</a>
   
     <a href="/tags/ejs/">EJS</a>
   
@@ -50,7 +112,7 @@
   Jekyllを見送った理由
 GitHub Pagesでブログをはじめたくて、最初Jekyll Bootstrapで作ってみてたんですけど、ちょっとなにか突っ込んだことをゃろーとするとWindowsでのRuby系ってかなりゃばくて、エラーが多ぃってゅーか、むしろエラーしかでなぃ、なんのコマンド打ってもエラー！ってかんじで原因ゎぉそらくほとんど、文字エンコード周りなんですけど
 さらにGruntとの連携...
-  <a class="post-more" href="/posts/cabingithub-pages/">&gt;&gt;続きをみる</a>
+  <a class="post-more" href="/posts/blogcabin/">&gt;&gt;続きをみる</a>
 </div>
 
 
@@ -72,5 +134,9 @@ GitHub Pagesでブログをはじめたくて、最初Jekyll Bootstrapで作っ�
     </ul>
     <script src="/scripts/jquery/jquery.min.js"></script>
     <script src="/scripts/main.js"></script>
+
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+	<script src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+	<script>!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script>
   </body>
 </html>

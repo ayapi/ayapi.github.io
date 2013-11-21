@@ -1,0 +1,172 @@
+
+
+<!DOCTYPE html>
+<html xmlns:fb="http://ogp.me/ns/fb#">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="/images/cabin.png">
+    <link href="/styles/main.css" rel="stylesheet">
+    <link rel="alternate" type="application/rss+xml" href="/feed.xml" title="RSS">
+    <title>Spockで@Use(TimeCategory)で時間のSpec - ayapi.github.io</title>
+    
+      <meta name="description" content="SpockでTimeCategoryを使って期間のspecを書ぃてみました">
+    
+  </head>
+  <body>
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/ja_JP/all.js#xfbml=1";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+
+    <div class="wrapper">
+      <div class="content">
+      <nav class="group">
+        <h1 class="name">
+          <a href="/"><span>ay</span>a<span>p</span>i.github.io</a>
+          <a href="/feed.xml" title="RSS" class="icon-feed"> </a>
+        </h1>
+        <ul class="nav-links">
+          <li class="text-link">
+            <a href="/archives.html">ARCHIVES</a>
+          </li>
+        </ul>
+      </nav>
+
+
+<div class="post-head group">
+  <h1 class="post-title"><a href="/posts/usetimecategoryinspock/">Spockで@Use(TimeCategory)で時間のSpec</a></h1>
+  <dl class="post-detail">
+  <dt>Date</dt>
+  <dd> November 20, 2013</dd>
+  <dt>Tags</dt>
+  <dd>
+  
+    <a href="/tags/spock/">Spock</a>
+  
+    <a href="/tags/groovy/">Groovy</a>
+  
+  </dd>
+  </dl>
+</div>
+
+<div class="post-body markdown">
+  <h2><a name="spockにっぃて" class="anchor" href="#spockにっぃて"><span class="header-link"></span></a>Spockにっぃて</h2>
+<p>Spockゎ、JavaとGroovyのテストフレームワークで、最近はじめてみました<br>と言ってもぁゃぴゎ、Spockどころか、<br>JavaもGroovyも最近はじめたばかりの初心者なんですけど</p>
+<p>Spockで感激するのゎ、テストデータをとてもみゃすくかけるところです<br>今回ゎ、期間(時刻でゎなくて、間隔ってこと)の算出をするコードで、<br>そのみゃすさをとても実感したので、ゃりかたをかぃてみます</p>
+<h2><a name="@useアノテーション" class="anchor" href="#@useアノテーション"><span class="header-link"></span></a>@Useアノテーション</h2>
+<p>Spockでゎ、<code>@Use</code>アノテーションを使ぅと、<br>Groovyの<code>use(Category){}</code>ができるそーです</p>
+<blockquote>
+<p><cite><a href="https://github.com/yamkazu/spock-workshop/blob/master/docs/06_advanced.md#use">yamakazu/spock-workshop - docs / 06_advanced.md</a></cite><br><code>@Use</code>をフィーチャメソッドに付与すると、フィーチャメソッド内がuseブロックのスコープとなる。</p>
+<pre><code class="lang-groovy"><div class="highlight"><pre><span class="kd">class</span> <span class="nc">UseSpec</span> <span class="kd">extends</span> <span class="n">Specification</span> <span class="o">{</span>
+   <span class="nd">@Use</span><span class="o">(</span><span class="n">IntegerCategory</span><span class="o">)</span>
+   <span class="kt">def</span> <span class="s2">&quot;カテゴリークラスを使う&quot;</span><span class="o">()</span> <span class="o">{</span>
+       <span class="nl">expect:</span>
+       <span class="mi">7</span><span class="o">.</span><span class="na">square</span><span class="o">()</span> <span class="o">==</span> <span class="mi">49</span>
+   <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="nd">@Category</span><span class="o">(</span><span class="n">Integer</span><span class="o">)</span>
+<span class="kd">class</span> <span class="nc">IntegerCategory</span> <span class="o">{</span>
+   <span class="n">Integer</span> <span class="nf">square</span><span class="o">()</span> <span class="o">{</span> <span class="k">this</span> <span class="o">*</span> <span class="k">this</span> <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</code></pre>
+</blockquote>
+<p>けど、同じょーにまねしてゃってみたら、<br>フィーチャーメソッドに<code>@Use</code>してもエラーになってしまぃ、<br>ぅまく動きませんでした</p>
+<pre><code class="lang-groovy"><div class="highlight"><pre><span class="c1">// ※動かなぃ例</span>
+<span class="kn">import</span> <span class="nn">groovy.time.Duration</span>
+<span class="kn">import</span> <span class="nn">groovy.time.TimeCategory</span>
+<span class="kn">import</span> <span class="nn">spock.lang.Specification</span>
+<span class="kn">import</span> <span class="nn">spock.lang.Unroll</span>
+<span class="kn">import</span> <span class="nn">spock.util.mop.Use</span>
+
+<span class="kd">class</span> <span class="nc">CalculatorSpec</span> <span class="kd">extends</span> <span class="n">Specification</span> <span class="o">{</span>
+    <span class="nd">@Unroll</span>
+    <span class="nd">@Use</span><span class="o">(</span><span class="n">TimeCategory</span><span class="o">)</span>
+    <span class="kt">def</span> <span class="s2">&quot;平均期間を算出する&quot;</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nl">given:</span>
+        <span class="kt">def</span> <span class="n">calc</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Calculator</span><span class="o">();</span>
+
+        <span class="nl">when:</span>
+        <span class="kt">def</span> <span class="n">expects</span> <span class="o">=</span> <span class="n">intervals</span><span class="o">.</span><span class="na">collect</span><span class="o">({</span>
+            <span class="o">(</span><span class="n">it</span> <span class="k">as</span> <span class="n">Duration</span><span class="o">).</span><span class="na">toMilliseconds</span><span class="o">();</span>
+        <span class="o">});</span>
+        <span class="kt">def</span> <span class="n">average</span> <span class="o">=</span> <span class="n">calc</span><span class="o">.</span><span class="na">calculateAverageInterval</span><span class="o">(</span><span class="n">expects</span><span class="o">);</span>
+
+        <span class="nl">then:</span>
+        <span class="n">average</span><span class="o">.</span><span class="na">equals</span><span class="o">((</span><span class="n">result</span> <span class="k">as</span> <span class="n">Duration</span><span class="o">).</span><span class="na">toMilliseconds</span><span class="o">());</span>
+
+        <span class="nl">where:</span>
+        <span class="n">intervals</span>                            <span class="o">|</span> <span class="n">result</span>
+        <span class="o">[</span><span class="mi">1</span><span class="o">.</span><span class="na">hours</span><span class="o">,</span> <span class="mi">30</span><span class="o">.</span><span class="na">minutes</span><span class="o">,</span> <span class="mi">45</span><span class="o">.</span><span class="na">minutes</span><span class="o">]</span>    <span class="o">|</span> <span class="mi">45</span><span class="o">.</span><span class="na">minutes</span>
+        <span class="o">[</span><span class="mi">10</span><span class="o">.</span><span class="na">seconds</span><span class="o">,</span> <span class="mi">20</span><span class="o">.</span><span class="na">seconds</span><span class="o">,</span> <span class="mi">30</span><span class="o">.</span><span class="na">seconds</span><span class="o">]</span> <span class="o">|</span> <span class="mi">20</span><span class="o">.</span><span class="na">seconds</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</code></pre>
+<pre><code class="lang-bash"><div class="highlight"><pre>groovy.lang.MissingPropertyException: No such property: hours <span class="k">for </span>class: java.lang.Integer
+    at CalculatorSpec.平均期間を算出する<span class="o">(</span>CalculatorSpec.groovy:22<span class="o">)</span>
+</pre></div>
+</code></pre>
+<p><code>where:</code>ブロックで、<code>1.hours</code>とか<br>ぃかにもTimeCategoryってかんじの書き方をしてるのを<br>ゎかってもらぇてなぃかんじのエラーです</p>
+<p>以下のょーに、Specのクラス全体に<code>@use</code>を適用するかんじだと、動きました！</p>
+<pre><code class="lang-groovy"><div class="highlight"><pre><span class="c1">// ※動く例</span>
+<span class="kn">import</span> <span class="nn">groovy.time.</span><span class="c1">//...省略...//</span>
+
+<span class="nd">@Use</span><span class="o">(</span><span class="n">TimeCategory</span><span class="o">)</span> <span class="c1">//←こーした</span>
+<span class="kd">class</span> <span class="nc">CalculatorSpec</span> <span class="kd">extends</span> <span class="n">Specification</span> <span class="o">{</span>
+    <span class="nd">@Unroll</span>
+    <span class="kt">def</span> <span class="s2">&quot;平均期間を算出する&quot;</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nl">given:</span>
+        <span class="kt">def</span> <span class="n">calc</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Calculator</span><span class="o">();</span>
+
+        <span class="nl">when:</span>
+        <span class="kt">def</span> <span class="n">expects</span> <span class="o">=</span> <span class="n">intervals</span><span class="o">.</span><span class="na">collect</span><span class="o">({</span>
+            <span class="o">(</span><span class="n">it</span> <span class="k">as</span> <span class="n">Duration</span><span class="o">).</span><span class="na">toMilliseconds</span><span class="o">();</span>
+        <span class="o">});</span>
+        <span class="kt">def</span> <span class="n">average</span> <span class="o">=</span> <span class="n">calc</span><span class="o">.</span><span class="na">calculateAverageInterval</span><span class="o">(</span><span class="n">expects</span><span class="o">);</span>
+
+        <span class="nl">then:</span>
+        <span class="n">average</span><span class="o">.</span><span class="na">equals</span><span class="o">((</span><span class="n">result</span> <span class="k">as</span> <span class="n">Duration</span><span class="o">).</span><span class="na">toMilliseconds</span><span class="o">());</span>
+
+        <span class="nl">where:</span>
+        <span class="n">intervals</span>                            <span class="o">|</span> <span class="n">result</span>
+        <span class="o">[</span><span class="mi">1</span><span class="o">.</span><span class="na">hours</span><span class="o">,</span> <span class="mi">30</span><span class="o">.</span><span class="na">minutes</span><span class="o">,</span> <span class="mi">45</span><span class="o">.</span><span class="na">minutes</span><span class="o">]</span>    <span class="o">|</span> <span class="mi">45</span><span class="o">.</span><span class="na">minutes</span>
+        <span class="o">[</span><span class="mi">10</span><span class="o">.</span><span class="na">seconds</span><span class="o">,</span> <span class="mi">20</span><span class="o">.</span><span class="na">seconds</span><span class="o">,</span> <span class="mi">30</span><span class="o">.</span><span class="na">seconds</span><span class="o">]</span> <span class="o">|</span> <span class="mi">20</span><span class="o">.</span><span class="na">seconds</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</code></pre>
+<p>Spockのしくみがぁんまりまだゎかってなぃので、<br><code>where:</code>で<code>@use</code>が効かなぃのがSpockの仕様なのか、<br>それとも<code>TimeCategory</code>の仕様なのかょくゎかんなぃんですけど、</p>
+<p>とにかくこんなふーに、時間がとてもみゃすくかけるのが、<br>ぁゃぴ的にゎ気に入ってます</p>
+<p>このテストデータがもしぜんぶミリ秒とかだったら、<br>なにがなんだかパッと見でゎゎかんなぃと思ぃます</p>
+
+</div>
+
+<ul class="post-social">
+<li class="pocket"><a data-save-url="http://ayapi.github.io/posts/usetimecategoryinspock/" data-pocket-label="pocket" data-pocket-count="none" class="pocket-btn" data-lang="en"></a></li>
+<li class="twitter"><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://ayapi.github.io/posts/usetimecategoryinspock/" data-lang="ja" data-count="none">ツイート</a></li>
+<li class="hatena"><a href="http://b.hatena.ne.jp/entry/http://ayapi.github.io/posts/usetimecategoryinspock/" class="hatena-bookmark-button" data-hatena-bookmark-title="Spockで@Use(TimeCategory)で時間のSpec - ayapi.github.io" data-hatena-bookmark-layout="standard-noballoon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a></li>
+<li class="facebook"><fb:like url="http://ayapi.github.io/posts/usetimecategoryinspock/" href="https://developers.facebook.com/docs/plugins/" layout="button_count" action="like" show_faces="false" share="false"></fb:like></li>
+</ul>
+      </div>
+    </div>
+    <ul class="footer">
+      <li>Copyright &copy; ぁゃぴ</li>
+      <li>Generated by <a href="http://www.cabinjs.com/">Cabin</a></li>
+      <li>Hosted by <a href="http://pages.github.com/">GitHub Pages</a></li>
+    </ul>
+    <script src="/scripts/jquery/jquery.min.js"></script>
+    <script src="/scripts/main.js"></script>
+
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+	<script src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+	<script>!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script>
+  </body>
+</html>
+

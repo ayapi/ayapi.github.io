@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[ayapi.github.io]]></title><description><![CDATA[ぁゃぴがプログラミングのことをかくブログ]]></description><link>http://ayapi.github.io</link><generator>RSS for Node</generator><lastBuildDate>Thu, 21 Nov 2013 07:54:27 GMT</lastBuildDate><atom:link href="http://ayapi.github.io/feed.xml" rel="self" type="application/rss+xml"/><author><![CDATA[ぁゃぴ]]></author><pubDate>Thu, 21 Nov 2013 07:54:27 GMT</pubDate><copyright><![CDATA[2013 ぁゃぴ]]></copyright><language><![CDATA[en]]></language><managingEditor><![CDATA[ぁゃぴ]]></managingEditor><webMaster><![CDATA[ぁゃぴ]]></webMaster><ttl>60</ttl><item><title><![CDATA[node.exeのspawnからPythonを叩く時の標準入出力の文字コード]]></title><description><![CDATA[<h2><a name="node-pygmentize-bundledからのpygments" class="anchor" href="#node-pygmentize-bundledからのpygments"><span class="header-link"></span></a>node-pygmentize-bundledからのPygments</h2>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[ayapi.github.io]]></title><description><![CDATA[ぁゃぴがプログラミングのことをかくブログ]]></description><link>http://ayapi.github.io</link><generator>RSS for Node</generator><lastBuildDate>Thu, 21 Nov 2013 08:13:29 GMT</lastBuildDate><atom:link href="http://ayapi.github.io/feed.xml" rel="self" type="application/rss+xml"/><author><![CDATA[ぁゃぴ]]></author><pubDate>Thu, 21 Nov 2013 08:13:29 GMT</pubDate><copyright><![CDATA[2013 ぁゃぴ]]></copyright><language><![CDATA[en]]></language><managingEditor><![CDATA[ぁゃぴ]]></managingEditor><webMaster><![CDATA[ぁゃぴ]]></webMaster><ttl>60</ttl><item><title><![CDATA[node.exeのspawnからPythonを叩く時の標準入出力の文字コード]]></title><description><![CDATA[<h2><a name="node-pygmentize-bundledからのpygments" class="anchor" href="#node-pygmentize-bundledからのpygments"><span class="header-link"></span></a>node-pygmentize-bundledからのPygments</h2>
 <p>割と気に入ってる<a href="http://www.cabinjs.com/">CabinJS</a>なんですけど、<br>シンタックスハイライトで<a href="https://github.com/rvagg/node-pygmentize-bundled">node-pygmentize-bundled</a>とゅー、<br><a href="http://www.python.jp/">Python</a>の<a href="http://pygments.org/">Pygments</a>をnodeから叩くものが使ゎれてて、<br>ハイライトするコードに日本語が含まれてると、<br>日本語の部分が文字化けすることに気づきました<br>それを解決するためにしらべました</p>
 <p>ちなむとぁゃぴゎPythonのことゎまったくゎかりません、<br>.pyファイルとか、はじめてかきました</p>
 <h2><a name="pythonの標準入出力の文字コード自動認識" class="anchor" href="#pythonの標準入出力の文字コード自動認識"><span class="header-link"></span></a>Pythonの標準入出力の文字コード自動認識</h2>
@@ -175,10 +175,10 @@ Type <span class="s2">&quot;help&quot;</span>, <span class="s2">&quot;copyright&
         <span class="kt">def</span> <span class="n">calc</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Calculator</span><span class="o">();</span>
 
         <span class="nl">when:</span>
-        <span class="kt">def</span> <span class="n">expects</span> <span class="o">=</span> <span class="n">intervals</span><span class="o">.</span><span class="na">collect</span><span class="o">({</span>
+        <span class="kt">def</span> <span class="n">msecs</span> <span class="o">=</span> <span class="n">intervals</span><span class="o">.</span><span class="na">collect</span><span class="o">({</span>
             <span class="o">(</span><span class="n">it</span> <span class="k">as</span> <span class="n">Duration</span><span class="o">).</span><span class="na">toMilliseconds</span><span class="o">();</span>
         <span class="o">});</span>
-        <span class="kt">def</span> <span class="n">average</span> <span class="o">=</span> <span class="n">calc</span><span class="o">.</span><span class="na">calculateAverageInterval</span><span class="o">(</span><span class="n">expects</span><span class="o">);</span>
+        <span class="kt">def</span> <span class="n">average</span> <span class="o">=</span> <span class="n">calc</span><span class="o">.</span><span class="na">calculateAverageInterval</span><span class="o">(</span><span class="n">msecs</span><span class="o">);</span>
 
         <span class="nl">then:</span>
         <span class="n">average</span><span class="o">.</span><span class="na">equals</span><span class="o">((</span><span class="n">result</span> <span class="k">as</span> <span class="n">Duration</span><span class="o">).</span><span class="na">toMilliseconds</span><span class="o">());</span>
@@ -208,10 +208,10 @@ Type <span class="s2">&quot;help&quot;</span>, <span class="s2">&quot;copyright&
         <span class="kt">def</span> <span class="n">calc</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Calculator</span><span class="o">();</span>
 
         <span class="nl">when:</span>
-        <span class="kt">def</span> <span class="n">expects</span> <span class="o">=</span> <span class="n">intervals</span><span class="o">.</span><span class="na">collect</span><span class="o">({</span>
+        <span class="kt">def</span> <span class="n">msecs</span> <span class="o">=</span> <span class="n">intervals</span><span class="o">.</span><span class="na">collect</span><span class="o">({</span>
             <span class="o">(</span><span class="n">it</span> <span class="k">as</span> <span class="n">Duration</span><span class="o">).</span><span class="na">toMilliseconds</span><span class="o">();</span>
         <span class="o">});</span>
-        <span class="kt">def</span> <span class="n">average</span> <span class="o">=</span> <span class="n">calc</span><span class="o">.</span><span class="na">calculateAverageInterval</span><span class="o">(</span><span class="n">expects</span><span class="o">);</span>
+        <span class="kt">def</span> <span class="n">average</span> <span class="o">=</span> <span class="n">calc</span><span class="o">.</span><span class="na">calculateAverageInterval</span><span class="o">(</span><span class="n">msecs</span><span class="o">);</span>
 
         <span class="nl">then:</span>
         <span class="n">average</span><span class="o">.</span><span class="na">equals</span><span class="o">((</span><span class="n">result</span> <span class="k">as</span> <span class="n">Duration</span><span class="o">).</span><span class="na">toMilliseconds</span><span class="o">());</span>

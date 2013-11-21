@@ -93,10 +93,10 @@
         <span class="kt">def</span> <span class="n">calc</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Calculator</span><span class="o">();</span>
 
         <span class="nl">when:</span>
-        <span class="kt">def</span> <span class="n">expects</span> <span class="o">=</span> <span class="n">intervals</span><span class="o">.</span><span class="na">collect</span><span class="o">({</span>
+        <span class="kt">def</span> <span class="n">msecs</span> <span class="o">=</span> <span class="n">intervals</span><span class="o">.</span><span class="na">collect</span><span class="o">({</span>
             <span class="o">(</span><span class="n">it</span> <span class="k">as</span> <span class="n">Duration</span><span class="o">).</span><span class="na">toMilliseconds</span><span class="o">();</span>
         <span class="o">});</span>
-        <span class="kt">def</span> <span class="n">average</span> <span class="o">=</span> <span class="n">calc</span><span class="o">.</span><span class="na">calculateAverageInterval</span><span class="o">(</span><span class="n">expects</span><span class="o">);</span>
+        <span class="kt">def</span> <span class="n">average</span> <span class="o">=</span> <span class="n">calc</span><span class="o">.</span><span class="na">calculateAverageInterval</span><span class="o">(</span><span class="n">msecs</span><span class="o">);</span>
 
         <span class="nl">then:</span>
         <span class="n">average</span><span class="o">.</span><span class="na">equals</span><span class="o">((</span><span class="n">result</span> <span class="k">as</span> <span class="n">Duration</span><span class="o">).</span><span class="na">toMilliseconds</span><span class="o">());</span>
@@ -126,10 +126,10 @@
         <span class="kt">def</span> <span class="n">calc</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Calculator</span><span class="o">();</span>
 
         <span class="nl">when:</span>
-        <span class="kt">def</span> <span class="n">expects</span> <span class="o">=</span> <span class="n">intervals</span><span class="o">.</span><span class="na">collect</span><span class="o">({</span>
+        <span class="kt">def</span> <span class="n">msecs</span> <span class="o">=</span> <span class="n">intervals</span><span class="o">.</span><span class="na">collect</span><span class="o">({</span>
             <span class="o">(</span><span class="n">it</span> <span class="k">as</span> <span class="n">Duration</span><span class="o">).</span><span class="na">toMilliseconds</span><span class="o">();</span>
         <span class="o">});</span>
-        <span class="kt">def</span> <span class="n">average</span> <span class="o">=</span> <span class="n">calc</span><span class="o">.</span><span class="na">calculateAverageInterval</span><span class="o">(</span><span class="n">expects</span><span class="o">);</span>
+        <span class="kt">def</span> <span class="n">average</span> <span class="o">=</span> <span class="n">calc</span><span class="o">.</span><span class="na">calculateAverageInterval</span><span class="o">(</span><span class="n">msecs</span><span class="o">);</span>
 
         <span class="nl">then:</span>
         <span class="n">average</span><span class="o">.</span><span class="na">equals</span><span class="o">((</span><span class="n">result</span> <span class="k">as</span> <span class="n">Duration</span><span class="o">).</span><span class="na">toMilliseconds</span><span class="o">());</span>

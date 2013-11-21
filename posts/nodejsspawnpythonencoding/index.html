@@ -124,7 +124,7 @@ sys.stdout.encoding <span class="o">=</span> cp932
 </pre></div>
 </code></pre>
 <p>Active code pageが65001だけど、<br>Pythonの標準入出力ゎCP932って出てます(&gt;_&lt;)<br>これゎ、とても困ります</p>
-<h2><a name="環境変数「pythonencoding」の存在" class="anchor" href="#環境変数「pythonencoding」の存在"><span class="header-link"></span></a>環境変数「PYTHONENCODING」の存在</h2>
+<h2><a name="環境変数「pythonioencoding」の存在" class="anchor" href="#環境変数「pythonioencoding」の存在"><span class="header-link"></span></a>環境変数「PYTHONIOENCODING」の存在</h2>
 <p>Pythonのドキュメントをちゃんと読んでみると、<br>以下のょーな記述がぁりました</p>
 <blockquote>
 <p><cite><a href="http://docs.python.org/3/library/sys.html#sys.stdin">Python v3.3.3 documentation - 28.1. sys — System-specific parameters and functions</a></cite><br>The character encoding is platform-dependent. Under Windows, if the stream is interactive (that is, if its isatty() method returns True), the console codepage is used, otherwise the ANSI code page. Under other platforms, the locale encoding is used (see locale.getpreferredencoding()).<br>Under all platforms though, you can override this value by setting the PYTHONIOENCODING environment variable.</p>
@@ -133,7 +133,9 @@ sys.stdout.encoding <span class="o">=</span> cp932
 <h3><a name="spawnのオプションで環境変数を指定する" class="anchor" href="#spawnのオプションで環境変数を指定する"><span class="header-link"></span></a>spawnのオプションで環境変数を指定する</h3>
 <p>C:/test/test2.js</p>
 <pre><code class="lang-javascript"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">spawn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;child_process&#39;</span><span class="p">).</span><span class="nx">spawn</span><span class="p">;</span>
-<span class="kd">var</span> <span class="nx">python_test</span> <span class="o">=</span> <span class="nx">spawn</span><span class="p">(</span><span class="s1">&#39;python&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;test.py&#39;</span><span class="p">],</span> <span class="p">{</span><span class="nx">env</span><span class="o">:</span><span class="p">{</span><span class="s2">&quot;PYTHONIOENCODING&quot;</span><span class="o">:</span><span class="s2">&quot;cp65001&quot;</span><span class="p">}});</span>
+<span class="kd">var</span> <span class="nx">python_test</span> <span class="o">=</span> <span class="nx">spawn</span><span class="p">(</span><span class="s1">&#39;python&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;test.py&#39;</span><span class="p">],</span> <span class="p">{</span>
+    <span class="nx">env</span><span class="o">:</span><span class="p">{</span> <span class="s2">&quot;PYTHONIOENCODING&quot;</span> <span class="o">:</span> <span class="s2">&quot;cp65001&quot;</span> <span class="p">}</span>
+<span class="p">});</span>
 
 <span class="nx">python_test</span><span class="p">.</span><span class="nx">stdout</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>

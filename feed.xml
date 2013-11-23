@@ -1,43 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[ayapi.github.io]]></title><description><![CDATA[ぁゃぴがプログラミングのことをかくブログ]]></description><link>http://ayapi.github.io</link><generator>RSS for Node</generator><lastBuildDate>Sat, 23 Nov 2013 08:33:48 GMT</lastBuildDate><atom:link href="http://ayapi.github.io/feed.xml" rel="self" type="application/rss+xml"/><author><![CDATA[ぁゃぴ]]></author><pubDate>Sat, 23 Nov 2013 08:33:48 GMT</pubDate><copyright><![CDATA[2013 ぁゃぴ]]></copyright><language><![CDATA[en]]></language><managingEditor><![CDATA[ぁゃぴ]]></managingEditor><webMaster><![CDATA[ぁゃぴ]]></webMaster><ttl>60</ttl><item><title><![CDATA[Gistをとにかくぃーかんじに貼れるgist-embed.js]]></title><description><![CDATA[<p><a href="https://gist.github.com/‎">Gist</a>をっかってみょーと思ぃましたが、<br>このブログのジェネレータ<a href="https://github.com/CabinJS">CabinJS</a>にゎ、<br>Gistを貼るための特別なプラグインなどゎ特にぁりません</p>
-<p>なので、ふつうに<code>&lt;script&gt;</code>タグとかで貼ることになるんですけど、<br>Gist公式の<code>&lt;script&gt;</code>タグょりもぃーかんじのライブラリをみっけました</p>
-<p>それが、<a href="https://github.com/blairvanderhoof/gist-embed">gist-embed.js</a>です</p>
-<h2><a name="gist-embed" class="anchor" href="#gist-embed"><span class="header-link"></span></a>gist-embed.jsのすごぃとこ</h2>
-<h3><a name="非同期でgistのjsonを取得してくれる" class="anchor" href="#非同期でgistのjsonを取得してくれる"><span class="header-link"></span></a>非同期でGistのjsonを取得してくれる</h3>
-<p>Gistゎ公式に<code>&lt;script&gt;</code>タグを提供してくれてますが、<br>そのjsファイルが<code>document.write()</code>で強引にかきこむ仕様で、<br>だぃぶ、ぅざぃんですけど、</p>
-<p>Gistゎなにげに、jsファイルだけでなく、jsonも提供してぃて、<br>gist-embed.jsゎ、非同期でそのjsonを取得してくれます<br>なので、ページのロードのブロッキングが発生しません</p>
-<h3><a name="gistのcssをカスタムしゃすぃ" class="anchor" href="#gistのcssをカスタムしゃすぃ"><span class="header-link"></span></a>Gistのcssをカスタムしゃすぃ</h3>
-<p>これちょっと文章で説明するとゃゃこしくなるんですけど、<br>Gist公式の<code>&lt;script&gt;</code>タグゎ、問答無用に、<br>その<code>&lt;script&gt;</code>の位置に<code>link</code>要素でcssを挿入してくるんですけど、</p>
-<p>gist-embed.jsゎ、Gistのデフォルトのcssの<code>link</code>要素を、<br>ドキュメントの<code>head</code>要素の最初の子要素として挿入してくれます</p>
-<p>これのなにがぃけてるかってゅーと、<br>コードカラーリングなどのスタイルをカスタムしたぃ場合に、<br>ふつーに<code>head</code>要素内にカスタム用cssの<code>link</code>要素を入れてても、<br>カスタム用cssのほうの優先度が高くなり、<br>ゃたらと<code>!important</code>かきまくったりする必要もほぼなぃです</p>
-<p>ぁゃぴゎ、ふだんからエディタをmonokaiカラーにしてるので、<br>Gistもmonokaiになるょーにcssをぁててみました</p>
-<h3><a name="表示するコードの行の範囲を柔軟に指定できる" class="anchor" href="#表示するコードの行の範囲を柔軟に指定できる"><span class="header-link"></span></a>表示するコードの行の範囲を柔軟に指定できる</h3>
-<p>ただファイルのコードぜんぶを一気にみせるんじゃなく、<br>数行だけを抜き出して表示するとかができますので、<br>解説とかを、てぃねぃにゎかりゃすくかけます<br>下にかく、動作サンプルをみてくださぃ</p>
-<h3><a name="行番号、メタ情報(フッター)の表示・非表示も選択できる" class="anchor" href="#行番号、メタ情報(フッター)の表示・非表示も選択できる"><span class="header-link"></span></a>行番号、メタ情報(フッター)の表示・非表示も選択できる</h3>
-<p>これも、以下にかく動作サンプルをみてくださぃ</p>
-<h2><a name="動作サンプル" class="anchor" href="#動作サンプル"><span class="header-link"></span></a>動作サンプル</h2>
-<p>以下ゎ、<a href="http://blairvanderhoof.com/gist-embed/">gist-embed公式example</a>を、ただかき写しただけです</p>
-<h3><a name="デフォ" class="anchor" href="#デフォ"><span class="header-link"></span></a>デフォ</h3>
-<p><code data-gist-id="5457595"></code></p>
-<h3><a name="行番号なし" class="anchor" href="#行番号なし"><span class="header-link"></span></a>行番号なし</h3>
-<p><code data-gist-id="5457605" data-gist-hide-line-numbers="true"></code></p>
-<h3><a name="行番号とフッターなし" class="anchor" href="#行番号とフッターなし"><span class="header-link"></span></a>行番号とフッターなし</h3>
-<p><code data-gist-id="5457629" data-gist-hide-footer="true" data-gist-hide-line-numbers="true"></code></p>
-<h3><a name="複数のファイルがぁるgist" class="anchor" href="#複数のファイルがぁるgist"><span class="header-link"></span></a>複数のファイルがぁるGist</h3>
-<p><code data-gist-id="5457635"></code></p>
-<h3><a name="複数のファイルがぁるgistでそのぅちのひとっのファイルだけ表示" class="anchor" href="#複数のファイルがぁるgistでそのぅちのひとっのファイルだけ表示"><span class="header-link"></span></a>複数のファイルがぁるGistでそのぅちのひとっのファイルだけ表示</h3>
-<p><code data-gist-id="5457644" data-gist-file="example-file2.html"></code></p>
-<h3><a name="行番号を1行だけ指定" class="anchor" href="#行番号を1行だけ指定"><span class="header-link"></span></a>行番号を1行だけ指定</h3>
-<p><code data-gist-id="5457662" data-gist-line="2"></code></p>
-<h3><a name="行番号を範囲で指定" class="anchor" href="#行番号を範囲で指定"><span class="header-link"></span></a>行番号を範囲で指定</h3>
-<p><code data-gist-id="5457652" data-gist-line="2-4"></code></p>
-<h3><a name="行番号を1行だけ指定と範囲指定の両方" class="anchor" href="#行番号を1行だけ指定と範囲指定の両方"><span class="header-link"></span></a>行番号を1行だけ指定と範囲指定の両方</h3>
-<p><code data-gist-id="5457665" data-gist-line="1,3-4"></code></p>
-<h3><a name="行番号を1行ずっ複数指定" class="anchor" href="#行番号を1行ずっ複数指定"><span class="header-link"></span></a>行番号を1行ずっ複数指定</h3>
-<p><code data-gist-id="5457668" data-gist-line="2,3,4"></code></p>
-<h2><a name="まとめ" class="anchor" href="#まとめ"><span class="header-link"></span></a>まとめ</h2>
-<p>Gist側の仕様変更などにゎ気をっけなきゃぃけなぃと思ぃますが<br>機能的にゎとてもぃぃので、<br>ブログでGistを貼るならっかってみる価値ぁると思ぃます</p>
-]]></description><link>http://ayapi.github.io/posts/embeddinggists/</link><guid isPermaLink="true">http://ayapi.github.io/posts/embeddinggists/</guid><category><![CDATA[JavaScript]]></category><dc:creator><![CDATA[ぁゃぴ]]></dc:creator><pubDate>Fri, 22 Nov 2013 11:45:00 GMT</pubDate></item><item><title><![CDATA[node.exeのspawnからPythonを叩く時の標準入出力の文字コード]]></title><description><![CDATA[<h2><a name="node-pygmentize-bundledからのpygments" class="anchor" href="#node-pygmentize-bundledからのpygments"><span class="header-link"></span></a>node-pygmentize-bundledからのPygments</h2>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[ayapi.github.io]]></title><description><![CDATA[ぁゃぴがプログラミングのことをかくブログ]]></description><link>http://ayapi.github.io</link><generator>RSS for Node</generator><lastBuildDate>Sat, 23 Nov 2013 08:38:43 GMT</lastBuildDate><atom:link href="http://ayapi.github.io/feed.xml" rel="self" type="application/rss+xml"/><author><![CDATA[ぁゃぴ]]></author><pubDate>Sat, 23 Nov 2013 08:38:43 GMT</pubDate><copyright><![CDATA[2013 ぁゃぴ]]></copyright><language><![CDATA[en]]></language><managingEditor><![CDATA[ぁゃぴ]]></managingEditor><webMaster><![CDATA[ぁゃぴ]]></webMaster><ttl>60</ttl><item><title><![CDATA[node.exeのspawnからPythonを叩く時の標準入出力の文字コード]]></title><description><![CDATA[<h2><a name="node-pygmentize-bundledからのpygments" class="anchor" href="#node-pygmentize-bundledからのpygments"><span class="header-link"></span></a>node-pygmentize-bundledからのPygments</h2>
 <p>割と気に入ってる<a href="http://www.cabinjs.com/">CabinJS</a>なんですけど、<br>シンタックスハイライトで<a href="https://github.com/rvagg/node-pygmentize-bundled">node-pygmentize-bundled</a>とゅー、<br><a href="http://www.python.jp/">Python</a>の<a href="http://pygments.org/">Pygments</a>をnodeから叩くものが使ゎれてて、<br>ハイライトするコードに日本語が含まれてると、<br>日本語の部分が文字化けすることに気づきました<br>それを解決するためにしらべました</p>
 <p>ちなむとぁゃぴゎPythonのことゎまったくゎかりません、<br>.pyファイルとか、はじめてかきました</p>
 <h2><a name="pythonの標準入出力の文字コード自動認識" class="anchor" href="#pythonの標準入出力の文字コード自動認識"><span class="header-link"></span></a>Pythonの標準入出力の文字コード自動認識</h2>

@@ -38,66 +38,168 @@
 
 
 <div class="post-head group">
-  <h1 class="post-title"><a href="/posts/embeddinggists/">Gistをとにかくぃーかんじに貼れるgist-embed.js</a></h1>
+  <h1 class="post-title"><a href="/posts/nodejsspawnpythonencoding/">node.exeのspawnからPythonを叩く時の標準入出力の文字コード</a></h1>
   <dl class="post-detail">
   <dt>Date</dt>
-  <dd> November 22, 2013</dd>
+  <dd> November 21, 2013</dd>
   <dt>Tags</dt>
   <dd>
   
-    <a href="/tags/javascript/">JavaScript</a>
+    <a href="/tags/node/">Node</a>
+  
+    <a href="/tags/python/">Python</a>
   
   </dd>
   </dl>
 </div>
 
 <div class="post-body markdown">
-  <p><a href="https://gist.github.com/‎">Gist</a>をっかってみょーと思ぃましたが、<br>このブログのジェネレータ<a href="https://github.com/CabinJS">CabinJS</a>にゎ、<br>Gistを貼るための特別なプラグインなどゎ特にぁりません</p>
-<p>なので、ふつうに<code>&lt;script&gt;</code>タグとかで貼ることになるんですけど、<br>Gist公式の<code>&lt;script&gt;</code>タグょりもぃーかんじのライブラリをみっけました</p>
-<p>それが、<a href="https://github.com/blairvanderhoof/gist-embed">gist-embed.js</a>です</p>
-<h2><a name="gist-embed" class="anchor" href="#gist-embed"><span class="header-link"></span></a>gist-embed.jsのすごぃとこ</h2>
-<h3><a name="非同期でgistのjsonを取得してくれる" class="anchor" href="#非同期でgistのjsonを取得してくれる"><span class="header-link"></span></a>非同期でGistのjsonを取得してくれる</h3>
-<p>Gistゎ公式に<code>&lt;script&gt;</code>タグを提供してくれてますが、<br>そのjsファイルが<code>document.write()</code>で強引にかきこむ仕様で、<br>だぃぶ、ぅざぃんですけど、</p>
-<p>Gistゎなにげに、jsファイルだけでなく、jsonも提供してぃて、<br>gist-embed.jsゎ、非同期でそのjsonを取得してくれます<br>なので、ページのロードのブロッキングが発生しません</p>
-<h3><a name="gistのcssをカスタムしゃすぃ" class="anchor" href="#gistのcssをカスタムしゃすぃ"><span class="header-link"></span></a>Gistのcssをカスタムしゃすぃ</h3>
-<p>これちょっと文章で説明するとゃゃこしくなるんですけど、<br>Gist公式の<code>&lt;script&gt;</code>タグゎ、問答無用に、<br>その<code>&lt;script&gt;</code>の位置に<code>link</code>要素でcssを挿入してくるんですけど、</p>
-<p>gist-embed.jsゎ、Gistのデフォルトのcssの<code>link</code>要素を、<br>ドキュメントの<code>head</code>要素の最初の子要素として挿入してくれます</p>
-<p>これのなにがぃけてるかってゅーと、<br>コードカラーリングなどのスタイルをカスタムしたぃ場合に、<br>ふつーに<code>head</code>要素内にカスタム用cssの<code>link</code>要素を入れてても、<br>カスタム用cssのほうの優先度が高くなり、<br>ゃたらと<code>!important</code>かきまくったりする必要もほぼなぃです</p>
-<p>ぁゃぴゎ、ふだんからエディタをmonokaiカラーにしてるので、<br>Gistもmonokaiになるょーにcssをぁててみました</p>
-<h3><a name="表示するコードの行の範囲を柔軟に指定できる" class="anchor" href="#表示するコードの行の範囲を柔軟に指定できる"><span class="header-link"></span></a>表示するコードの行の範囲を柔軟に指定できる</h3>
-<p>ただファイルのコードぜんぶを一気にみせるんじゃなく、<br>数行だけを抜き出して表示するとかができますので、<br>解説とかを、てぃねぃにゎかりゃすくかけます<br>下にかく、動作サンプルをみてくださぃ</p>
-<h3><a name="行番号、メタ情報(フッター)の表示・非表示も選択できる" class="anchor" href="#行番号、メタ情報(フッター)の表示・非表示も選択できる"><span class="header-link"></span></a>行番号、メタ情報(フッター)の表示・非表示も選択できる</h3>
-<p>これも、以下にかく動作サンプルをみてくださぃ</p>
-<h2><a name="動作サンプル" class="anchor" href="#動作サンプル"><span class="header-link"></span></a>動作サンプル</h2>
-<p>以下ゎ、<a href="http://blairvanderhoof.com/gist-embed/">gist-embed公式example</a>を、ただかき写しただけです</p>
-<h3><a name="デフォ" class="anchor" href="#デフォ"><span class="header-link"></span></a>デフォ</h3>
-<p><code data-gist-id="5457595"></code></p>
-<h3><a name="行番号なし" class="anchor" href="#行番号なし"><span class="header-link"></span></a>行番号なし</h3>
-<p><code data-gist-id="5457605" data-gist-hide-line-numbers="true"></code></p>
-<h3><a name="行番号とフッターなし" class="anchor" href="#行番号とフッターなし"><span class="header-link"></span></a>行番号とフッターなし</h3>
-<p><code data-gist-id="5457629" data-gist-hide-footer="true" data-gist-hide-line-numbers="true"></code></p>
-<h3><a name="複数のファイルがぁるgist" class="anchor" href="#複数のファイルがぁるgist"><span class="header-link"></span></a>複数のファイルがぁるGist</h3>
-<p><code data-gist-id="5457635"></code></p>
-<h3><a name="複数のファイルがぁるgistでそのぅちのひとっのファイルだけ表示" class="anchor" href="#複数のファイルがぁるgistでそのぅちのひとっのファイルだけ表示"><span class="header-link"></span></a>複数のファイルがぁるGistでそのぅちのひとっのファイルだけ表示</h3>
-<p><code data-gist-id="5457644" data-gist-file="example-file2.html"></code></p>
-<h3><a name="行番号を1行だけ指定" class="anchor" href="#行番号を1行だけ指定"><span class="header-link"></span></a>行番号を1行だけ指定</h3>
-<p><code data-gist-id="5457662" data-gist-line="2"></code></p>
-<h3><a name="行番号を範囲で指定" class="anchor" href="#行番号を範囲で指定"><span class="header-link"></span></a>行番号を範囲で指定</h3>
-<p><code data-gist-id="5457652" data-gist-line="2-4"></code></p>
-<h3><a name="行番号を1行だけ指定と範囲指定の両方" class="anchor" href="#行番号を1行だけ指定と範囲指定の両方"><span class="header-link"></span></a>行番号を1行だけ指定と範囲指定の両方</h3>
-<p><code data-gist-id="5457665" data-gist-line="1,3-4"></code></p>
-<h3><a name="行番号を1行ずっ複数指定" class="anchor" href="#行番号を1行ずっ複数指定"><span class="header-link"></span></a>行番号を1行ずっ複数指定</h3>
-<p><code data-gist-id="5457668" data-gist-line="2,3,4"></code></p>
-<h2><a name="まとめ" class="anchor" href="#まとめ"><span class="header-link"></span></a>まとめ</h2>
-<p>Gist側の仕様変更などにゎ気をっけなきゃぃけなぃと思ぃますが<br>機能的にゎとてもぃぃので、<br>ブログでGistを貼るならっかってみる価値ぁると思ぃます</p>
+  <h2><a name="node-pygmentize-bundledからのpygments" class="anchor" href="#node-pygmentize-bundledからのpygments"><span class="header-link"></span></a>node-pygmentize-bundledからのPygments</h2>
+<p>割と気に入ってる<a href="http://www.cabinjs.com/">CabinJS</a>なんですけど、<br>シンタックスハイライトで<a href="https://github.com/rvagg/node-pygmentize-bundled">node-pygmentize-bundled</a>とゅー、<br><a href="http://www.python.jp/">Python</a>の<a href="http://pygments.org/">Pygments</a>をnodeから叩くものが使ゎれてて、<br>ハイライトするコードに日本語が含まれてると、<br>日本語の部分が文字化けすることに気づきました<br>それを解決するためにしらべました</p>
+<p>ちなむとぁゃぴゎPythonのことゎまったくゎかりません、<br>.pyファイルとか、はじめてかきました</p>
+<h2><a name="pythonの標準入出力の文字コード自動認識" class="anchor" href="#pythonの標準入出力の文字コード自動認識"><span class="header-link"></span></a>Pythonの標準入出力の文字コード自動認識</h2>
+<p>Pythonゎ、標準入出力のエンコードを<br>システムにぁゎせて自動切替してるそーで、<br>Windowsのcmd.exeでゎ<code>chcp</code>コマンドでcode pageを変ぇると、<br>Pythonの標準入出力エンコードが切り替ゎります</p>
+<p>cmd.exeでCP932(≒SJIS)に設定しpythonを実行する例</p>
+<pre><code class="lang-bash"><div class="highlight"><pre>C:/test/&gt; chcp 932
+現在のコードページ: 932
+
+C:/test/&gt; python
+Python 3.3.2 <span class="o">(</span>v3.3.2:d047928ae3f6, May 16 2013, 00:06:53<span class="o">)</span> <span class="o">[</span>MSC v.1600 64 bit <span class="o">(</span>AMD64<span class="o">)]</span> on win32
+Type <span class="s2">&quot;help&quot;</span>, <span class="s2">&quot;copyright&quot;</span>, <span class="s2">&quot;credits&quot;</span> or <span class="s2">&quot;license&quot;</span> <span class="k">for </span>more information.
+&gt;&gt;&gt; import sys
+&gt;&gt;&gt; sys.getdefaultencoding<span class="o">()</span>
+<span class="s1">&#39;utf-8&#39;</span>
+&gt;&gt;&gt; sys.stdin.encoding
+<span class="s1">&#39;cp932&#39;</span>
+&gt;&gt;&gt; sys.stdout.encoding
+<span class="s1">&#39;cp932&#39;</span>
+</pre></div>
+</code></pre>
+<p>cmd.exeでCP65001(UTF-8)に設定しpythonを実行する例</p>
+<pre><code class="lang-bash"><div class="highlight"><pre>C:/test/&gt; chcp 65001
+Active code page: 65001
+
+C:/test/&gt; python
+Python 3.3.2 <span class="o">(</span>v3.3.2:d047928ae3f6, May 16 2013, 00:06:53<span class="o">)</span> <span class="o">[</span>MSC v.1600 64 bit <span class="o">(</span>AMD64<span class="o">)]</span> on win32
+Type <span class="s2">&quot;help&quot;</span>, <span class="s2">&quot;copyright&quot;</span>, <span class="s2">&quot;credits&quot;</span> or <span class="s2">&quot;license&quot;</span> <span class="k">for </span>more information.
+&gt;&gt;&gt; import sys
+&gt;&gt;&gt; sys.getdefaultencoding<span class="o">()</span>
+<span class="s1">&#39;utf-8&#39;</span>
+&gt;&gt;&gt; sys.stdin.encoding
+<span class="s1">&#39;cp65001&#39;</span>
+&gt;&gt;&gt; sys.stdout.encoding
+<span class="s1">&#39;cp65001&#39;</span>
+</pre></div>
+</code></pre>
+<p>以上から、Pythonの標準入出力のエンコードが、<br>Active code pageにぁゎせられてるのがゎかります</p>
+<h2><a name="node" class="anchor" href="#node"><span class="header-link"></span></a>node.exeからだと話ゎ別になる</h2>
+<p>けど、nodeのspawnからPythonを叩くと、<br>node.exeを実行してるシステムのActive code pageゎ<br>Python的にゎ関係なくなっちゃぅっぽくて、それがゎかる例が以下です</p>
+<p>C:/test/test.js</p>
+<pre><code class="lang-javascript"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">spawn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;child_process&#39;</span><span class="p">).</span><span class="nx">spawn</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">python_test</span> <span class="o">=</span> <span class="nx">spawn</span><span class="p">(</span><span class="s1">&#39;python&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;test.py&#39;</span><span class="p">]);</span>
+
+<span class="nx">python_test</span><span class="p">.</span><span class="nx">stdout</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</code></pre>
+<p>C:/test/test.py</p>
+<pre><code class="lang-python"><div class="highlight"><pre><span class="c">#! c:/Python33/python.exe</span>
+<span class="c"># -*- coding: utf-8 -*-</span>
+<span class="kn">import</span> <span class="nn">sys</span><span class="p">;</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;sys.getdefaultencoding() = &quot;</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">getdefaultencoding</span><span class="p">());</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;sys.stdin.encoding = &quot;</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">encoding</span><span class="p">);</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;sys.stdout.encoding = &quot;</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">encoding</span><span class="p">);</span>
+</pre></div>
+</code></pre>
+<p>このtest.jsを実行してみると、以下のょーになります</p>
+<pre><code class="lang-bash"><div class="highlight"><pre>C:/test/&gt; chcp 65001
+Active code page: 65001
+
+C:/test/&gt; node test.js
+sys.getdefaultencoding<span class="o">()</span> <span class="o">=</span> utf-8
+sys.stdin.encoding <span class="o">=</span> cp932
+sys.stdout.encoding <span class="o">=</span> cp932
+</pre></div>
+</code></pre>
+<p>Active code pageが65001だけど、<br>Pythonの標準入出力ゎCP932って出てます(&gt;_&lt;)<br>これゎ、とても困ります</p>
+<h2><a name="環境変数「pythonioencoding」の存在" class="anchor" href="#環境変数「pythonioencoding」の存在"><span class="header-link"></span></a>環境変数「PYTHONIOENCODING」の存在</h2>
+<p>Pythonのドキュメントをちゃんと読んでみると、<br>以下のょーな記述がぁりました</p>
+<blockquote>
+<p><cite><a href="http://docs.python.org/3/library/sys.html#sys.stdin">Python v3.3.3 documentation - 28.1. sys — System-specific parameters and functions</a></cite><br>The character encoding is platform-dependent. Under Windows, if the stream is interactive (that is, if its isatty() method returns True), the console codepage is used, otherwise the ANSI code page. Under other platforms, the locale encoding is used (see locale.getpreferredencoding()).<br>Under all platforms though, you can override this value by setting the PYTHONIOENCODING environment variable.</p>
+</blockquote>
+<p>なんだ<code>PYTHONIOENCODING</code>とかゅー環境変数がぁるのか！<br>てことで、spawnのオプションで環境変数を指定してみます</p>
+<h3><a name="spawnのオプションで環境変数を指定する" class="anchor" href="#spawnのオプションで環境変数を指定する"><span class="header-link"></span></a>spawnのオプションで環境変数を指定する</h3>
+<p>C:/test/test2.js</p>
+<pre><code class="lang-javascript"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">spawn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;child_process&#39;</span><span class="p">).</span><span class="nx">spawn</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">python_test</span> <span class="o">=</span> <span class="nx">spawn</span><span class="p">(</span><span class="s1">&#39;python&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;test.py&#39;</span><span class="p">],</span> <span class="p">{</span>
+    <span class="nx">env</span><span class="o">:</span><span class="p">{</span> <span class="s2">&quot;PYTHONIOENCODING&quot;</span> <span class="o">:</span> <span class="s2">&quot;cp65001&quot;</span> <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="nx">python_test</span><span class="p">.</span><span class="nx">stdout</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</code></pre>
+<p>実行してみると、以下のょーになります</p>
+<pre><code class="lang-bash"><div class="highlight"><pre>C:/test/&gt; chcp 65001
+Active code page: 65001
+
+C:/test/&gt; node test2.js
+sys.getdefaultencoding<span class="o">()</span> <span class="o">=</span> utf-8
+sys.stdin.encoding <span class="o">=</span> cp65001
+sys.stdout.encoding <span class="o">=</span> cp65001
+
+C:/test/&gt; chcp 932
+現在のコードページ: 932
+
+C:/test/&gt; node test2.js
+sys.getdefaultencoding<span class="o">()</span> <span class="o">=</span> utf-8
+sys.stdin.encoding <span class="o">=</span> cp65001
+sys.stdout.encoding <span class="o">=</span> cp65001
+</pre></div>
+</code></pre>
+<p>これで、nodeのspawnでUTF8の日本語をPythonに投げても<br>SJISでゎなくちゃんとUTF8として扱ってくれるょーになりました！</p>
+<h3><a name="windowsのシステム環境変数で指定する" class="anchor" href="#windowsのシステム環境変数で指定する"><span class="header-link"></span></a>Windowsのシステム環境変数で指定する</h3>
+<p>けどspawnでぃち②毎回指定するのゎ、人生っらぃなと思ぅし、<br>てか今回のぁゃぴが解決したぃことゎそも②<br>node-pygmentize-bundledの内部でゃってるspawnなので、<br>中のコードを書き換ぇるのゎ、ぁんまりゃる気がしません</p>
+<p>そこで、Windowsのシステム環境変数に<br><code>PYTHONIOENCODING</code>を設定してみることにしました</p>
+<p><img src="/images/pythonencoding.png" alt="システム環境変数に`PYTHONIOENCODING`を設定"></p>
+<p>すると、spawnでenvを指定してなぃ最初のtest.jsでも、</p>
+<pre><code class="lang-bash"><div class="highlight"><pre>C:/test/&gt; chcp 932
+現在のコードページ: 932
+
+C:/test/&gt; node test.js
+sys.getdefaultencoding<span class="o">()</span> <span class="o">=</span> utf-8
+sys.stdin.encoding <span class="o">=</span> cp65001
+sys.stdout.encoding <span class="o">=</span> cp65001
+</pre></div>
+</code></pre>
+<p>このょーにcp65001になりました！</p>
+<p>Windowsのシステム環境変数に設定をした場合ゎ、<br>以下のょーに、nodeじゃなく普通にcmd.exeから実行する場合にも、<br>Active code pageの自動認識ゎなくなり、必ずUTF-8になるので、<br>そこゎ逆に注意が必要かもしれません</p>
+<pre><code class="lang-bash"><div class="highlight"><pre>C:/test/&gt; chcp 932
+現在のコードページ: 932
+
+C:/test/&gt; python
+Python 3.3.2 <span class="o">(</span>v3.3.2:d047928ae3f6, May 16 2013, 00:06:53<span class="o">)</span> <span class="o">[</span>MSC v.1600 64 bit <span class="o">(</span>AMD64<span class="o">)]</span> on win32
+Type <span class="s2">&quot;help&quot;</span>, <span class="s2">&quot;copyright&quot;</span>, <span class="s2">&quot;credits&quot;</span> or <span class="s2">&quot;license&quot;</span> <span class="k">for </span>more information.
+&gt;&gt;&gt; import sys
+&gt;&gt;&gt; sys.getdefaultencoding<span class="o">()</span>
+<span class="s1">&#39;utf-8&#39;</span>
+&gt;&gt;&gt; sys.stdin.encoding
+<span class="s1">&#39;cp65001&#39;</span>
+&gt;&gt;&gt; sys.stdout.encoding
+<span class="s1">&#39;cp65001&#39;</span>
+</pre></div>
+</code></pre>
+<p>ぁゃぴゎ今のところcmd.exeからPython直叩きするょーな場面なぃし、<br>このままでぃこーと思ぃます</p>
 
 </div>
 
 <ul class="post-social">
-<li class="pocket"><a data-save-url="http://ayapi.github.io/posts/embeddinggists/" data-pocket-label="pocket" data-pocket-count="none" class="pocket-btn" data-lang="en"></a></li>
-<li class="twitter"><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://ayapi.github.io/posts/embeddinggists/" data-lang="ja" data-count="none">ツイート</a></li>
-<li class="hatena"><a href="http://b.hatena.ne.jp/entry/http://ayapi.github.io/posts/embeddinggists/" class="hatena-bookmark-button" data-hatena-bookmark-title=" - ayapi.github.io" data-hatena-bookmark-layout="standard-noballoon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a></li>
-<li class="facebook"><fb:like url="http://ayapi.github.io/posts/embeddinggists/" href="https://developers.facebook.com/docs/plugins/" layout="button_count" action="like" show_faces="false" share="false"></fb:like></li>
+<li class="pocket"><a data-save-url="http://ayapi.github.io/posts/nodejsspawnpythonencoding/" data-pocket-label="pocket" data-pocket-count="none" class="pocket-btn" data-lang="en"></a></li>
+<li class="twitter"><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://ayapi.github.io/posts/nodejsspawnpythonencoding/" data-lang="ja" data-count="none">ツイート</a></li>
+<li class="hatena"><a href="http://b.hatena.ne.jp/entry/http://ayapi.github.io/posts/nodejsspawnpythonencoding/" class="hatena-bookmark-button" data-hatena-bookmark-title=" - ayapi.github.io" data-hatena-bookmark-layout="standard-noballoon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a></li>
+<li class="facebook"><fb:like url="http://ayapi.github.io/posts/nodejsspawnpythonencoding/" href="https://developers.facebook.com/docs/plugins/" layout="button_count" action="like" show_faces="false" share="false"></fb:like></li>
 </ul>
 
       </div>

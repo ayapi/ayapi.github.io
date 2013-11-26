@@ -1,5 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[ayapi.github.io]]></title><description><![CDATA[ぁゃぴがプログラミングのことをかくブログ]]></description><link>http://ayapi.github.io</link><generator>RSS for Node</generator><lastBuildDate>Tue, 26 Nov 2013 06:31:24 GMT</lastBuildDate><atom:link href="http://ayapi.github.io/feed.xml" rel="self" type="application/rss+xml"/><author><![CDATA[ぁゃぴ]]></author><pubDate>Tue, 26 Nov 2013 06:31:24 GMT</pubDate><copyright><![CDATA[2013 ぁゃぴ]]></copyright><language><![CDATA[en]]></language><managingEditor><![CDATA[ぁゃぴ]]></managingEditor><webMaster><![CDATA[ぁゃぴ]]></webMaster><ttl>60</ttl><item><title><![CDATA[階調反転フィルターCSS Microsoft編]]></title><description><![CDATA[<h2><a name="microsoft編… filter: dximagetransform" class="anchor" href="#microsoft編… filter: dximagetransform"><span class="header-link"></span></a>Microsoft編… filter: DXImageTransform</h2>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[ayapi.github.io]]></title><description><![CDATA[ぁゃぴがプログラミングのことをかくブログ]]></description><link>http://ayapi.github.io</link><generator>RSS for Node</generator><lastBuildDate>Tue, 26 Nov 2013 22:39:21 GMT</lastBuildDate><atom:link href="http://ayapi.github.io/feed.xml" rel="self" type="application/rss+xml"/><author><![CDATA[ぁゃぴ]]></author><pubDate>Tue, 26 Nov 2013 22:39:21 GMT</pubDate><copyright><![CDATA[2013 ぁゃぴ]]></copyright><language><![CDATA[en]]></language><managingEditor><![CDATA[ぁゃぴ]]></managingEditor><webMaster><![CDATA[ぁゃぴ]]></webMaster><ttl>60</ttl><item><title><![CDATA[階調反転フィルターJava Swing/JLayer]]></title><description><![CDATA[<h2><a name="swingにっぃて" class="anchor" href="#swingにっぃて"><span class="header-link"></span></a>Swingにっぃて</h2>
+<p>Swingゎ、JavaのGUIツールキットでとても有名なゃっです<br>JavaのGUIゎ、最近ゎJavaFX2とかもぁります<br>けど、ぁゃぴゎぃまメインでさゎってるSDKがSwingベースだから、<br>部分的にJavaFX2をっかってみたりしてゎぃるものの、<br>Swingの勉強もだぃぶ必要です</p>
+<h2><a name="swingのjlayer" class="anchor" href="#swingのjlayer"><span class="header-link"></span></a>SwingのJLayer</h2>
+<p>Swingにぉぃてゎ、JLayerクラス(JXLayerの派生)をっかって、<br>フィルターをっくることができ、<br>Oracle公式サイトに、とてもゎかりゃすぃ解説ページがぁります<br><a href="http://www.oracle.com/technetwork/jp/articles/java/jlayer-439461-ja.html">JLayerを使用したコンポーネントのデコレート方法 - Oracle</a><br>今回ゎこの解説にでてくるBlurエフェクトのサンプルを特に参考にします</p>
+<p>ぁとRGB変換でゎ以下のサンプルが参考になります<br><a href="http://terai.xrea.jp/Swing/ColorChannelSwapFilter.html">JLayerを使ってJProgressBarの色相を変更する - Java Swing Tips - てんぷらメモ</a><br>↑ぃっぱぃSwingのサンプルが載ってて、すばらしぃです</p>
+<h2><a name="jlayerで階調反転" class="anchor" href="#jlayerで階調反転"><span class="header-link"></span></a>JLayerで階調反転</h2>
+<p>てゎけでさっそく、階調反転をSwingのJLayerでゃってみます</p>
+<h3><a name="layeruiサブクラス" class="anchor" href="#layeruiサブクラス"><span class="header-link"></span></a>LayerUIサブクラス</h3>
+<h4><a name="最小構成" class="anchor" href="#最小構成"><span class="header-link"></span></a>最小構成</h4>
+<p>まず、<code>LayerUI</code>のサブクラスをかきます</p>
+<blockquote>
+<p><a href="http://www.oracle.com/technetwork/jp/articles/java/jlayer-439461-ja.html">JLayerを使用したコンポーネントのデコレート方法 - Oracle</a><br>LayerUIクラスのpaint()メソッドを使用すると、コンポーネントの描画方法を完全にコントロールできます。</p>
+</blockquote>
+<p>たとぇばまったくなにもぃじらなぃ<code>paint</code>メソッドゎこぅです</p>
+<pre><code class="lang-java"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">InvertColorLayerUI</span> <span class="kd">extends</span> <span class="n">LayerUI</span><span class="o">&lt;</span><span class="n">JComponent</span><span class="o">&gt;</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">paint</span><span class="o">(</span><span class="n">Graphics</span> <span class="n">g</span><span class="o">,</span> <span class="n">JComponent</span> <span class="n">c</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">paint</span><span class="o">(</span><span class="n">g</span><span class="o">,</span> <span class="n">c</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</code></pre>
+<h4><a name="オフスクリーンイメージの追加" class="anchor" href="#オフスクリーンイメージの追加"><span class="header-link"></span></a>オフスクリーンイメージの追加</h4>
+<p>Oracle公式のBlurサンプルでも、てんぷらメモの色相サンプルでも、<br>オフスクリーンイメージがっかゎれてます<br>みぇなぃ画像に先にレンダリングしとぃて、ぁとから一気に表示する、<br>ってゃりかたで、これゎべっにJavaにゎ限らず、<br>グラフィック系でゎどこででもでてくるゃりかたです</p>
+<p>まだフィルターゎなにもかけなぃで、<br>オフスクリーンイメージのしくみだけ追加するとこーなります</p>
+<pre><code class="lang-java"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">InvertColorLayerUI</span> <span class="kd">extends</span> <span class="n">LayerUI</span><span class="o">&lt;</span><span class="n">JComponent</span><span class="o">&gt;</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="n">BufferedImage</span> <span class="n">bufferedImage</span><span class="o">;</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">paint</span><span class="o">(</span><span class="n">Graphics</span> <span class="n">g</span><span class="o">,</span> <span class="n">JComponent</span> <span class="n">c</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">w</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="na">getWidth</span><span class="o">();</span>
+        <span class="kt">int</span> <span class="n">h</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="na">getHeight</span><span class="o">();</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">w</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">h</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="k">return</span><span class="o">;</span>
+
+        <span class="c1">//オフスクリーンイメージがなかったり大きさがちがってたら生成する</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">bufferedImage</span> <span class="o">==</span> <span class="kc">null</span>
+                <span class="o">||</span> <span class="n">bufferedImage</span><span class="o">.</span><span class="na">getWidth</span><span class="o">()</span> <span class="o">!=</span> <span class="n">w</span>
+                <span class="o">||</span> <span class="n">bufferedImage</span><span class="o">.</span><span class="na">getHeight</span><span class="o">()</span> <span class="o">!=</span> <span class="n">h</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">bufferedImage</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BufferedImage</span><span class="o">(</span><span class="n">w</span><span class="o">,</span> <span class="n">h</span><span class="o">,</span> <span class="n">BufferedImage</span><span class="o">.</span><span class="na">TYPE_INT_ARGB</span><span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="c1">//オフスクリーンイメージにコンポーネントをレンダリングする</span>
+        <span class="n">Graphics2D</span> <span class="n">g2</span> <span class="o">=</span> <span class="n">bufferedImage</span><span class="o">.</span><span class="na">createGraphics</span><span class="o">();</span>
+        <span class="n">g2</span><span class="o">.</span><span class="na">setClip</span><span class="o">(</span><span class="n">g</span><span class="o">.</span><span class="na">getClip</span><span class="o">());</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">paint</span><span class="o">(</span><span class="n">g2</span><span class="o">,</span> <span class="n">c</span><span class="o">);</span>
+        <span class="n">g2</span><span class="o">.</span><span class="na">dispose</span><span class="o">();</span>
+
+        <span class="c1">//オフスクリーンイメージをそのまま画面に描画する</span>
+        <span class="n">Image</span> <span class="n">image</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="na">createImage</span><span class="o">(</span><span class="n">bufferedImage</span><span class="o">.</span><span class="na">getSource</span><span class="o">());</span>
+        <span class="n">g</span><span class="o">.</span><span class="na">drawImage</span><span class="o">(</span><span class="n">image</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">c</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</code></pre>
+<h4><a name="フィルタークラスの追加" class="anchor" href="#フィルタークラスの追加"><span class="header-link"></span></a>フィルタークラスの追加</h4>
+<p>それで、オフスクリーンイメージをそのまま画面に描画するんじゃなく、<br>オフスクリーンイメージに対してフィルターをかけるんですけど、<br>フィルターゎ<code>RGBImageFilter</code>を継承してっくるのがぃぃそぅです<br>ゃっとここで、階調反転そのものをかきます</p>
+<p><code data-gist-id="7660869" data-gist-line="33-40"><a href="https://gist.github.com/ayapi/7660869">https://gist.github.com/ayapi/7660869</a> Line:33-40</code></p>
+<p>このビット演算ゎ、Aゎ関係なぃので取り出してそのままの値で、<br>RGBゎ取り出して反転して、<br>AとRGBをまたぁゎせて返しましょぅ、とゅー内容です<br>このへんゎSwingだからって特別なとこゎなにもなぃです／(^o^)＼</p>
+<h4><a name="paintメソッド内でフィルターを適用" class="anchor" href="#paintメソッド内でフィルターを適用"><span class="header-link"></span></a>paintメソッド内でフィルターを適用</h4>
+<p>それで<code>LayerUI</code>サブクラスの<code>paint</code>メソッドの最後の描画の前で<br>このフィルタークラスを適用するょーにします</p>
+<p><code data-gist-id="7660869" data-gist-line="25-30"><a href="https://gist.github.com/ayapi/7660869">https://gist.github.com/ayapi/7660869</a> Line:25-30</code></p>
+<p>これで<code>LayerUI</code>サブクラスゎ完成です＼(^o^)／</p>
+<h3><a name="jlayerにコンポーネントとlayeruiを指定する" class="anchor" href="#jlayerにコンポーネントとlayeruiを指定する"><span class="header-link"></span></a>JLayerにコンポーネントとLayerUIを指定する</h3>
+<p>たとぇばパネルをソースにしてフィルターをかけるとすれば、<br>こーゅーふうに指定します<br>(実際にっかぅ時ゎ空のパネルじゃなくてぃろ②追加するんですけど)</p>
+<p><code data-gist-id="7660869" data-gist-line="48-50"><a href="https://gist.github.com/ayapi/7660869">https://gist.github.com/ayapi/7660869</a> Line:48-50</code></p>
+<p>そして<code>layer</code>だけを親のフレームとかに<code>add</code>します<br><code>panel</code>ゃ<code>layerUI</code>ゎもぅ<code>add</code>しなぃです</p>
+<h3><a name="完成ばん" class="anchor" href="#完成ばん"><span class="header-link"></span></a>完成ばん</h3>
+<p>とゅーゎけで、できたコードがこれですー！</p>
+<p><code data-gist-id="7660869"><a href="https://gist.github.com/ayapi/7660869">https://gist.github.com/ayapi/7660869</a></code></p>
+]]></description><link>http://ayapi.github.io/posts/colorinvertjlayer/</link><guid isPermaLink="true">http://ayapi.github.io/posts/colorinvertjlayer/</guid><category><![CDATA[Java]]></category><category><![CDATA[Swing]]></category><dc:creator><![CDATA[ぁゃぴ]]></dc:creator><pubDate>Tue, 26 Nov 2013 22:27:00 GMT</pubDate></item><item><title><![CDATA[階調反転フィルターCSS Microsoft編]]></title><description><![CDATA[<h2><a name="microsoft編… filter: dximagetransform" class="anchor" href="#microsoft編… filter: dximagetransform"><span class="header-link"></span></a>Microsoft編… filter: DXImageTransform</h2>
 <p>CSSネタでゎまじだるぃIEなんですけど、<br>フィルター関係でゎDirectXをっかった独自実装の<br><code>filter: progid:DXImageTransform.Microsoft</code>が、ぁりました<br>「ぁりました」って過去形なのゎ、IE9の時点で非推奨とされ、<br>IE10からゎ完全に非対応となったからです</p>
 <p>とりぁぇずIE10以降のことゎぉぃとぃて、<br><code>DXImageTransform</code>をっかった階調反転CSSを、<br>教科書どーりなかんじでかくと、以下のとーりです</p>
 <pre><code class="lang-scss"><div class="highlight"><pre><span class="nc">.invert</span><span class="p">{</span>
@@ -189,18 +257,4 @@
 <p><code data-gist-id="7644528" data-gist-file="invert.css"><a href="https://gist.github.com/ayapi/7644528#file-invert-css">https://gist.github.com/ayapi/7644528#file-invert-css</a></code></p>
 <p>ぃったぃなにをゃってるのかってことと、<br>Webkit, Mozilla, Microsoftそれぞれにぉぃて<br>少し踏み込んだ内容をかきます</p>
 <p><a href="/posts/colorinvertcssonwebkit">階調反転フィルターCSS Webkit編</a><br><a href="/posts/colorinvertcssonmozilla">階調反転フィルターCSS Mozilla編</a><br><a href="/posts/colorinvertcssonmicrosoft">階調反転フィルターCSS Microsoft編</a></p>
-]]></description><link>http://ayapi.github.io/posts/colorinvertcss/</link><guid isPermaLink="true">http://ayapi.github.io/posts/colorinvertcss/</guid><category><![CDATA[CSS]]></category><category><![CDATA[JavaScript]]></category><dc:creator><![CDATA[ぁゃぴ]]></dc:creator><pubDate>Mon, 25 Nov 2013 16:02:00 GMT</pubDate></item><item><title><![CDATA[grunt-gitでGruntにGitコマンドをまとめる]]></title><description><![CDATA[<p><a href="https://github.com/rubenv/grunt-git">grunt-git</a>ゎ、なまぇのとーり、<br>Gitコマンドをかんたんに<a href="http://gruntjs.com/">Grunt</a>タスクとして扱ぇます</p>
-<p>ぁゃぴがなんで使ってみょーかと思ったかってゅーと、<br>ぁゃぴゎこのブログでゎ、GitHubに、2個のリポジトリがぁり、</p>
-<p>①<a href="https://github.com/CabinJS/Cabin">CabinJS</a>のソースファイルを置ぃとくリポジトリ<br>②ビルドしたファイルをGitHub Pages用にデプロイしとくリポジトリ</p>
-<p>これでたとぇば、①に記事を書ぃて<code>git push</code>するのを、<br>元からぁる、ビルドして②にデプロイするgruntタスクに、<br>統合したぃと考ぇました<br>どっちかだけをゃって差分が出るってゅーのをなくしたぃからです</p>
-<p>ゃったことゎかんたんで、<br>grunt-gitをぃっものコマンドでインストールし、</p>
-<pre><code class="lang-bash"><div class="highlight"><pre>npm install grunt-git --save-dev
-</pre></div>
-</code></pre>
-<p>ぁとゎGruntfile.jsにタスクを追加するだけです<br><a href="https://github.com/ayapi/ayapi-cabin/commit/0b28637d332fd5d232d688c5080e12ce5041931a">fix #31 ayapi-cabinにpushしたら自動でayapi.github.ioにデプロイするょーにしくみをっくる</a><br>↑すさまじくゎかりゃすぃと思ぃます</p>
-<p>今回の場合、GitのHooksを使って実現することもできると思ぅんですけど、<br>pushのhookゎWebサーバーを用意しなぃとできなぃっぽぃですょね？<br>できるのかな？ちょっとしらべたんですけど、<br>なんかできなさげエアーだったので、<br>手軽なところでGruntで完結できるょーにしました</p>
-<p>ほかに考ぇられる用途としてゎ、<br>ビルド以外にも、テストを走らせるなどで、<br>それがぉゎったら<code>git push</code>する、とかです</p>
-<p>って、<code>git push</code>のことばっかかぃてますが、<br><code>git commit</code>、<code>git stash</code>、など、<br>てか、READMEみる限り、大概のことゎできそーなかんじです</p>
-<p>なので、まだためしてませんが、<br><code>git stash</code>の後にビルド+LiveReloadさせ、<br>コミット漏れがなぃかを確認するGruntタスクを作ったりとか、<br>そーゅー使ぃ方もできるかなーと考ぇてぃます</p>
-<p>複合タスク系ばっか挙げましたが、<br>単純に長くてぉぼぇるのがたぃへんなGitコマンドを単体で、<br>ゎかりゃすぃ名前のGruntタスクにしとく、とかもぃぃと思ぃます</p>
-]]></description><link>http://ayapi.github.io/posts/gruntgit/</link><guid isPermaLink="true">http://ayapi.github.io/posts/gruntgit/</guid><category><![CDATA[Git]]></category><category><![CDATA[Grunt]]></category><category><![CDATA[Node]]></category><category><![CDATA[JavaScript]]></category><dc:creator><![CDATA[ぁゃぴ]]></dc:creator><pubDate>Sat, 23 Nov 2013 11:48:00 GMT</pubDate></item></channel></rss>
+]]></description><link>http://ayapi.github.io/posts/colorinvertcss/</link><guid isPermaLink="true">http://ayapi.github.io/posts/colorinvertcss/</guid><category><![CDATA[CSS]]></category><category><![CDATA[JavaScript]]></category><dc:creator><![CDATA[ぁゃぴ]]></dc:creator><pubDate>Mon, 25 Nov 2013 16:02:00 GMT</pubDate></item></channel></rss>

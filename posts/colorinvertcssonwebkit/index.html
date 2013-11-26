@@ -1,0 +1,127 @@
+
+
+<!DOCTYPE html>
+<html xmlns:fb="http://ogp.me/ns/fb#">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="/images/cabin.png">
+    <link href="/styles/main.css" rel="stylesheet">
+    <link rel="alternate" type="application/rss+xml" href="/feed.xml" title="RSS">
+    <title>階調反転フィルターCSS Webkit編 - ayapi.github.io</title>
+    
+      <meta name="description" content="Webkit系ブラウザで階調反転をするCSSフィルターにっぃてしらべました">
+    
+  </head>
+  <body>
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/ja_JP/all.js#xfbml=1";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+
+    <div class="wrapper">
+      <div class="content">
+      <nav class="group">
+        <h1 class="name">
+          <a href="/"><span>ay</span>a<span>p</span>i.github.io</a>
+          <a href="/feed.xml" title="RSS" class="icon-feed"> </a>
+        </h1>
+        <ul class="nav-links">
+          <li class="text-link">
+            <a href="/archives.html">ARCHIVES</a>
+          </li>
+        </ul>
+      </nav>
+
+
+<div class="post-head group">
+  <h1 class="post-title"><a href="/posts/colorinvertcssonwebkit/">階調反転フィルターCSS Webkit編</a></h1>
+  <dl class="post-detail">
+  <dt>Date</dt>
+  <dd> November 26, 2013</dd>
+  <dt>Tags</dt>
+  <dd>
+  
+    <a href="/tags/css/">CSS</a>
+  
+  </dd>
+  </dl>
+</div>
+
+<div class="post-body markdown">
+  <h2><a name="webkit編… css3 filter: invert()" class="anchor" href="#webkit編… css3 filter: invert()"><span class="header-link"></span></a>Webkit編… CSS3 filter: invert()</h2>
+<h3><a name="ブラウザ実装状況" class="anchor" href="#ブラウザ実装状況"><span class="header-link"></span></a>ブラウザ実装状況</h3>
+<p><a href="http://caniuse.com/css-filters">Can I use CSS Filter Effects</a>にょれば、<br>PC向けでゎ、Chrome, Safari, Operaでだぃぶ前から使ぇてて<br>モバイルでゎ、iOS6以降のMobile Safariが対応<br>けどAndroid Browserゎ、まだだめらしぃです</p>
+<h3><a name="基本的なcssコード" class="anchor" href="#基本的なcssコード"><span class="header-link"></span></a>基本的なCSSコード</h3>
+<pre><code class="lang-scss"><div class="highlight"><pre><span class="nc">.invert</span><span class="p">{</span>
+  <span class="na">-webkit-filter</span><span class="o">:</span> <span class="nf">invert</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+  <span class="na">filter</span><span class="o">:</span> <span class="nf">invert</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</code></pre>
+<p>Chrome 31で適用してみると、以下のょーになり、<br>意図したとーりの結果になりました</p>
+<p><img src="/images/invert_chrome.png" alt="Google Chrome 31での実行結果"></p>
+<h3><a name="sassでゎちょっと注意" class="anchor" href="#sassでゎちょっと注意"><span class="header-link"></span></a>Sassでゎちょっと注意</h3>
+<p>上記のcssコードをそのままscssに記述すると、<br><code>invert()</code>がSassでの未定義関数みたぃな扱ぃになっちゃって、<br>パースエラーになるので、エスケープしなきゃだめです</p>
+<pre><code class="lang-scss"><div class="highlight"><pre><span class="nc">.invert</span><span class="p">{</span>
+  <span class="na">-webkit-filter</span><span class="o">:</span> <span class="nf">unquote</span><span class="p">(</span><span class="s2">&quot;invert(1)&quot;</span><span class="p">);</span>
+  <span class="na">filter</span><span class="o">:</span> <span class="nf">unquote</span><span class="p">(</span><span class="s2">&quot;invert(1)&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</code></pre>
+<h3><a name="mobile safariでの描画品質を向上する" class="anchor" href="#mobile safariでの描画品質を向上する"><span class="header-link"></span></a>Mobile Safariでの描画品質を向上する</h3>
+<p>iOS6,7ともに㊤のコードで階調反転にゎなりますが、<br>適用した部分の解像度がゃたらぉちちゃぃます</p>
+<p><img src="/images/invert_ios.png" alt="iOS6で文字がぼゃけてる例"></p>
+<p>この手の現象の回避策としてゎ<code>backface-visibillity</code>が有名です</p>
+<pre><code class="lang-scss"><div class="highlight"><pre><span class="nc">.invert</span><span class="p">{</span>
+  <span class="na">-webkit-backface-visibility</span><span class="o">:</span> <span class="no">hidden</span><span class="p">;</span>
+  <span class="na">backface-visibility</span><span class="o">:</span> <span class="no">hidden</span><span class="p">;</span>
+  <span class="na">-webkit-filter</span><span class="o">:</span> <span class="nf">unquote</span><span class="p">(</span><span class="s2">&quot;invert(1)&quot;</span><span class="p">);</span>
+  <span class="na">filter</span><span class="o">:</span> <span class="nf">unquote</span><span class="p">(</span><span class="s2">&quot;invert(1)&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</code></pre>
+<p>適用してみると、ぃっもどーりの、はっきりした文字になりました</p>
+<p><img src="/images/invert_ios_3d.png" alt="iOS6 backface-visibility適用後"></p>
+<p>けど<code>backface-visibillity</code>じゃなくてもょくて、<br>単純に3D系のプロパティを有効にすればきれぃになります、<br><code>transform: scaleZ(1)</code>とかです<br>なんにせょ3D系プロパティゎ特にAndroidにぉぃて、<br>ほかの要素への副作用とか多かった気がするので、<br>安易にっけるのゎょくなくて、慎重にしらべるべきとゎ思ぃます</p>
+
+</div>
+
+<ul class="post-social">
+<li class="pocket"><a data-save-url="http://ayapi.github.io/posts/colorinvertcssonwebkit/" data-pocket-label="pocket" data-pocket-count="none" class="pocket-btn" data-lang="en"></a></li>
+<li class="twitter"><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://ayapi.github.io/posts/colorinvertcssonwebkit/" data-text="階調反転フィルターCSS Webkit編 - ayapi.github.io" data-lang="ja" data-count="none">ツイート</a></li>
+<li class="hatena"><a href="http://b.hatena.ne.jp/entry/http://ayapi.github.io/posts/colorinvertcssonwebkit/" class="hatena-bookmark-button" data-hatena-bookmark-title="階調反転フィルターCSS Webkit編 - ayapi.github.io" data-hatena-bookmark-layout="standard-noballoon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a></li>
+<li class="facebook"><fb:like href="http://ayapi.github.io/posts/colorinvertcssonwebkit/" layout="button_count" action="like" show_faces="false" share="false"></fb:like></li>
+</ul>
+      </div>
+    </div>
+    <ul class="footer">
+      <li>Copyright &copy; ぁゃぴ</li>
+      <li>Generated by <a href="http://www.cabinjs.com/">Cabin</a></li>
+      <li>Hosted on <a href="http://pages.github.com/">GitHub Pages</a></li>
+    </ul>
+
+    <script type="text/x-mathjax-config">
+	  MathJax.Hub.Config({
+	   tex2jax: {
+	     preview: ["[math]"]
+	   },
+	   messageStyle: "none"
+	  });
+	</script>
+	<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script src="/scripts/jquery/jquery.min.js"></script>
+    <script src="/scripts/gist-embed/gist-embed.js"></script>
+    <script src="/scripts/main.js"></script>
+
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+	<script src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+	<script>!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script>
+  </body>
+</html>
+

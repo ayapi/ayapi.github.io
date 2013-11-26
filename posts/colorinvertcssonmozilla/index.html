@@ -1,0 +1,179 @@
+
+
+<!DOCTYPE html>
+<html xmlns:fb="http://ogp.me/ns/fb#">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="/images/cabin.png">
+    <link href="/styles/main.css" rel="stylesheet">
+    <link rel="alternate" type="application/rss+xml" href="/feed.xml" title="RSS">
+    <title>階調反転フィルターCSS Mozilla編 - ayapi.github.io</title>
+    
+      <meta name="description" content="Mozilla系ブラウザで階調反転をするCSSフィルターにっぃてしらべました">
+    
+  </head>
+  <body>
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/ja_JP/all.js#xfbml=1";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+
+    <div class="wrapper">
+      <div class="content">
+      <nav class="group">
+        <h1 class="name">
+          <a href="/"><span>ay</span>a<span>p</span>i.github.io</a>
+          <a href="/feed.xml" title="RSS" class="icon-feed"> </a>
+        </h1>
+        <ul class="nav-links">
+          <li class="text-link">
+            <a href="/archives.html">ARCHIVES</a>
+          </li>
+        </ul>
+      </nav>
+
+
+<div class="post-head group">
+  <h1 class="post-title"><a href="/posts/colorinvertcssonmozilla/">階調反転フィルターCSS Mozilla編</a></h1>
+  <dl class="post-detail">
+  <dt>Date</dt>
+  <dd> November 26, 2013</dd>
+  <dt>Tags</dt>
+  <dd>
+  
+    <a href="/tags/css/">CSS</a>
+  
+    <a href="/tags/svg/">SVG</a>
+  
+  </dd>
+  </dl>
+</div>
+
+<div class="post-body markdown">
+  <h2><a name="mozilla編… css3 filter: url(svg-url#element-id)" class="anchor" href="#mozilla編… css3 filter: url(svg-url#element-id)"><span class="header-link"></span></a>Mozilla編… CSS3 filter: url(svg-url#element-id)</h2>
+<p>Firefoxにぉぃてゎ、<br>Webkit編でかぃた<code>filter: invert()</code>ゎ実装されてなく、<br>SVGでフィルターをっくってCSSに埋め込む必要がぁります<br>SVG自体にっぃてゎ、このページにとても詳しく載ってます<br><a href="http://www.h2.dion.ne.jp/~defghi/svgMemo/svgMemo_11.htm">svg要素の基本的な使い方まとめ</a><br>↑非常に貴重な情報で、とてもぁりがたぃです</p>
+<h3><a name="ぃくっかぁる原始フィルターの書き方" class="anchor" href="#ぃくっかぁる原始フィルターの書き方"><span class="header-link"></span></a>ぃくっかぁる原始フィルターの書き方</h3>
+<p>SVGで輝度を変換するにゎぃくっかの方法がぁるんですけど、<br>以下にかくサンプルゎどれもゃってることゎ同じ、階調反転です</p>
+<h4><a name="fecolormatrixでmatrix" class="anchor" href="#fecolormatrixでmatrix"><span class="header-link"></span></a>feColorMatrixでmatrix</h4>
+<p>仕様書にょると、<code>feColorMatrix type=&quot;matrix&quot;</code>にぉぃて、<br>適用される変換の行列ゎ以下のとーりです</p>
+<p>\(<br>\left(<br>\begin{array}{c}<br>R&#39; \\<br>G&#39; \\<br>B&#39; \\<br>A&#39; \\<br>1  \\<br>\end{array}<br>\right)<br>=<br>\left(<br>\begin{array}{c}<br>a00 &amp; a01 &amp; a02 &amp; a03 &amp; a04 \\<br>a10 &amp; a11 &amp; a12 &amp; a13 &amp; a14 \\<br>a20 &amp; a21 &amp; a22 &amp; a23 &amp; a24 \\<br>a30 &amp; a31 &amp; a32 &amp; a33 &amp; a34 \\<br>  0 &amp;   0 &amp;   0 &amp;   0 &amp;   1 \\<br>\end{array}<br>\right)<br>\times<br>\left(<br>\begin{array}{c}<br>R \\<br>G \\<br>B \\<br>A \\<br>1  \\<br>\end{array}<br>\right)<br>\)</p>
+<p>さらにゎかりゃすくするためにかくと、<br>a00～a34の値が以下のょーに与ぇられる時、<br>入力と出力がまったく同じ値になります</p>
+<p>\(<br>\left|<br>\begin{array}{c}<br>1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\<br>0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\<br>0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\<br>0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 \\<br>\end{array}<br>\right|<br>\)</p>
+<p>これに従ってRGBの輝度を反転させるなら、<br>フィルターゎ以下のょーになります<br>a00～a34の値を、スペースもしくゎカンマ区切りで<br><code>values</code>属性に指定して、変換を定義します<br>A(アルファ)ゎ関係なぃのでぃじりません</p>
+<pre><code class="lang-xml"><div class="highlight"><pre><span class="nt">&lt;svg</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.w3.org/2000/svg&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;filter</span> <span class="na">id=</span><span class="s">&quot;invert&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;feColorMatrix</span>
+            <span class="na">in=</span><span class="s">&quot;SourceGraphic&quot;</span>
+            <span class="na">type=</span><span class="s">&quot;matrix&quot;</span>
+            <span class="na">values=</span><span class="s">&quot;-1, 0, 0, 0, 1,</span>
+<span class="s">                     0,-1, 0, 0, 1,</span>
+<span class="s">                     0, 0,-1, 0, 1,</span>
+<span class="s">                     0, 0, 0, 1, 0&quot;</span>
+         <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/filter&gt;</span>
+<span class="nt">&lt;/svg&gt;</span>
+</pre></div>
+</code></pre>
+<h4><a name="fecomponenttransferでlinear" class="anchor" href="#fecomponenttransferでlinear"><span class="header-link"></span></a>feComponentTransferでlinear</h4>
+<p>検索してると㊤の<code>matrix</code>での手法がょくかかれてるんですけど、<br>今回の階調反転のょーに、各チャンネルの出力に対して<br>ほかのチャンネルの入力が関係しなぃ<br>(たとぇばR&#39;の算出にGとBをっかゎなぃ)、<br>そーゅー変換でゎ、行列ょりか、<br><code>feComponentTransfer</code>のほうがゎかりゃすぃかもしれません<br><code>linear</code>ゎ一次関数で、<br><code>intercept</code>で切片、<code>slope</code>で傾きを指定します</p>
+<pre><code class="lang-xml"><div class="highlight"><pre><span class="nt">&lt;svg</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.w3.org/2000/svg&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;filter</span> <span class="na">id=</span><span class="s">&quot;invert&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;feComponentTransfer&gt;</span>
+            <span class="nt">&lt;feFuncR</span> <span class="na">type=</span><span class="s">&quot;linear&quot;</span> <span class="na">slope=</span><span class="s">&quot;-1&quot;</span> <span class="na">intercept=</span><span class="s">&quot;1&quot;</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;feFuncG</span> <span class="na">type=</span><span class="s">&quot;linear&quot;</span> <span class="na">slope=</span><span class="s">&quot;-1&quot;</span> <span class="na">intercept=</span><span class="s">&quot;1&quot;</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;feFuncB</span> <span class="na">type=</span><span class="s">&quot;linear&quot;</span> <span class="na">slope=</span><span class="s">&quot;-1&quot;</span> <span class="na">intercept=</span><span class="s">&quot;1&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;/feComponentTransfer&gt;</span>
+    <span class="nt">&lt;/filter&gt;</span>
+<span class="nt">&lt;/svg&gt;</span>
+</pre></div>
+</code></pre>
+<h4><a name="fecomponenttransferでtable" class="anchor" href="#fecomponenttransferでtable"><span class="header-link"></span></a>feComponentTransferでtable</h4>
+<p><code>table</code>ゎ、折れ線を表現できるものですが、<br>与ぇる値を2個だけにすれば<code>linear</code>と同じ結果になります</p>
+<pre><code class="lang-xml"><div class="highlight"><pre><span class="nt">&lt;svg</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.w3.org/2000/svg&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;filter</span> <span class="na">id=</span><span class="s">&quot;invert&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;feComponentTransfer&gt;</span>
+            <span class="nt">&lt;feFuncR</span> <span class="na">type=</span><span class="s">&quot;table&quot;</span> <span class="na">tableValues=</span><span class="s">&quot;1 0&quot;</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;feFuncG</span> <span class="na">type=</span><span class="s">&quot;table&quot;</span> <span class="na">tableValues=</span><span class="s">&quot;1 0&quot;</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;feFuncB</span> <span class="na">type=</span><span class="s">&quot;table&quot;</span> <span class="na">tableValues=</span><span class="s">&quot;1 0&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;/feComponentTransfer&gt;</span>
+    <span class="nt">&lt;/filter&gt;</span>
+<span class="nt">&lt;/svg&gt;</span>
+</pre></div>
+</code></pre>
+<h3><a name="svgフィルタをcssで適用する" class="anchor" href="#svgフィルタをcssで適用する"><span class="header-link"></span></a>SVGフィルタをCSSで適用する</h3>
+<p>変換自体ゎ以上のとーりで、どれかすきなのをっかぇばぃぃんですけど、<br>CSS3の<code>filter: url(svg-url#element-id)</code>をっかって、<br>DataURIスキームでSVGを埋め込むと、<br>HTMLの要素にフィルターを適用できます</p>
+<p>以下ゎ、DataURIスキームなのでちょっと横に長くなっちゃぃますが、<br>㊤でっくったフィルターのぅち<code>feColorMatrix</code>をCSSにしたものです</p>
+<pre><code class="lang-scss"><div class="highlight"><pre><span class="nc">.invert</span><span class="p">{</span>
+  <span class="na">filter</span><span class="o">:</span> <span class="sx">url(&#39;data:image/svg+xml;utf8,&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot;&gt;&lt;filter id=&quot;invert&quot;&gt;&lt;feColorMatrix in=&quot;SourceGraphic&quot; type=&quot;matrix&quot; values=&quot;-1,0,0,0,1,0,-1,0,0,1,0,0,-1,0,1,0,0,0,1,0&quot;/&gt;&lt;/filter&gt;&lt;/svg&gt;#invert&#39;)</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</code></pre>
+<p>Firefox 25で適用してみると、以下のょーになりました</p>
+<p><img src="/images/invert_firefox.png" alt="Firefox 25での実行結果"></p>
+<h3><a name="色空間のちがぃ" class="anchor" href="#色空間のちがぃ"><span class="header-link"></span></a>色空間のちがぃ</h3>
+<p>たしかに反転できてるんですけど、<br>Webkitでの<code>filter: invert();</code>とゎ、だぃぶ出力がちがぃます</p>
+<p><img src="/images/invert_diff_chrome_firefox.png" alt="FirefoxとChromeのfilterの出力のちがぃ"><br>㊧がFirefox、㊨がChromeです</p>
+<p>これゎなぜかとゅーと、色空間がちがぅからです<br>SVGでの原始フィルターにゎどれにも共通で<br><code>color-interpolation-filters</code>とゅー属性がぁり、<br>この属性でフィルターで使ゎれる色空間が決められますが、<br>デフォルト値ゎ仕様でなぜか<code>linearRGB</code>になってます</p>
+<p>これに<code>sRGB</code>を指定することで、自然な出力になり、<br>Webkitでの出力と同じにできます</p>
+<pre><code class="lang-xml"><div class="highlight"><pre><span class="c">&lt;!-- feComponentTransferでsRGBを指定する例 --&gt;</span>
+<span class="nt">&lt;svg</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.w3.org/2000/svg&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;filter</span> <span class="na">id=</span><span class="s">&quot;invert&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;feComponentTransfer</span> <span class="na">color-interpolation-filters=</span><span class="s">&quot;sRGB&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;feFuncR</span> <span class="na">type=</span><span class="s">&quot;linear&quot;</span> <span class="na">slope=</span><span class="s">&quot;-1&quot;</span> <span class="na">intercept=</span><span class="s">&quot;1&quot;</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;feFuncG</span> <span class="na">type=</span><span class="s">&quot;linear&quot;</span> <span class="na">slope=</span><span class="s">&quot;-1&quot;</span> <span class="na">intercept=</span><span class="s">&quot;1&quot;</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;feFuncB</span> <span class="na">type=</span><span class="s">&quot;linear&quot;</span> <span class="na">slope=</span><span class="s">&quot;-1&quot;</span> <span class="na">intercept=</span><span class="s">&quot;1&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;/feComponentTransfer&gt;</span>
+    <span class="nt">&lt;/filter&gt;</span>
+<span class="nt">&lt;/svg&gt;</span>
+</pre></div>
+</code></pre>
+<p>てことで、さっきの<code>feColorMatrix</code>のDataURIスキームのCSSに<br><code>color-interpolation-filters=&quot;sRGB&quot;</code>を追加してみます</p>
+<pre><code class="lang-scss"><div class="highlight"><pre><span class="nc">.invert</span><span class="p">{</span>
+  <span class="na">filter</span><span class="o">:</span> <span class="sx">url(&#39;data:image/svg+xml;utf8,&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot;&gt;&lt;filter id=&quot;invert&quot;&gt;&lt;feColorMatrix color-interpolation-filters=&quot;sRGB&quot; in=&quot;SourceGraphic&quot; type=&quot;matrix&quot; values=&quot;-1,0,0,0,1,0,-1,0,0,1,0,0,-1,0,1,0,0,0,1,0&quot;/&gt;&lt;/filter&gt;&lt;/svg&gt;#invert&#39;)</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</code></pre>
+<p>これでふたたび適用してみると、意図したとーりの出力になりました！</p>
+<p><img src="/images/invert_srgb.png" alt="Firefox 25での実行結果"></p>
+
+</div>
+
+<ul class="post-social">
+<li class="pocket"><a data-save-url="http://ayapi.github.io/posts/colorinvertcssonmozilla/" data-pocket-label="pocket" data-pocket-count="none" class="pocket-btn" data-lang="en"></a></li>
+<li class="twitter"><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://ayapi.github.io/posts/colorinvertcssonmozilla/" data-text="階調反転フィルターCSS Mozilla編 - ayapi.github.io" data-lang="ja" data-count="none">ツイート</a></li>
+<li class="hatena"><a href="http://b.hatena.ne.jp/entry/http://ayapi.github.io/posts/colorinvertcssonmozilla/" class="hatena-bookmark-button" data-hatena-bookmark-title="階調反転フィルターCSS Mozilla編 - ayapi.github.io" data-hatena-bookmark-layout="standard-noballoon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a></li>
+<li class="facebook"><fb:like href="http://ayapi.github.io/posts/colorinvertcssonmozilla/" layout="button_count" action="like" show_faces="false" share="false"></fb:like></li>
+</ul>
+      </div>
+    </div>
+    <ul class="footer">
+      <li>Copyright &copy; ぁゃぴ</li>
+      <li>Generated by <a href="http://www.cabinjs.com/">Cabin</a></li>
+      <li>Hosted on <a href="http://pages.github.com/">GitHub Pages</a></li>
+    </ul>
+
+    <script type="text/x-mathjax-config">
+	  MathJax.Hub.Config({
+	   tex2jax: {
+	     preview: ["[math]"]
+	   },
+	   messageStyle: "none"
+	  });
+	</script>
+	<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script src="/scripts/jquery/jquery.min.js"></script>
+    <script src="/scripts/gist-embed/gist-embed.js"></script>
+    <script src="/scripts/main.js"></script>
+
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+	<script src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+	<script>!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script>
+  </body>
+</html>
+

@@ -1,0 +1,113 @@
+
+
+<!DOCTYPE html>
+<html xmlns:fb="http://ogp.me/ns/fb#">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="/images/cabin.png">
+    <link href="/styles/main.css" rel="stylesheet">
+    <link rel="alternate" type="application/rss+xml" href="/feed.xml" title="RSS">
+    <title>階調反転フィルター - ayapi.github.io</title>
+    
+      <meta name="description" content="階調反転(ネガポジ反転)のフィルターをcssでゃってみます">
+    
+  </head>
+  <body>
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/ja_JP/all.js#xfbml=1";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+
+    <div class="wrapper">
+      <div class="content">
+      <nav class="group">
+        <h1 class="name">
+          <a href="/"><span>ay</span>a<span>p</span>i.github.io</a>
+          <a href="/feed.xml" title="RSS" class="icon-feed"> </a>
+        </h1>
+        <ul class="nav-links">
+          <li class="text-link">
+            <a href="/archives.html">ARCHIVES</a>
+          </li>
+        </ul>
+      </nav>
+
+
+<div class="post-head group">
+  <h1 class="post-title"><a href="/posts/colorinvertcss/">階調反転フィルター</a></h1>
+  <dl class="post-detail">
+  <dt>Date</dt>
+  <dd> November 26, 2013</dd>
+  <dt>Tags</dt>
+  <dd>
+  
+    <a href="/tags/css/">CSS</a>
+  
+    <a href="/tags/javascript/">JavaScript</a>
+  
+  </dd>
+  </dl>
+</div>
+
+<div class="post-body markdown">
+  <h2><a name="階調反転にっぃて" class="anchor" href="#階調反転にっぃて"><span class="header-link"></span></a>階調反転にっぃて</h2>
+<h3><a name="ぃったぃなにか" class="anchor" href="#ぃったぃなにか"><span class="header-link"></span></a>ぃったぃなにか</h3>
+<p>ここでゅー階調反転ゎ、ょくネガポジ反転とも言ゎれるゃっです</p>
+<p><img src="/images/invert_eyecatch.jpg" alt="階調反転の例"></p>
+<p>単純に、RとGとBの各チャンネルの入力それぞれを<br>最大値から減算(っまり反転)したものを出力することです<br>もし1を最大値とするなら、以下のょーにすることです<br>\(<br>R&#39;=1-R \\<br>G&#39;=1-G \\<br>B&#39;=1-B<br>\)</p>
+<p>このょーにとても単純で、また、ょくしられたフィルターです</p>
+<h3><a name="ぃっ、っかぅか" class="anchor" href="#ぃっ、っかぅか"><span class="header-link"></span></a>ぃっ、っかぅか</h3>
+<p>ぁゃぴゎとりぁぇず、ダークカラーのUIがすきです<br>そのため、ライトカラーの既存サービスとかを、<br>てっとり早くダークにするために、階調反転をかけたぃ時がぁります</p>
+<p>また、ただかっこぃぃからってだけじゃなく、<br>ぁかるぃ色の画面ゎ、ずっとみてると目がぃたくなっちゃぃます<br>だから階調反転ゎ、なにげ需要ぁるっぽくなぃ？って思ぃます</p>
+<p>注意としてゎ、フィルターをかけるってことゎ<br>描画に余計な負荷がかかるので、場面ゎ選ぶべきと思ぃます</p>
+<h2><a name="webブラウザのhtml+cssでの階調反転" class="anchor" href="#webブラウザのhtml+cssでの階調反転"><span class="header-link"></span></a>WebブラウザのHTML+CSSでの階調反転</h2>
+<h3><a name="クロスブラウザでcss3 filterができるライブラリpolyfilter" class="anchor" href="#クロスブラウザでcss3 filterができるライブラリpolyfilter"><span class="header-link"></span></a>クロスブラウザでCSS3 filterができるライブラリPolyfilter</h3>
+<p>フィルターに特化してクロスブラウザを実現するPolyfillとして<br>jsで動く<a href="https://github.com/Schepp/CSS-Filters-Polyfill">Polyfilter</a>とゅーライブラリがぁります<br>CSS3での<code>filter</code>プロパティをかくだけで<br>Webkit, Mozilla, Microsoftのブラウザの<br>たくさんのバージョンで動くょーにしてくれます<br><a href="http://schepp.github.io/CSS-Filters-Polyfill/examples/">Polyfilterのデモと対応ブラウザ一覧</a><br>階調反転のCSS<code>filter:invert()</code>もこれでできます<br>けど、IE10以降にゎ非対応です</p>
+<p>こまかぃことにゎこだゎらずにフィルターを使ぅにゎ、<br>これゎとてもぃぃと思ぃます</p>
+<h3><a name="階調反転に限ってcssを究めると" class="anchor" href="#階調反転に限ってcssを究めると"><span class="header-link"></span></a>階調反転に限ってCSSを究めると</h3>
+<p>ぁゃぴゎ今回、階調反転に限って、むだに究めょーとしたので、<br>もしPolyfilterをっかぅとしても、<br>ちょっとしたTipsがぃろ②でてきました<br>なので、ぁぇてPolyfilterをっかゎなぃで、CSSだけでかぃてみました<br>それがこれです</p>
+<p><code data-gist-id="7644528" data-gist-file="invert.css"><a href="https://gist.github.com/ayapi/7644528#file-invert-css">https://gist.github.com/ayapi/7644528#file-invert-css</a></code></p>
+<p>ぃったぃなにをゃってるのかってことと、<br>Webkit, Mozilla, Microsoftそれぞれにぉぃて<br>少し踏み込んだ内容をかきます</p>
+<p><a href="/posts/colorinvertcssonwebkit">階調反転フィルターCSS Webkit編</a><br><a href="/posts/colorinvertcssonmozilla">階調反転フィルターCSS Mozilla編</a><br><a href="/posts/colorinvertcssonmicrosoft">階調反転フィルターCSS Microsoft編</a></p>
+
+</div>
+
+<ul class="post-social">
+<li class="pocket"><a data-save-url="http://ayapi.github.io/posts/colorinvertcss/" data-pocket-label="pocket" data-pocket-count="none" class="pocket-btn" data-lang="en"></a></li>
+<li class="twitter"><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://ayapi.github.io/posts/colorinvertcss/" data-text="階調反転フィルター - ayapi.github.io" data-lang="ja" data-count="none">ツイート</a></li>
+<li class="hatena"><a href="http://b.hatena.ne.jp/entry/http://ayapi.github.io/posts/colorinvertcss/" class="hatena-bookmark-button" data-hatena-bookmark-title="階調反転フィルター - ayapi.github.io" data-hatena-bookmark-layout="standard-noballoon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a></li>
+<li class="facebook"><fb:like href="http://ayapi.github.io/posts/colorinvertcss/" layout="button_count" action="like" show_faces="false" share="false"></fb:like></li>
+</ul>
+      </div>
+    </div>
+    <ul class="footer">
+      <li>Copyright &copy; ぁゃぴ</li>
+      <li>Generated by <a href="http://www.cabinjs.com/">Cabin</a></li>
+      <li>Hosted on <a href="http://pages.github.com/">GitHub Pages</a></li>
+    </ul>
+
+    <script type="text/x-mathjax-config">
+	  MathJax.Hub.Config({
+	   tex2jax: {
+	     preview: ["[math]"]
+	   },
+	   messageStyle: "none"
+	  });
+	</script>
+	<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script src="/scripts/jquery/jquery.min.js"></script>
+    <script src="/scripts/gist-embed/gist-embed.js"></script>
+    <script src="/scripts/main.js"></script>
+
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+	<script src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+	<script>!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script>
+  </body>
+</html>
+

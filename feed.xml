@@ -1,5 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[ayapi.github.io]]></title><description><![CDATA[ぁゃぴがプログラミングのことをかくブログ]]></description><link>http://ayapi.github.io</link><generator>RSS for Node</generator><lastBuildDate>Tue, 26 Nov 2013 22:41:25 GMT</lastBuildDate><atom:link href="http://ayapi.github.io/feed.xml" rel="self" type="application/rss+xml"/><author><![CDATA[ぁゃぴ]]></author><pubDate>Tue, 26 Nov 2013 22:41:25 GMT</pubDate><copyright><![CDATA[2013 ぁゃぴ]]></copyright><language><![CDATA[en]]></language><managingEditor><![CDATA[ぁゃぴ]]></managingEditor><webMaster><![CDATA[ぁゃぴ]]></webMaster><ttl>60</ttl><item><title><![CDATA[階調反転フィルターJava Swing/JLayer]]></title><description><![CDATA[<h2><a name="swingにっぃて" class="anchor" href="#swingにっぃて"><span class="header-link"></span></a>Swingにっぃて</h2>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[ayapi.github.io]]></title><description><![CDATA[ぁゃぴがプログラミングのことをかくブログ]]></description><link>http://ayapi.github.io</link><generator>RSS for Node</generator><lastBuildDate>Wed, 27 Nov 2013 13:38:01 GMT</lastBuildDate><atom:link href="http://ayapi.github.io/feed.xml" rel="self" type="application/rss+xml"/><author><![CDATA[ぁゃぴ]]></author><pubDate>Wed, 27 Nov 2013 13:38:01 GMT</pubDate><copyright><![CDATA[2013 ぁゃぴ]]></copyright><language><![CDATA[en]]></language><managingEditor><![CDATA[ぁゃぴ]]></managingEditor><webMaster><![CDATA[ぁゃぴ]]></webMaster><ttl>60</ttl><item><title><![CDATA[JXDatePickerで選択可能な日付範囲を制限する]]></title><description><![CDATA[<h2><a name="jxdatepickerにっぃて" class="anchor" href="#jxdatepickerにっぃて"><span class="header-link"></span></a>JXDatePickerにっぃて</h2>
+<p>JXDatePickerゎSwingのコンポーネントで、<br>カレンダーから日付を選ぶUIをかんたんに追加できます<br>同様のものゎ名前まで似てる<a href="http://www.jdatepicker.com/">JDatePicker</a>とかぁるんですけど、<br>派生とかじゃなくてぜん②ちがぅものみたぃです</p>
+<p>ただ選択させて、日付を取得するだけの<br>ぃちばんシンプルな使ぃ方だと、こんなかんじです</p>
+<pre><code class="lang-java"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Calendar</span> <span class="kd">extends</span> <span class="n">JPanel</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="n">JXDatePicker</span> <span class="n">datePicker</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="nf">Calendar</span><span class="o">(){</span>
+        <span class="n">datePicker</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JXDatePicker</span><span class="o">();</span>
+        <span class="n">add</span><span class="o">(</span><span class="n">datePicker</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="kd">public</span> <span class="n">Date</span> <span class="nf">getDate</span><span class="o">(){</span>
+        <span class="k">return</span> <span class="n">datePicker</span><span class="o">.</span><span class="na">getDate</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</code></pre>
+<h2><a name="選択可能な日付を制限する" class="anchor" href="#選択可能な日付を制限する"><span class="header-link"></span></a>選択可能な日付を制限する</h2>
+<h3><a name="日付の計算と指定" class="anchor" href="#日付の計算と指定"><span class="header-link"></span></a>日付の計算と指定</h3>
+<p>今回ゎ、明日以降の1週間だけを選択可能にしてみることにします</p>
+<p>まず明日とか1週間後とかを計算しなきゃですが、<br><a href="http://commons.apache.org/proper/commons-lang/">Apache Commons Lang</a>の<code>DateUtils</code>クラスをっかぅと、<br>日付の計算もとてもかんたんにできます</p>
+<p><code data-gist-id="7592669" data-gist-line="2" data-gist-hide-footer="true" data-gist-hide-line-numbers="true"></code></p>
+<p><code>DateUtils</code>クラスでの明日と1週間後の計算ゎこんなかんじでかんたんです</p>
+<p><code data-gist-id="7592669" data-gist-line="15-16"></code></p>
+<p>もし昨日とかがほしければ<code>addDays</code>で負の値を足せばできます</p>
+<p>それで<code>JXDatePicker</code>のインスタンスに、<br>ぃっからぃっまで選択可能にするのかを指定します<br><code data-gist-id="7592669" data-gist-line="18-20"></code></p>
+<h3><a name="みためを整ぇる" class="anchor" href="#みためを整ぇる"><span class="header-link"></span></a>みためを整ぇる</h3>
+<p>以上のコードで動くにゎ動くんですけど、<br>デフォだと、バツ印が真っ赤で、ちょっと派手すぎって思ぅ時がぁります</p>
+<p>バツ印の色を変ぇるにゎ<code>UIManager</code>のUIプロパティで色を指定します</p>
+<p><code data-gist-id="7592669" data-gist-line="22"></code></p>
+<p>このょーにUIプロパティーを変ぇた時ゎ、<br>値を変ぇたことのをUIに適用(更新)するのが必要で、<br><code>JComponent</code>の<code>updateUI()</code>メソッドもしくゎ<br><code>SwingUtilities.updateComponentTreeUI()</code>どちらかをっかぃます</p>
+<p>それで適用してみると、バツの色がちゃんと変ぇれました！</p>
+<p><img src="/images/jxdatepicker_restriction_default_color.png" alt="JXDatePickerデフォルトカラー"> <img src="/images/jxdatepicker_restriction_custom_color.png" alt="JXDatePickerカスタムカラー"></p>
+<h3><a name="syntheticaをぁててる時の注意" class="anchor" href="#syntheticaをぁててる時の注意"><span class="header-link"></span></a>Syntheticaをぁててる時の注意</h3>
+<p>ちょっと話ずれるんですけど、<br>Swingのみためを一気にかっこょくしてくれる<br><a href="http://www.jyloo.com/synthetica/">Synthetica</a>ってゅーテーマ集がぁります<br>ぁゃぴも<a href="http://www.jyloo.com/synthetica/screenshots/blackeye/">BlackEye</a>を入れてテンションをぁげてます</p>
+<p>けどSyntheticaをふつーに入れてるだけだと、<br>JXDatePickerがそも②動きません！<br>まったくぉなじエラーで困ってる人がぃました<br><a href="http://stackoverflow.com/questions/17467188/jxdatepicker-with-synthetica-aluoxide-look-and-feel-not-working">jxdatepicker with Synthetica Aluoxide look and feel not working - Stack Overflow</a></p>
+<p>Syntheticaをっかってる状態でJXDatePickerを動かすにゎ<br><a href="http://www.jyloo.com/syntheticaaddons/">SyntheticaAddons</a>も入れれば動くょーになります</p>
+<p>ちなむとSynthetica BlackEyeをぁてたらこんなかんじです<br>ゃっぱかっこぃぃ＼(^o^)／</p>
+<p><img src="/images/jxdatepicker_with_blackeye.png" alt="JXDatePickerとSynthetica BlackEye"></p>
+<h3><a name="完成ばん" class="anchor" href="#完成ばん"><span class="header-link"></span></a>完成ばん</h3>
+<p>てことで、できたコードがこれですー＼(^o^)／</p>
+<p><code data-gist-id="7592669"></code></p>
+]]></description><link>http://ayapi.github.io/posts/daterestrictiononjxdatepicker/</link><guid isPermaLink="true">http://ayapi.github.io/posts/daterestrictiononjxdatepicker/</guid><category><![CDATA[Java]]></category><category><![CDATA[Swing]]></category><dc:creator><![CDATA[ぁゃぴ]]></dc:creator><pubDate>Wed, 27 Nov 2013 11:34:00 GMT</pubDate></item><item><title><![CDATA[階調反転フィルターJava Swing/JLayer]]></title><description><![CDATA[<h2><a name="swingにっぃて" class="anchor" href="#swingにっぃて"><span class="header-link"></span></a>Swingにっぃて</h2>
 <p>Swingゎ、JavaのGUIツールキットでとても有名なゃっです<br>JavaのGUIゎ、最近ゎJavaFX2とかもぁります<br>けど、ぁゃぴゎぃまメインでさゎってるSDKがSwingベースだから、<br>部分的にJavaFX2をっかってみたりしてゎぃるものの、<br>Swingの勉強もだぃぶ必要です</p>
 <h2><a name="swingのjlayer" class="anchor" href="#swingのjlayer"><span class="header-link"></span></a>SwingのJLayer</h2>
 <p>Swingにぉぃてゎ、JLayerクラス(JXLayerの派生)をっかって、<br>フィルターをっくることができ、<br>Oracle公式サイトに、とてもゎかりゃすぃ解説ページがぁります<br><a href="http://www.oracle.com/technetwork/jp/articles/java/jlayer-439461-ja.html">JLayerを使用したコンポーネントのデコレート方法 - Oracle</a><br>今回ゎこの解説にでてくるBlurエフェクトのサンプルを特に参考にします</p>
@@ -238,23 +278,4 @@
 <p>適用してみると、ぃっもどーりの、はっきりした文字になりました</p>
 <p><img src="/images/invert_ios_3d.png" alt="iOS6 backface-visibility適用後"></p>
 <p>けど<code>backface-visibillity</code>じゃなくてもょくて、<br>単純に3D系のプロパティを有効にすればきれぃになります、<br><code>transform: scaleZ(1)</code>とかです<br>なんにせょ3D系プロパティゎ特にAndroidにぉぃて、<br>ほかの要素への副作用とか多かった気がするので、<br>安易にっけるのゎょくなくて、慎重にしらべるべきとゎ思ぃます</p>
-]]></description><link>http://ayapi.github.io/posts/colorinvertcssonwebkit/</link><guid isPermaLink="true">http://ayapi.github.io/posts/colorinvertcssonwebkit/</guid><category><![CDATA[CSS]]></category><dc:creator><![CDATA[ぁゃぴ]]></dc:creator><pubDate>Mon, 25 Nov 2013 16:06:00 GMT</pubDate></item><item><title><![CDATA[階調反転フィルター]]></title><description><![CDATA[<h2><a name="階調反転にっぃて" class="anchor" href="#階調反転にっぃて"><span class="header-link"></span></a>階調反転にっぃて</h2>
-<h3><a name="ぃったぃなにか" class="anchor" href="#ぃったぃなにか"><span class="header-link"></span></a>ぃったぃなにか</h3>
-<p>ここでゅー階調反転ゎ、ょくネガポジ反転とも言ゎれるゃっです</p>
-<p><img src="/images/invert_eyecatch.jpg" alt="階調反転の例"></p>
-<p>単純に、RとGとBの各チャンネルの入力それぞれを<br>最大値から減算(っまり反転)したものを出力することです<br>もし1を最大値とするなら、以下のょーにすることです<br>\(<br>R&#39;=1-R \\<br>G&#39;=1-G \\<br>B&#39;=1-B<br>\)</p>
-<p>このょーにとても単純で、また、ょくしられたフィルターです</p>
-<h3><a name="ぃっ、っかぅか" class="anchor" href="#ぃっ、っかぅか"><span class="header-link"></span></a>ぃっ、っかぅか</h3>
-<p>ぁゃぴゎとりぁぇず、ダークカラーのUIがすきです<br>そのため、ライトカラーの既存サービスとかを、<br>てっとり早くダークにするために、階調反転をかけたぃ時がぁります</p>
-<p>また、ただかっこぃぃからってだけじゃなく、<br>ぁかるぃ色の画面ゎ、ずっとみてると目がぃたくなっちゃぃます<br>だから階調反転ゎ、なにげ需要ぁるっぽくなぃ？って思ぃます</p>
-<p>注意としてゎ、フィルターをかけるってことゎ<br>描画に余計な負荷がかかるので、場面ゎ選ぶべきと思ぃます</p>
-<h2><a name="webブラウザのhtml+cssでの階調反転" class="anchor" href="#webブラウザのhtml+cssでの階調反転"><span class="header-link"></span></a>WebブラウザのHTML+CSSでの階調反転</h2>
-<h3><a name="クロスブラウザでcss3 filterができるライブラリpolyfilter" class="anchor" href="#クロスブラウザでcss3 filterができるライブラリpolyfilter"><span class="header-link"></span></a>クロスブラウザでCSS3 filterができるライブラリPolyfilter</h3>
-<p>フィルターに特化してクロスブラウザを実現するPolyfillとして<br>jsで動く<a href="https://github.com/Schepp/CSS-Filters-Polyfill">Polyfilter</a>とゅーライブラリがぁります<br>CSS3での<code>filter</code>プロパティをかくだけで<br>Webkit, Mozilla, Microsoftのブラウザの<br>たくさんのバージョンで動くょーにしてくれます<br><a href="http://schepp.github.io/CSS-Filters-Polyfill/examples/">Polyfilterのデモと対応ブラウザ一覧</a><br>階調反転のCSS<code>filter:invert()</code>もこれでできます<br>けど、IE10以降にゎ非対応です</p>
-<p>こまかぃことにゎこだゎらずにフィルターを使ぅにゎ、<br>これゎとてもぃぃと思ぃます</p>
-<h3><a name="階調反転に限ってcssを究めると" class="anchor" href="#階調反転に限ってcssを究めると"><span class="header-link"></span></a>階調反転に限ってCSSを究めると</h3>
-<p>ぁゃぴゎ今回、階調反転に限って、むだに究めょーとしたので、<br>もしPolyfilterをっかぅとしても、<br>ちょっとしたTipsがぃろ②でてきました<br>なので、ぁぇてPolyfilterをっかゎなぃで、CSSだけでかぃてみました<br>それがこれです</p>
-<p><code data-gist-id="7644528" data-gist-file="invert.css"><a href="https://gist.github.com/ayapi/7644528#file-invert-css">https://gist.github.com/ayapi/7644528#file-invert-css</a></code></p>
-<p>ぃったぃなにをゃってるのかってことと、<br>Webkit, Mozilla, Microsoftそれぞれにぉぃて<br>少し踏み込んだ内容をかきます</p>
-<p><a href="/posts/colorinvertcssonwebkit">階調反転フィルターCSS Webkit編</a><br><a href="/posts/colorinvertcssonmozilla">階調反転フィルターCSS Mozilla編</a><br><a href="/posts/colorinvertcssonmicrosoft">階調反転フィルターCSS Microsoft編</a></p>
-]]></description><link>http://ayapi.github.io/posts/colorinvertcss/</link><guid isPermaLink="true">http://ayapi.github.io/posts/colorinvertcss/</guid><category><![CDATA[CSS]]></category><category><![CDATA[JavaScript]]></category><dc:creator><![CDATA[ぁゃぴ]]></dc:creator><pubDate>Mon, 25 Nov 2013 16:02:00 GMT</pubDate></item></channel></rss>
+]]></description><link>http://ayapi.github.io/posts/colorinvertcssonwebkit/</link><guid isPermaLink="true">http://ayapi.github.io/posts/colorinvertcssonwebkit/</guid><category><![CDATA[CSS]]></category><dc:creator><![CDATA[ぁゃぴ]]></dc:creator><pubDate>Mon, 25 Nov 2013 16:06:00 GMT</pubDate></item></channel></rss>

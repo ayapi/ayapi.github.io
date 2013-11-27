@@ -55,7 +55,7 @@
 <div class="post-body markdown">
   <p>Javaでゎ<a href="http://commons.apache.org/proper/commons-math/">ApacheCommonsMath</a>の<a href="http://commons.apache.org/proper/commons-math/userguide/stat.html">Stat</a>をっかぅと、<br>とてもかんたんに統計の計算ができます</p>
 <p>標準偏差を求めるのゎ、たったこれだけでできます</p>
-<p><code data-gist-id="7681028" data-gist-line="8-15" data-gist-file="Calculator.java"></code></p>
+<p><code data-gist-id="7681028" data-gist-line="8-15" data-gist-file="Calculator.java"><a href="https://gist.github.com/ayapi/7681028#file-calculator-java">https://gist.github.com/ayapi/7681028#file-calculator-java</a> Line:8-15</code></p>
 <p>けど、標準偏差を求める時に気をっけなきゃぃけなぃのが、その種類です<br>ひとことで標準偏差って言っても、<br>なんの標準偏差なのかってことがちがぅ時がぁります</p>
 <p>ApacheCommonsMathの<code>SummaryStatistics</code>クラスに用意されてる<br>標準偏差を求める<code>getStandardDeviation()</code>メソッドゎ、<br>不偏標準偏差が返ります<br>\(\bar{x}\)を平均値としたとき</p>
 <p>\begin{equation}<br>u = \sqrt{\sum_{i=1}^n \frac{(x_i - \bar{x})^2}{n - 1}}<br>\end{equation}</p>
@@ -64,9 +64,9 @@
 <p>\begin{equation}<br>\sigma = \sqrt{\sum_{i=1}^N \frac{(x_i - \mu)^2}{N}}<br>\end{equation}</p>
 <p>↑こっちのほー(まだがんばるｗｗｗｗ)<br>Excelでゅー<code>STDEVP()</code>なんですけど、<br>これを算出するメソッドゎ<code>SummaryStatistics</code>クラスにゎなぃです</p>
 <p>けど、母分散を求めるメソッドゎぁるので、<br>それの平方根を取ればできます</p>
-<p><code data-gist-id="7681028" data-gist-line="16-24" data-gist-file="Calculator.java"></code></p>
+<p><code data-gist-id="7681028" data-gist-line="16-24" data-gist-file="Calculator.java"><a href="https://gist.github.com/ayapi/7681028#file-calculator-java">https://gist.github.com/ayapi/7681028#file-calculator-java</a> Line:16-24</code></p>
 <p>なんで「Excelでゅーと」とか言ってるかってゅーと<br>Spockのテストデータっくるときに<br>Excelでゃればラクなんだってこと、ぃまさら気づぃたからです<br>今まで一生懸命、電卓でゃってました　まじばかすぎます<br>さすがにこーゅー計算ゎ電卓でゃるのたぃへんです</p>
-<p><code data-gist-id="7681028" data-gist-file="CalculatorSpec.groovy"></code></p>
+<p><code data-gist-id="7681028" data-gist-file="CalculatorSpec.groovy"><a href="https://gist.github.com/ayapi/7681028#file-calculatorspec-groovy">https://gist.github.com/ayapi/7681028#file-calculatorspec-groovy</a></code></p>
 
 </div>
 

@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[ayapi.github.io]]></title><description><![CDATA[ぁゃぴがプログラミングのことをかくブログ]]></description><link>http://ayapi.github.io</link><generator>RSS for Node</generator><lastBuildDate>Wed, 27 Nov 2013 13:40:29 GMT</lastBuildDate><atom:link href="http://ayapi.github.io/feed.xml" rel="self" type="application/rss+xml"/><author><![CDATA[ぁゃぴ]]></author><pubDate>Wed, 27 Nov 2013 13:40:29 GMT</pubDate><copyright><![CDATA[2013 ぁゃぴ]]></copyright><language><![CDATA[en]]></language><managingEditor><![CDATA[ぁゃぴ]]></managingEditor><webMaster><![CDATA[ぁゃぴ]]></webMaster><ttl>60</ttl><item><title><![CDATA[JXDatePickerで選択可能な日付範囲を制限する]]></title><description><![CDATA[<h2><a name="jxdatepickerにっぃて" class="anchor" href="#jxdatepickerにっぃて"><span class="header-link"></span></a>JXDatePickerにっぃて</h2>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[ayapi.github.io]]></title><description><![CDATA[ぁゃぴがプログラミングのことをかくブログ]]></description><link>http://ayapi.github.io</link><generator>RSS for Node</generator><lastBuildDate>Wed, 27 Nov 2013 21:00:58 GMT</lastBuildDate><atom:link href="http://ayapi.github.io/feed.xml" rel="self" type="application/rss+xml"/><author><![CDATA[ぁゃぴ]]></author><pubDate>Wed, 27 Nov 2013 21:00:58 GMT</pubDate><copyright><![CDATA[2013 ぁゃぴ]]></copyright><language><![CDATA[en]]></language><managingEditor><![CDATA[ぁゃぴ]]></managingEditor><webMaster><![CDATA[ぁゃぴ]]></webMaster><ttl>60</ttl><item><title><![CDATA[ApacheCommonsMath3での標準偏差の算出]]></title><description><![CDATA[<p>Javaでゎ<a href="http://commons.apache.org/proper/commons-math/">ApacheCommonsMath</a>の<a href="http://commons.apache.org/proper/commons-math/userguide/stat.html">Stat</a>をっかぅと、<br>とてもかんたんに統計の計算ができます</p>
+<p>標準偏差を求めるのゎ、たったこれだけでできます</p>
+<p><code data-gist-id="7681028" data-gist-line="8-15" data-gist-file="Calculator.java"></code></p>
+<p>けど、標準偏差を求める時に気をっけなきゃぃけなぃのが、その種類です<br>ひとことで標準偏差って言っても、<br>なんの標準偏差なのかってことがちがぅ時がぁります</p>
+<p>ApacheCommonsMathの<code>SummaryStatistics</code>クラスに用意されてる<br>標準偏差を求める<code>getStandardDeviation()</code>メソッドゎ、<br>不偏標準偏差が返ります<br>\(\bar{x}\)を平均値としたとき</p>
+<p>\begin{equation}<br>u = \sqrt{\sum_{i=1}^n \frac{(x_i - \bar{x})^2}{n - 1}}<br>\end{equation}</p>
+<p>↑こっちのほーです(相当がんばってLaTeXかぃた結果ｗｗｗ)<br>Excelでゅーと<code>STDEV()</code>にぁたります</p>
+<p>で、そーじゃなくて、母標準偏差、<br>\(\mu\)を平均値として</p>
+<p>\begin{equation}<br>\sigma = \sqrt{\sum_{i=1}^N \frac{(x_i - \mu)^2}{N}}<br>\end{equation}</p>
+<p>↑こっちのほー(まだがんばるｗｗｗｗ)<br>Excelでゅー<code>STDEVP()</code>なんですけど、<br>これを算出するメソッドゎ<code>SummaryStatistics</code>クラスにゎなぃです</p>
+<p>けど、母分散を求めるメソッドゎぁるので、<br>それの平方根を取ればできます</p>
+<p><code data-gist-id="7681028" data-gist-line="16-24" data-gist-file="Calculator.java"></code></p>
+<p>なんで「Excelでゅーと」とか言ってるかってゅーと<br>Spockのテストデータっくるときに<br>Excelでゃればラクなんだってこと、ぃまさら気づぃたからです<br>今まで一生懸命、電卓でゃってました　まじばかすぎます<br>さすがにこーゅー計算ゎ電卓でゃるのたぃへんです</p>
+<p><code data-gist-id="7681028" data-gist-file="CalculatorSpec.groovy"></code></p>
+]]></description><link>http://ayapi.github.io/posts/stdevapachecommonsmath/</link><guid isPermaLink="true">http://ayapi.github.io/posts/stdevapachecommonsmath/</guid><category><![CDATA[Java]]></category><dc:creator><![CDATA[ぁゃぴ]]></dc:creator><pubDate>Wed, 27 Nov 2013 21:00:00 GMT</pubDate></item><item><title><![CDATA[JXDatePickerで選択可能な日付範囲を制限する]]></title><description><![CDATA[<h2><a name="jxdatepickerにっぃて" class="anchor" href="#jxdatepickerにっぃて"><span class="header-link"></span></a>JXDatePickerにっぃて</h2>
 <p>JXDatePickerゎSwingのコンポーネントで、<br>カレンダーから日付を選ぶUIをかんたんに追加できます<br>同様のものゎ名前まで似てる<a href="http://www.jdatepicker.com/">JDatePicker</a>とかぁるんですけど、<br>派生とかじゃなくてぜん②ちがぅものみたぃです</p>
 <p>ただ選択させて、日付を取得するだけの<br>ぃちばんシンプルな使ぃ方だと、こんなかんじです</p>
 <pre><code class="lang-java"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Calendar</span> <span class="kd">extends</span> <span class="n">JPanel</span> <span class="o">{</span>
@@ -243,39 +257,4 @@
 </code></pre>
 <p>これでふたたび適用してみると、意図したとーりの出力になりました！</p>
 <p><img src="/images/invert_srgb.png" alt="Firefox 25での実行結果"></p>
-]]></description><link>http://ayapi.github.io/posts/colorinvertcssonmozilla/</link><guid isPermaLink="true">http://ayapi.github.io/posts/colorinvertcssonmozilla/</guid><category><![CDATA[CSS]]></category><category><![CDATA[SVG]]></category><dc:creator><![CDATA[ぁゃぴ]]></dc:creator><pubDate>Mon, 25 Nov 2013 16:12:00 GMT</pubDate></item><item><title><![CDATA[階調反転フィルターCSS Webkit編]]></title><description><![CDATA[<h2><a name="webkit編… css3 filter: invert()" class="anchor" href="#webkit編… css3 filter: invert()"><span class="header-link"></span></a>Webkit編… CSS3 filter: invert()</h2>
-<h3><a name="ブラウザ実装状況" class="anchor" href="#ブラウザ実装状況"><span class="header-link"></span></a>ブラウザ実装状況</h3>
-<p><a href="http://caniuse.com/css-filters">Can I use CSS Filter Effects</a>にょれば、<br>PC向けでゎ、Chrome, Safari, Operaでだぃぶ前から使ぇてて<br>モバイルでゎ、iOS6以降のMobile Safariが対応<br>けどAndroid Browserゎ、まだだめらしぃです</p>
-<h3><a name="基本的なcssコード" class="anchor" href="#基本的なcssコード"><span class="header-link"></span></a>基本的なCSSコード</h3>
-<pre><code class="lang-scss"><div class="highlight"><pre><span class="nc">.invert</span><span class="p">{</span>
-  <span class="na">-webkit-filter</span><span class="o">:</span> <span class="nf">invert</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-  <span class="na">filter</span><span class="o">:</span> <span class="nf">invert</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-<span class="p">}</span>
-</pre></div>
-</code></pre>
-<p>Chrome 31で適用してみると、以下のょーになり、<br>意図したとーりの結果になりました</p>
-<p><img src="/images/invert_chrome.png" alt="Google Chrome 31での実行結果"></p>
-<h3><a name="sassでゎちょっと注意" class="anchor" href="#sassでゎちょっと注意"><span class="header-link"></span></a>Sassでゎちょっと注意</h3>
-<p>上記のcssコードをそのままscssに記述すると、<br><code>invert()</code>がSassでの未定義関数みたぃな扱ぃになっちゃって、<br>パースエラーになるので、エスケープしなきゃだめです</p>
-<pre><code class="lang-scss"><div class="highlight"><pre><span class="nc">.invert</span><span class="p">{</span>
-  <span class="na">-webkit-filter</span><span class="o">:</span> <span class="nf">unquote</span><span class="p">(</span><span class="s2">&quot;invert(1)&quot;</span><span class="p">);</span>
-  <span class="na">filter</span><span class="o">:</span> <span class="nf">unquote</span><span class="p">(</span><span class="s2">&quot;invert(1)&quot;</span><span class="p">);</span>
-<span class="p">}</span>
-</pre></div>
-</code></pre>
-<h3><a name="mobile safariでの描画品質を向上する" class="anchor" href="#mobile safariでの描画品質を向上する"><span class="header-link"></span></a>Mobile Safariでの描画品質を向上する</h3>
-<p>iOS6,7ともに㊤のコードで階調反転にゎなりますが、<br>適用した部分の解像度がゃたらぉちちゃぃます</p>
-<p><img src="/images/invert_ios.png" alt="iOS6で文字がぼゃけてる例"></p>
-<p>この手の現象の回避策としてゎ<code>backface-visibillity</code>が有名です</p>
-<pre><code class="lang-scss"><div class="highlight"><pre><span class="nc">.invert</span><span class="p">{</span>
-  <span class="na">-webkit-backface-visibility</span><span class="o">:</span> <span class="no">hidden</span><span class="p">;</span>
-  <span class="na">backface-visibility</span><span class="o">:</span> <span class="no">hidden</span><span class="p">;</span>
-  <span class="na">-webkit-filter</span><span class="o">:</span> <span class="nf">unquote</span><span class="p">(</span><span class="s2">&quot;invert(1)&quot;</span><span class="p">);</span>
-  <span class="na">filter</span><span class="o">:</span> <span class="nf">unquote</span><span class="p">(</span><span class="s2">&quot;invert(1)&quot;</span><span class="p">);</span>
-<span class="p">}</span>
-</pre></div>
-</code></pre>
-<p>適用してみると、ぃっもどーりの、はっきりした文字になりました</p>
-<p><img src="/images/invert_ios_3d.png" alt="iOS6 backface-visibility適用後"></p>
-<p>けど<code>backface-visibillity</code>じゃなくてもょくて、<br>単純に3D系のプロパティを有効にすればきれぃになります、<br><code>transform: scaleZ(1)</code>とかです<br>なんにせょ3D系プロパティゎ特にAndroidにぉぃて、<br>ほかの要素への副作用とか多かった気がするので、<br>安易にっけるのゎょくなくて、慎重にしらべるべきとゎ思ぃます</p>
-]]></description><link>http://ayapi.github.io/posts/colorinvertcssonwebkit/</link><guid isPermaLink="true">http://ayapi.github.io/posts/colorinvertcssonwebkit/</guid><category><![CDATA[CSS]]></category><dc:creator><![CDATA[ぁゃぴ]]></dc:creator><pubDate>Mon, 25 Nov 2013 16:06:00 GMT</pubDate></item></channel></rss>
+]]></description><link>http://ayapi.github.io/posts/colorinvertcssonmozilla/</link><guid isPermaLink="true">http://ayapi.github.io/posts/colorinvertcssonmozilla/</guid><category><![CDATA[CSS]]></category><category><![CDATA[SVG]]></category><dc:creator><![CDATA[ぁゃぴ]]></dc:creator><pubDate>Mon, 25 Nov 2013 16:12:00 GMT</pubDate></item></channel></rss>

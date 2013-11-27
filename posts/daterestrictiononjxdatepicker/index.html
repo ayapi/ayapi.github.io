@@ -74,15 +74,15 @@
 <h3><a name="日付の計算と指定" class="anchor" href="#日付の計算と指定"><span class="header-link"></span></a>日付の計算と指定</h3>
 <p>今回ゎ、明日以降の1週間だけを選択可能にしてみることにします</p>
 <p>まず明日とか1週間後とかを計算しなきゃですが、<br><a href="http://commons.apache.org/proper/commons-lang/">Apache Commons Lang</a>の<code>DateUtils</code>クラスをっかぅと、<br>日付の計算もとてもかんたんにできます</p>
-<p><code data-gist-id="7592669" data-gist-line="2" data-gist-hide-footer="true" data-gist-hide-line-numbers="true"></code></p>
+<p><code data-gist-id="7592669" data-gist-line="2" data-gist-hide-footer="true" data-gist-hide-line-numbers="true"><a href="https://gist.github.com/ayapi/7592669">https://gist.github.com/ayapi/7592669</a> Line:2</code></p>
 <p><code>DateUtils</code>クラスでの明日と1週間後の計算ゎこんなかんじでかんたんです</p>
-<p><code data-gist-id="7592669" data-gist-line="15-16"></code></p>
+<p><code data-gist-id="7592669" data-gist-line="15-16"><a href="https://gist.github.com/ayapi/7592669">https://gist.github.com/ayapi/7592669</a> Line:15-16</code></p>
 <p>もし昨日とかがほしければ<code>addDays</code>で負の値を足せばできます</p>
-<p>それで<code>JXDatePicker</code>のインスタンスに、<br>ぃっからぃっまで選択可能にするのかを指定します<br><code data-gist-id="7592669" data-gist-line="18-20"></code></p>
+<p>それで<code>JXDatePicker</code>のインスタンスに、<br>ぃっからぃっまで選択可能にするのかを指定します<br><code data-gist-id="7592669" data-gist-line="18-20"><a href="https://gist.github.com/ayapi/7592669">https://gist.github.com/ayapi/7592669</a> Line:18-20</code></p>
 <h3><a name="みためを整ぇる" class="anchor" href="#みためを整ぇる"><span class="header-link"></span></a>みためを整ぇる</h3>
 <p>以上のコードで動くにゎ動くんですけど、<br>デフォだと、バツ印が真っ赤で、ちょっと派手すぎって思ぅ時がぁります</p>
 <p>バツ印の色を変ぇるにゎ<code>UIManager</code>のUIプロパティで色を指定します</p>
-<p><code data-gist-id="7592669" data-gist-line="22"></code></p>
+<p><code data-gist-id="7592669" data-gist-line="22"><a href="https://gist.github.com/ayapi/7592669">https://gist.github.com/ayapi/7592669</a> Line:22</code></p>
 <p>このょーにUIプロパティーを変ぇた時ゎ、<br>値を変ぇたことのをUIに適用(更新)するのが必要で、<br><code>JComponent</code>の<code>updateUI()</code>メソッドもしくゎ<br><code>SwingUtilities.updateComponentTreeUI()</code>どちらかをっかぃます</p>
 <p>それで適用してみると、バツの色がちゃんと変ぇれました！</p>
 <p><img src="/images/jxdatepicker_restriction_default_color.png" alt="JXDatePickerデフォルトカラー"> <img src="/images/jxdatepicker_restriction_custom_color.png" alt="JXDatePickerカスタムカラー"></p>
@@ -94,7 +94,7 @@
 <p><img src="/images/jxdatepicker_with_blackeye.png" alt="JXDatePickerとSynthetica BlackEye"></p>
 <h3><a name="完成ばん" class="anchor" href="#完成ばん"><span class="header-link"></span></a>完成ばん</h3>
 <p>てことで、できたコードがこれですー＼(^o^)／</p>
-<p><code data-gist-id="7592669"></code></p>
+<p><code data-gist-id="7592669"><a href="https://gist.github.com/ayapi/7592669">https://gist.github.com/ayapi/7592669</a></code></p>
 
 </div>
 

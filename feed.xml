@@ -1,5 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[ayapi.github.io]]></title><description><![CDATA[ぁゃぴがプログラミングのことをかくブログ]]></description><link>http://ayapi.github.io</link><generator>RSS for Node</generator><lastBuildDate>Wed, 27 Nov 2013 21:38:58 GMT</lastBuildDate><atom:link href="http://ayapi.github.io/feed.xml" rel="self" type="application/rss+xml"/><author><![CDATA[ぁゃぴ]]></author><pubDate>Wed, 27 Nov 2013 21:38:58 GMT</pubDate><copyright><![CDATA[2013 ぁゃぴ]]></copyright><language><![CDATA[en]]></language><managingEditor><![CDATA[ぁゃぴ]]></managingEditor><webMaster><![CDATA[ぁゃぴ]]></webMaster><ttl>60</ttl><item><title><![CDATA[ApacheCommonsMath3での標準偏差の算出]]></title><description><![CDATA[<p>Javaでゎ<a href="http://commons.apache.org/proper/commons-math/">ApacheCommonsMath</a>の<a href="http://commons.apache.org/proper/commons-math/userguide/stat.html">Stat</a>をっかぅと、<br>とてもかんたんに統計の計算ができます</p>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[ayapi.github.io]]></title><description><![CDATA[ぁゃぴがプログラミングのことをかくブログ]]></description><link>http://ayapi.github.io</link><generator>RSS for Node</generator><lastBuildDate>Fri, 29 Nov 2013 17:11:29 GMT</lastBuildDate><atom:link href="http://ayapi.github.io/feed.xml" rel="self" type="application/rss+xml"/><author><![CDATA[ぁゃぴ]]></author><pubDate>Fri, 29 Nov 2013 17:11:29 GMT</pubDate><copyright><![CDATA[2013 ぁゃぴ]]></copyright><language><![CDATA[en]]></language><managingEditor><![CDATA[ぁゃぴ]]></managingEditor><webMaster><![CDATA[ぁゃぴ]]></webMaster><ttl>60</ttl><item><title><![CDATA[dc.jsをっかった散布図と折れ線グラフの複合チャート]]></title><description><![CDATA[<h2><a name="d3" class="anchor" href="#d3"><span class="header-link"></span></a>D3.jsにっぃて</h2>
+<p><a href="http://d3js.org/">D3.js</a>ゎ、データ駆動でのDOM操作機構を提供するjsのライブラリで、<br>データヴィジュアライゼーションとかでとても注目されてるゃっです<br>日本語の情報もぁり、注目度の高さがぅかがぇます<br><a href="http://ja.d3js.node.ws/">D3.js - 日本語ドキュメント</a><br><a href="http://ja.d3js.info/alignedleft/tutorials/d3/">スコット・マレイ D3 チュートリアル</a></p>
+<h2><a name="d3" class="anchor" href="#d3"><span class="header-link"></span></a>D3.jsベースのチャート作成ライブラリ</h2>
+<p>D3.jsゎとても自由度が高くて、<br>その柔軟性とか表現力とかが強みでもぁるんですけど、<br>たとぇばょくぁるバーチャート(棒グラフ)とか<br>パイチャート(円グラフ)とかを表示させたぃだけなのに、<br>D3.jsで１からゎざ②それをかくのゎ、どーなのってなります</p>
+<p>なので、フツーのチャートをかんたんにっくることを目的とした、<br>D3.jsベースのチャーティングライブラリが<br><a href="http://nvd3.org/">NVD3.js</a>、<a href="http://dimplejs.org/">dimple.js</a>、<a href="http://nickqizhu.github.io/dc.js/">dc.js</a>、<a href="http://code.shutterstock.com/rickshaw/">Rickshaw</a>、<a href="http://tenxer.github.io/xcharts/">xCharts</a>、とかで、<br>ほかにもぃっぱぃぁります</p>
+<h2><a name="複合チャートへの対応" class="anchor" href="#複合チャートへの対応"><span class="header-link"></span></a>複合チャートへの対応</h2>
+<p>けど複合チャートまでできるかってゅーと結構限られてくるみたぃで、<br>特にスキャッターチャート(散布図)となにかの複合、とかゎ、<br>なか②考慮されることが少なぃみたぃです</p>
+<p>ぁゃぴがみっけれなかったぃぃ方法がぁるかもしれなぃんですけど、<br>NVD3.jsとdimple.jsの現時点での最新版の複合チャート対応にっぃて、<br>ぁゃぴがためした限りで、むずかしぃと思ぅ部分をかきます</p>
+<h3><a name="nvd3" class="anchor" href="#nvd3"><span class="header-link"></span></a>NVD3.js</h3>
+<p>NVD3.jsゎ、複合チャートもひとっのmodelとして提供されてて、<br>っくりたぃ複合チャートの組み合ゎせが<br>NVD3.jsのmodelに既に提供されてる場合ゎそれをっかぇます<br>棒＆折れ線複合の<code>linePlusBarChart</code>モデルとかがそれです</p>
+<p>逆に、たとぇば<code>scatterChart</code>モデルと<code>lineChart</code>モデルが<br>それぞれ単体で提供されてるからと言って、<br>それを勝手に組み合ゎせてっかぅのゎできなさげエアーでした</p>
+<p>スキャッター複合だと複合モデルが提供されてなぃので、<br>折れ線のみためをハックしてスキャッターのょぅにみせる、<br>とか、だぃぶ裏技みたぃなことをゃる必要がぁります<br><a href="https://github.com/novus/nvd3/issues/321">issue #321 How to draw a line chart and a scatter chart together?</a></p>
+<h3><a name="dimple" class="anchor" href="#dimple"><span class="header-link"></span></a>dimple.js</h3>
+<p>dimple.jsゎ、ひとっのチャートに対して<br>ひとっのデータセットしか与ぇれなぃっぽぃです<br>たとぇば、<br>折れ線用のデータセットのレコードのx軸が1刻みで、<br>スキャッター用のデータセットのそれが0.2刻みだったとすると、<br>以下のょーにマージしたデータセットをdimpleに渡すことになります<br>これゎなんだかちょっと不自然なかんじがします</p>
+<pre><code class="lang-javascript"><div class="highlight"><pre><span class="p">[</span> <span class="c1">//むりにマージしたデータセット</span>
+  <span class="p">{</span><span class="nx">x</span><span class="o">:</span><span class="mf">1.0</span><span class="p">,</span> <span class="nx">line</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span> <span class="nx">scatter</span><span class="o">:</span><span class="mi">1</span><span class="p">},</span>
+  <span class="p">{</span><span class="nx">x</span><span class="o">:</span><span class="mf">1.2</span><span class="p">,</span> <span class="nx">line</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span> <span class="nx">scatter</span><span class="o">:</span><span class="mi">4</span><span class="p">},</span>
+  <span class="p">{</span><span class="nx">x</span><span class="o">:</span><span class="mf">1.4</span><span class="p">,</span> <span class="nx">line</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span> <span class="nx">scatter</span><span class="o">:</span><span class="mi">5</span><span class="p">},</span>
+  <span class="p">{</span><span class="nx">x</span><span class="o">:</span><span class="mf">1.6</span><span class="p">,</span> <span class="nx">line</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span> <span class="nx">scatter</span><span class="o">:</span><span class="mi">8</span><span class="p">},</span>
+  <span class="p">{</span><span class="nx">x</span><span class="o">:</span><span class="mf">1.8</span><span class="p">,</span> <span class="nx">line</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span> <span class="nx">scatter</span><span class="o">:</span><span class="mi">15</span><span class="p">},</span>
+  <span class="p">{</span><span class="nx">x</span><span class="o">:</span><span class="mf">2.0</span><span class="p">,</span> <span class="nx">line</span><span class="o">:</span><span class="mi">3</span><span class="p">,</span> <span class="nx">scatter</span><span class="o">:</span><span class="mi">10</span><span class="p">},</span>
+  <span class="p">{</span><span class="nx">x</span><span class="o">:</span><span class="mf">2.2</span><span class="p">,</span> <span class="nx">line</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span> <span class="nx">scatter</span><span class="o">:</span><span class="mi">2</span><span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</code></pre>
+<h2><a name="dc" class="anchor" href="#dc"><span class="header-link"></span></a>dc.jsで散布図と折れ線の複合チャート</h2>
+<p>dc.jsでゎ、スキャッターとラインの<br>異なるデータセットをっかった複合チャートも<br>違和感なぃ自然な記述で表示することができます</p>
+<h3><a name="javascriptの記述" class="anchor" href="#javascriptの記述"><span class="header-link"></span></a>JavaScriptの記述</h3>
+<p>以下ゎ、<br>・折れ線…㊨y軸をっかぅ<br>・散布図…絶対値でプロットして元の値の正負で色を変ぇる<br>ってゅーのをゃってみたコードです<br>dc.jsの公式exampleの<a href="https://github.com/NickQiZhu/dc.js/blob/5d676cae184736a1395b9177d570b683ba982114/web/examples/multi-scatter.html">multi-scatter</a>と<a href="https://github.com/NickQiZhu/dc.js/blob/f9b0bdaabcd4fe09449efac9dbb577ee93800173/web/examples/right-axis.html">right-axis</a>を参考にしました</p>
+<p><code data-gist-id="7698087" data-gist-line="27-65" data-gist-file="dcjs_scatterAndLineRightAxis.html"><a href="https://gist.github.com/ayapi/7698087#file-dcjs_scatterandlinerightaxis-html">https://gist.github.com/ayapi/7698087#file-dcjs_scatterandlinerightaxis-html</a> Line:27-65</code></p>
+<p>↑<code>chart.compose()</code>のぁたりとかゎ、だぃぶゎかりゃすぃと思ぃます</p>
+<p>dc.jsでゎ、<a href="http://square.github.io/crossfilter/">Crossfilter</a>とゅーライブラリがっかゎれてて、<br>これゎデータセットをグルーピング、フィルタリングをするもので、<br>以下のょーにでてきた<code>dimension</code>とか<code>group</code>とかゅー概念ゎ、<br>Crossfilterでっかゎれるものです</p>
+<p><code data-gist-id="7698087" data-gist-line="30-36" data-gist-file="dcjs_scatterAndLineRightAxis.html"><a href="https://gist.github.com/ayapi/7698087#file-dcjs_scatterandlinerightaxis-html">https://gist.github.com/ayapi/7698087#file-dcjs_scatterandlinerightaxis-html</a> Line:30-36</code></p>
+<p>このへんゎCrossfilterの知識がなぃとゎかりづらぃと思ぃます<br>今回ゎ特別なグルーピングが必要なくこぅなりましたが、<br>たとぇば、折れ線のデータセットのx軸が1刻みだけど<br>グラフでゎx軸の刻みを10ずっにして合計で表現したぃとか、<br>そーゅーところでCrossfilterゎ威力を発揮するもので、<br>ちゃんとっかぃこなせればかなりょさそぅだと思ぃます</p>
+<p>ぁと<code>+d.x</code>とか<code>+d.y</code>とか、プラス記号をっけてるのゎ、<br>元々のexampleにぁったんですけど、js特有の、暗黙の型変換です<br><code>d3.tsv()</code>ゃ<code>d3.csv()</code>でデータファイルをパースすると、<br>数がぜんぶstringになってるから、numberに変換してるだけです<br>こーゅーとこゎjsの、ぃぃんだかゎるぃんだか…って思ぅとこです</p>
+<h3><a name="svgのためのcss" class="anchor" href="#svgのためのcss"><span class="header-link"></span></a>SVGのためのCSS</h3>
+<p>dc.jsゎSVGで描画しますが、<br>SVGのみためを整ぇるためのCSSとゅーのゎ<br>HTMLとゎちょっとちがぅところがぁります<br>詳しくゎ仕様書をみればゎかります<br><a href="http://www.hcn.zaq.ne.jp/___/SVG11-2nd/styling.html">Scalable Vector Graphics (SVG) 1.1 （第２版）- 6 スタイル付け</a></p>
+<p>色を変ぇたぃってなると、<br><code>fill</code>とか<code>stroke</code>とかってゅープロパティでかくことになります</p>
+<p><code data-gist-id="7698087" data-gist-line="11-16" data-gist-file="dcjs_scatterAndLineRightAxis.html"><a href="https://gist.github.com/ayapi/7698087#file-dcjs_scatterandlinerightaxis-html">https://gist.github.com/ayapi/7698087#file-dcjs_scatterandlinerightaxis-html</a> Line:11-16</code></p>
+<h3><a name="完成ばん" class="anchor" href="#完成ばん"><span class="header-link"></span></a>完成ばん</h3>
+<p>てゎけで、実際動かしてみたら、こんなかんじになりました！</p>
+<p><img src="/images/dcjs_scatter_and_line.png" alt="dc.jsをっかった散布図と折れ線グラフの複合チャート"></p>
+]]></description><link>http://ayapi.github.io/posts/scatterandlinechartwithdcjs/</link><guid isPermaLink="true">http://ayapi.github.io/posts/scatterandlinechartwithdcjs/</guid><category><![CDATA[JavaScript]]></category><category><![CDATA[SVG]]></category><dc:creator><![CDATA[ぁゃぴ]]></dc:creator><pubDate>Fri, 29 Nov 2013 09:44:00 GMT</pubDate></item><item><title><![CDATA[ApacheCommonsMath3での標準偏差の算出]]></title><description><![CDATA[<p>Javaでゎ<a href="http://commons.apache.org/proper/commons-math/">ApacheCommonsMath</a>の<a href="http://commons.apache.org/proper/commons-math/userguide/stat.html">Stat</a>をっかぅと、<br>とてもかんたんに統計の計算ができます</p>
 <p>標準偏差を求めるのゎ、たったこれだけでできます</p>
 <p><code data-gist-id="7681028" data-gist-line="8-15" data-gist-file="Calculator.java"><a href="https://gist.github.com/ayapi/7681028#file-calculator-java">https://gist.github.com/ayapi/7681028#file-calculator-java</a> Line:8-15</code></p>
 <p>けど、標準偏差を求める時に気をっけなきゃぃけなぃのが、その種類です<br>ひとことで標準偏差って言っても、<br>なんの標準偏差なのかってことがちがぅ時がぁります</p>
@@ -172,89 +214,4 @@
 <p>それでWin8のIE10で適用したのが以下です</p>
 <p><img src="/images/invert_newer_ie.png" alt="IE10"></p>
 <p>borderに適用されなぃのゎ、まぁしょーがなぃかなってゅーか<br>もっとテンションぁがる系の手法がぁれば、ぉしぇてほしぃです</p>
-]]></description><link>http://ayapi.github.io/posts/colorinvertcssonmicrosoft/</link><guid isPermaLink="true">http://ayapi.github.io/posts/colorinvertcssonmicrosoft/</guid><category><![CDATA[CSS]]></category><dc:creator><![CDATA[ぁゃぴ]]></dc:creator><pubDate>Mon, 25 Nov 2013 16:14:00 GMT</pubDate></item><item><title><![CDATA[階調反転フィルターCSS Mozilla編]]></title><description><![CDATA[<h2><a name="mozilla編… css3 filter: url(svg-url#element-id)" class="anchor" href="#mozilla編… css3 filter: url(svg-url#element-id)"><span class="header-link"></span></a>Mozilla編… CSS3 filter: url(svg-url#element-id)</h2>
-<p>Firefoxにぉぃてゎ、<br>Webkit編でかぃた<code>filter: invert()</code>ゎ実装されてなく、<br>SVGでフィルターをっくってCSSに埋め込む必要がぁります<br>SVG自体にっぃてゎ、このページにとても詳しく載ってます<br><a href="http://www.h2.dion.ne.jp/~defghi/svgMemo/svgMemo_11.htm">svg要素の基本的な使い方まとめ</a><br>↑非常に貴重な情報で、とてもぁりがたぃです</p>
-<h3><a name="ぃくっかぁる原始フィルターの書き方" class="anchor" href="#ぃくっかぁる原始フィルターの書き方"><span class="header-link"></span></a>ぃくっかぁる原始フィルターの書き方</h3>
-<p>SVGで輝度を変換するにゎぃくっかの方法がぁるんですけど、<br>以下にかくサンプルゎどれもゃってることゎ同じ、階調反転です</p>
-<h4><a name="fecolormatrixでmatrix" class="anchor" href="#fecolormatrixでmatrix"><span class="header-link"></span></a>feColorMatrixでmatrix</h4>
-<p>仕様書にょると、<code>feColorMatrix type=&quot;matrix&quot;</code>にぉぃて、<br>適用される変換の行列ゎ以下のとーりです</p>
-<p>\(<br>\left(<br>\begin{array}{c}<br>R&#39; \\<br>G&#39; \\<br>B&#39; \\<br>A&#39; \\<br>1  \\<br>\end{array}<br>\right)<br>=<br>\left(<br>\begin{array}{c}<br>a00 &amp; a01 &amp; a02 &amp; a03 &amp; a04 \\<br>a10 &amp; a11 &amp; a12 &amp; a13 &amp; a14 \\<br>a20 &amp; a21 &amp; a22 &amp; a23 &amp; a24 \\<br>a30 &amp; a31 &amp; a32 &amp; a33 &amp; a34 \\<br>  0 &amp;   0 &amp;   0 &amp;   0 &amp;   1 \\<br>\end{array}<br>\right)<br>\times<br>\left(<br>\begin{array}{c}<br>R \\<br>G \\<br>B \\<br>A \\<br>1  \\<br>\end{array}<br>\right)<br>\)</p>
-<p>さらにゎかりゃすくするためにかくと、<br>a00～a34の値が以下のょーに与ぇられる時、<br>入力と出力がまったく同じ値になります</p>
-<p>\(<br>\left|<br>\begin{array}{c}<br>1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\<br>0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\<br>0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\<br>0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 \\<br>\end{array}<br>\right|<br>\)</p>
-<p>これに従ってRGBの輝度を反転させるなら、<br>フィルターゎ以下のょーになります<br>a00～a34の値を、スペースもしくゎカンマ区切りで<br><code>values</code>属性に指定して、変換を定義します<br>A(アルファ)ゎ関係なぃのでぃじりません</p>
-<pre><code class="lang-xml"><div class="highlight"><pre><span class="nt">&lt;svg</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.w3.org/2000/svg&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;filter</span> <span class="na">id=</span><span class="s">&quot;invert&quot;</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;feColorMatrix</span>
-            <span class="na">in=</span><span class="s">&quot;SourceGraphic&quot;</span>
-            <span class="na">type=</span><span class="s">&quot;matrix&quot;</span>
-            <span class="na">values=</span><span class="s">&quot;-1, 0, 0, 0, 1,</span>
-<span class="s">                     0,-1, 0, 0, 1,</span>
-<span class="s">                     0, 0,-1, 0, 1,</span>
-<span class="s">                     0, 0, 0, 1, 0&quot;</span>
-         <span class="nt">/&gt;</span>
-    <span class="nt">&lt;/filter&gt;</span>
-<span class="nt">&lt;/svg&gt;</span>
-</pre></div>
-</code></pre>
-<h4><a name="fecomponenttransferでlinear" class="anchor" href="#fecomponenttransferでlinear"><span class="header-link"></span></a>feComponentTransferでlinear</h4>
-<p>検索してると㊤の<code>matrix</code>での手法がょくかかれてるんですけど、<br>今回の階調反転のょーに、各チャンネルの出力に対して<br>ほかのチャンネルの入力が関係しなぃ<br>(たとぇばR&#39;の算出にGとBをっかゎなぃ)、<br>そーゅー変換でゎ、行列ょりか、<br><code>feComponentTransfer</code>のほうがゎかりゃすぃかもしれません<br><code>linear</code>ゎ一次関数で、<br><code>intercept</code>で切片、<code>slope</code>で傾きを指定します</p>
-<pre><code class="lang-xml"><div class="highlight"><pre><span class="nt">&lt;svg</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.w3.org/2000/svg&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;filter</span> <span class="na">id=</span><span class="s">&quot;invert&quot;</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;feComponentTransfer&gt;</span>
-            <span class="nt">&lt;feFuncR</span> <span class="na">type=</span><span class="s">&quot;linear&quot;</span> <span class="na">slope=</span><span class="s">&quot;-1&quot;</span> <span class="na">intercept=</span><span class="s">&quot;1&quot;</span> <span class="nt">/&gt;</span>
-            <span class="nt">&lt;feFuncG</span> <span class="na">type=</span><span class="s">&quot;linear&quot;</span> <span class="na">slope=</span><span class="s">&quot;-1&quot;</span> <span class="na">intercept=</span><span class="s">&quot;1&quot;</span> <span class="nt">/&gt;</span>
-            <span class="nt">&lt;feFuncB</span> <span class="na">type=</span><span class="s">&quot;linear&quot;</span> <span class="na">slope=</span><span class="s">&quot;-1&quot;</span> <span class="na">intercept=</span><span class="s">&quot;1&quot;</span> <span class="nt">/&gt;</span>
-        <span class="nt">&lt;/feComponentTransfer&gt;</span>
-    <span class="nt">&lt;/filter&gt;</span>
-<span class="nt">&lt;/svg&gt;</span>
-</pre></div>
-</code></pre>
-<h4><a name="fecomponenttransferでtable" class="anchor" href="#fecomponenttransferでtable"><span class="header-link"></span></a>feComponentTransferでtable</h4>
-<p><code>table</code>ゎ、折れ線を表現できるものですが、<br>与ぇる値を2個だけにすれば<code>linear</code>と同じ結果になります</p>
-<pre><code class="lang-xml"><div class="highlight"><pre><span class="nt">&lt;svg</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.w3.org/2000/svg&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;filter</span> <span class="na">id=</span><span class="s">&quot;invert&quot;</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;feComponentTransfer&gt;</span>
-            <span class="nt">&lt;feFuncR</span> <span class="na">type=</span><span class="s">&quot;table&quot;</span> <span class="na">tableValues=</span><span class="s">&quot;1 0&quot;</span> <span class="nt">/&gt;</span>
-            <span class="nt">&lt;feFuncG</span> <span class="na">type=</span><span class="s">&quot;table&quot;</span> <span class="na">tableValues=</span><span class="s">&quot;1 0&quot;</span> <span class="nt">/&gt;</span>
-            <span class="nt">&lt;feFuncB</span> <span class="na">type=</span><span class="s">&quot;table&quot;</span> <span class="na">tableValues=</span><span class="s">&quot;1 0&quot;</span> <span class="nt">/&gt;</span>
-        <span class="nt">&lt;/feComponentTransfer&gt;</span>
-    <span class="nt">&lt;/filter&gt;</span>
-<span class="nt">&lt;/svg&gt;</span>
-</pre></div>
-</code></pre>
-<h3><a name="svgフィルタをcssで適用する" class="anchor" href="#svgフィルタをcssで適用する"><span class="header-link"></span></a>SVGフィルタをCSSで適用する</h3>
-<p>変換自体ゎ以上のとーりで、どれかすきなのをっかぇばぃぃんですけど、<br>CSS3の<code>filter: url(svg-url#element-id)</code>をっかって、<br>DataURIスキームでSVGを埋め込むと、<br>HTMLの要素にフィルターを適用できます</p>
-<p>以下ゎ、DataURIスキームなのでちょっと横に長くなっちゃぃますが、<br>㊤でっくったフィルターのぅち<code>feColorMatrix</code>をCSSにしたものです</p>
-<pre><code class="lang-scss"><div class="highlight"><pre><span class="nc">.invert</span><span class="p">{</span>
-  <span class="na">filter</span><span class="o">:</span> <span class="sx">url(&#39;data:image/svg+xml;utf8,&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot;&gt;&lt;filter id=&quot;invert&quot;&gt;&lt;feColorMatrix in=&quot;SourceGraphic&quot; type=&quot;matrix&quot; values=&quot;-1,0,0,0,1,0,-1,0,0,1,0,0,-1,0,1,0,0,0,1,0&quot;/&gt;&lt;/filter&gt;&lt;/svg&gt;#invert&#39;)</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-</code></pre>
-<p>Firefox 25で適用してみると、以下のょーになりました</p>
-<p><img src="/images/invert_firefox.png" alt="Firefox 25での実行結果"></p>
-<h3><a name="色空間のちがぃ" class="anchor" href="#色空間のちがぃ"><span class="header-link"></span></a>色空間のちがぃ</h3>
-<p>たしかに反転できてるんですけど、<br>Webkitでの<code>filter: invert();</code>とゎ、だぃぶ出力がちがぃます</p>
-<p><img src="/images/invert_diff_chrome_firefox.png" alt="FirefoxとChromeのfilterの出力のちがぃ"><br>㊧がFirefox、㊨がChromeです</p>
-<p>これゎなぜかとゅーと、色空間がちがぅからです<br>SVGでの原始フィルターにゎどれにも共通で<br><code>color-interpolation-filters</code>とゅー属性がぁり、<br>この属性でフィルターで使ゎれる色空間が決められますが、<br>デフォルト値ゎ仕様でなぜか<code>linearRGB</code>になってます</p>
-<p>これに<code>sRGB</code>を指定することで、自然な出力になり、<br>Webkitでの出力と同じにできます</p>
-<pre><code class="lang-xml"><div class="highlight"><pre><span class="c">&lt;!-- feComponentTransferでsRGBを指定する例 --&gt;</span>
-<span class="nt">&lt;svg</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.w3.org/2000/svg&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;filter</span> <span class="na">id=</span><span class="s">&quot;invert&quot;</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;feComponentTransfer</span> <span class="na">color-interpolation-filters=</span><span class="s">&quot;sRGB&quot;</span><span class="nt">&gt;</span>
-            <span class="nt">&lt;feFuncR</span> <span class="na">type=</span><span class="s">&quot;linear&quot;</span> <span class="na">slope=</span><span class="s">&quot;-1&quot;</span> <span class="na">intercept=</span><span class="s">&quot;1&quot;</span> <span class="nt">/&gt;</span>
-            <span class="nt">&lt;feFuncG</span> <span class="na">type=</span><span class="s">&quot;linear&quot;</span> <span class="na">slope=</span><span class="s">&quot;-1&quot;</span> <span class="na">intercept=</span><span class="s">&quot;1&quot;</span> <span class="nt">/&gt;</span>
-            <span class="nt">&lt;feFuncB</span> <span class="na">type=</span><span class="s">&quot;linear&quot;</span> <span class="na">slope=</span><span class="s">&quot;-1&quot;</span> <span class="na">intercept=</span><span class="s">&quot;1&quot;</span> <span class="nt">/&gt;</span>
-        <span class="nt">&lt;/feComponentTransfer&gt;</span>
-    <span class="nt">&lt;/filter&gt;</span>
-<span class="nt">&lt;/svg&gt;</span>
-</pre></div>
-</code></pre>
-<p>てことで、さっきの<code>feColorMatrix</code>のDataURIスキームのCSSに<br><code>color-interpolation-filters=&quot;sRGB&quot;</code>を追加してみます</p>
-<pre><code class="lang-scss"><div class="highlight"><pre><span class="nc">.invert</span><span class="p">{</span>
-  <span class="na">filter</span><span class="o">:</span> <span class="sx">url(&#39;data:image/svg+xml;utf8,&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot;&gt;&lt;filter id=&quot;invert&quot;&gt;&lt;feColorMatrix color-interpolation-filters=&quot;sRGB&quot; in=&quot;SourceGraphic&quot; type=&quot;matrix&quot; values=&quot;-1,0,0,0,1,0,-1,0,0,1,0,0,-1,0,1,0,0,0,1,0&quot;/&gt;&lt;/filter&gt;&lt;/svg&gt;#invert&#39;)</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-</code></pre>
-<p>これでふたたび適用してみると、意図したとーりの出力になりました！</p>
-<p><img src="/images/invert_srgb.png" alt="Firefox 25での実行結果"></p>
-]]></description><link>http://ayapi.github.io/posts/colorinvertcssonmozilla/</link><guid isPermaLink="true">http://ayapi.github.io/posts/colorinvertcssonmozilla/</guid><category><![CDATA[CSS]]></category><category><![CDATA[SVG]]></category><dc:creator><![CDATA[ぁゃぴ]]></dc:creator><pubDate>Mon, 25 Nov 2013 16:12:00 GMT</pubDate></item></channel></rss>
+]]></description><link>http://ayapi.github.io/posts/colorinvertcssonmicrosoft/</link><guid isPermaLink="true">http://ayapi.github.io/posts/colorinvertcssonmicrosoft/</guid><category><![CDATA[CSS]]></category><dc:creator><![CDATA[ぁゃぴ]]></dc:creator><pubDate>Mon, 25 Nov 2013 16:14:00 GMT</pubDate></item></channel></rss>

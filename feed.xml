@@ -1,5 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[ayapi.github.io]]></title><description><![CDATA[ぁゃぴがプログラミングのことをかくブログ]]></description><link>http://ayapi.github.io</link><generator>RSS for Node</generator><lastBuildDate>Fri, 29 Nov 2013 17:11:29 GMT</lastBuildDate><atom:link href="http://ayapi.github.io/feed.xml" rel="self" type="application/rss+xml"/><author><![CDATA[ぁゃぴ]]></author><pubDate>Fri, 29 Nov 2013 17:11:29 GMT</pubDate><copyright><![CDATA[2013 ぁゃぴ]]></copyright><language><![CDATA[en]]></language><managingEditor><![CDATA[ぁゃぴ]]></managingEditor><webMaster><![CDATA[ぁゃぴ]]></webMaster><ttl>60</ttl><item><title><![CDATA[dc.jsをっかった散布図と折れ線グラフの複合チャート]]></title><description><![CDATA[<h2><a name="d3" class="anchor" href="#d3"><span class="header-link"></span></a>D3.jsにっぃて</h2>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[ayapi.github.io]]></title><description><![CDATA[ぁゃぴがプログラミングのことをかくブログ]]></description><link>http://ayapi.github.io</link><generator>RSS for Node</generator><lastBuildDate>Wed, 25 Dec 2013 23:44:48 GMT</lastBuildDate><atom:link href="http://ayapi.github.io/feed.xml" rel="self" type="application/rss+xml"/><author><![CDATA[ぁゃぴ]]></author><pubDate>Wed, 25 Dec 2013 23:44:48 GMT</pubDate><copyright><![CDATA[2013 ぁゃぴ]]></copyright><language><![CDATA[en]]></language><managingEditor><![CDATA[ぁゃぴ]]></managingEditor><webMaster><![CDATA[ぁゃぴ]]></webMaster><ttl>60</ttl><item><title><![CDATA[WindowsのNode.jsでOpenCVを使ぅ]]></title><description><![CDATA[<h2><a name="opencvとゎ" class="anchor" href="#opencvとゎ"><span class="header-link"></span></a>OpenCVとゎ</h2>
+<p>Intelがだしてる画像処理のライブラリで、顔認識ができたりで有名です</p>
+<h2><a name="node" class="anchor" href="#node"><span class="header-link"></span></a>Node.jsでOpenCVが使ぇる、node-opencv</h2>
+<p><a href="https://github.com/peterbraden/node-opencv">node-opencv</a>ゎその名のとーり、<br>Node.jsでOpenCVをかんたんに扱ぇるょーにしてくれるライブラリです</p>
+<p>けど元々作者の人が、Windowsでの利用をほぼ想定してなぃっぽくて、<br>Windows環境での導入の情報をみっけるのがたぃへんです</p>
+<p>forkブランチの<a href="https://github.com/notcoffeetable/node-opencv">notcoffeetable/node-opencv</a>に<br>Windowsでの使用例がコミットされてるのをみっけ、<br>参考にしてがんばってみました</p>
+<h2><a name="windowsのnode" class="anchor" href="#windowsのnode"><span class="header-link"></span></a>WindowsのNode.jsにnode-opencvを入れる方法</h2>
+<p>ぁゃぴの環境ゎWindows8 64bitで、Node v0.10.21です</p>
+<h3><a name="pythonのインストール" class="anchor" href="#pythonのインストール"><span class="header-link"></span></a>Pythonのインストール</h3>
+<p><a href="http://www.python.org/getit/">Python2.7.6</a><br>環境変数<code>Path</code>に<code>C:\Python27</code>を追加して、<br>環境変数<code>PYTHONPATH</code>に<code>C:\Python27\Lib\site-packages</code>を指定</p>
+<h3><a name="gtk+のインストール" class="anchor" href="#gtk+のインストール"><span class="header-link"></span></a>GTK+のインストール</h3>
+<p><a href="http://www.gtk.org/download/index.php">GTK+ all-in-one bundle 3.6.4</a><br>pkg-configがとにかく必須なんですけど、<br>ほかゎ要るのかぁゃぴゎょくゎかんなぃけど一応all-in-one入れました<br>詳しぃ人ゎall-in-oneじゃなくてもぃぃかもしれません<br>インストーラじゃなぃのでzipを任意の場所に解凍するだけです<br>環境変数<code>Path</code>に<code>C:\gtk\bin</code>、<br>環境変数<code>PKG_CONFIG_PATH</code>に<code>C:\gtk\lib\pkgconfig</code>を追加<br>(解凍した場所にょって変ぇてくださぃ↑)</p>
+<h3><a name="visual studio expressのインストール" class="anchor" href="#visual studio expressのインストール"><span class="header-link"></span></a>Visual Studio Expressのインストール</h3>
+<p><a href="http://www.microsoft.com/ja-jp/download/details.aspx?id=34673">Microsoft Visual Studio C++ 2012 for Windows Desktop Express</a><br>無料で使ぇるExpress版で充分なんだそーです</p>
+<h3><a name="opencvのインストール" class="anchor" href="#opencvのインストール"><span class="header-link"></span></a>OpenCVのインストール</h3>
+<p><a href="http://opencv.org/downloads.html">OpenCV for Windows Version 2.4.4</a>をインストールします<br>自己解凍形式で、どこに解凍するか聞かれるので、<br><code>C:\</code>とかゎかりゃすぃすきなとこを指定します</p>
+<p>OpenCVだけの情報をみてると、<br>ここでCMakeでのビルドに進んだりしますが、<br>node-opencvでっかぅ分にゎCMakeゎ必要なぃみたぃです</p>
+<p>環境変数<code>Path</code>に<code>C:\opencv\build\x64\vc11</code>を追加します<br>このパスゎ、64bit環境なら<code>x64\vc11</code>、32bit環境なら<code>x86\vc11</code>です</p>
+<h3><a name="opencv" class="anchor" href="#opencv"><span class="header-link"></span></a>opencv.pcファイルの編集と配置</h3>
+<p><code>pkg-config</code>が使ぅ<code>opencv.pc</code>とゅーファイルを作ります<br>参考：<a href="https://github.com/notcoffeetable/node-opencv/blob/master/opencv_example.pc">notcoffeetable/node-opencv/opencv_example.pc</a></p>
+<pre><code class="lang-makefile"><div class="highlight"><pre><span class="c"># Package Information for pkg-config</span>
+
+<span class="nv">prefix</span><span class="o">=</span>C:/opencv
+<span class="nv">exec_prefix</span><span class="o">=</span><span class="k">${</span><span class="nv">prefix</span><span class="k">}</span>/bin
+<span class="nv">libdir</span><span class="o">=</span><span class="k">${</span><span class="nv">prefix</span><span class="k">}</span>/build/x64/vc11/lib
+<span class="nv">includedir_old</span><span class="o">=</span><span class="k">${</span><span class="nv">prefix</span><span class="k">}</span>/build/include/opencv
+<span class="nv">includedir_new</span><span class="o">=</span><span class="k">${</span><span class="nv">prefix</span><span class="k">}</span>/build/include
+
+<span class="nf">Name</span><span class="o">:</span> <span class="m">OpenCV</span>
+<span class="nf">Description</span><span class="o">:</span> <span class="m">Open Source Computer Vision Library</span>
+<span class="nf">Version</span><span class="o">:</span> <span class="m">2.4.4</span>
+<span class="nf">Libs</span><span class="o">:</span> <span class="m">${libdir}/opencv_core244 ${libdir}/opencv_imgproc244 ${libdir}/opencv_highgui244 ${libdir}/opencv_ml244 ${libdir}/opencv_video244 ${libdir}/opencv_features2d244 ${libdir}/opencv_calib3d244 ${libdir}/opencv_objdetect244 ${libdir}/opencv_contrib244 ${libdir}/opencv_legacy244 ${libdir}/opencv_flann244</span>
+<span class="nf">Cflags</span><span class="o">:</span> <span class="m">${includedir_old} ${includedir_new}</span>
+</pre></div>
+</code></pre>
+<p>場合にょって編集が必要なのゎ<code>prefix</code>のパスと<code>libdir</code>のパスで、<br>ほかゎたぶん変ぇなくてぃぃと思ぃます</p>
+<p><code>C:\opencv\opencv.pc</code>として保存してぉき、<br>環境変数<code>PKG_CONFIG_PATH</code>に<code>C:\opencv</code>を追加します</p>
+<h3><a name="node-opencvのインストール" class="anchor" href="#node-opencvのインストール"><span class="header-link"></span></a>node-opencvのインストール</h3>
+<p>まず、普通なら使ぃたぃプロジェクトのディレクトリで<br><code>npm install opencv</code>をゃりますけど、<br>ぁゃぴが試したv0.4.0でゎ<br><code>node-opencv\src\Matrix.cc</code>で<code>round</code>がなぃとかで怒られて、<br>インストールに失敗しました</p>
+<p>ソースをぃじらなぃとだめっぽぃと思ったので、<br>本家<a href="https://github.com/peterbraden/node-opencv">node-opencv</a>から一旦とってきました<br><code>git clone git@github.com:peterbraden/node-opencv.git</code></p>
+<p>そして<code>node-opencv\src\Matrix.cc</code>の<br>めっちゃ最初のほーに<code>round</code>を強引に追加します<br>参考：<a href="https://github.com/peterbraden/node-opencv/issues/83#issuecomment-31184572">github - peterbraden/node-opencv - issue:83</a></p>
+<pre><code class="lang-c++"><div class="highlight"><pre><span class="cp">#include &quot;Contours.h&quot;</span>
+<span class="cp">#include &quot;Matrix.h&quot;</span>
+<span class="cp">#include &quot;OpenCV.h&quot;</span>
+
+<span class="kr">inline</span> <span class="kt">double</span> <span class="nf">round</span><span class="p">(</span><span class="kt">double</span> <span class="n">d</span><span class="p">){</span> <span class="k">return</span> <span class="n">floor</span><span class="p">(</span> <span class="n">d</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">);</span> <span class="p">}</span>
+</pre></div>
+</code></pre>
+<p>ぁゃぴC++の知識なくて、もっとぃぃ方法ぁるかもしれなぃですけど…</p>
+<p>で、そしたら、使ぃたぃプロジェクトのディレクトリに行って、<br>インストールしてみます</p>
+<pre><code class="lang-bash"><div class="highlight"><pre><span class="nb">cd</span> ../opencv_sample/
+npm install ../node-opencv
+</pre></div>
+</code></pre>
+<p>すると、なんかビルドがはじまって、<br>ゃたらと黄色ぃ警告がでますが、赤じゃなければへーきみたぃ…<br>後々っかってぃく㊤で、へーきじゃなくなったらごめんなさぃ↓↓</p>
+<p>これでひとまずインストールゎ完了です</p>
+<h2><a name="使ぃかた" class="anchor" href="#使ぃかた"><span class="header-link"></span></a>使ぃかた</h2>
+<p>でゎ<code>node-opencv/example/convert_image.js</code>を、<br><code>opencv_sample/</code>のほーに持ってきて、<br>パスちょっと変ぇて使ってみます</p>
+<pre><code class="lang-javascript"><div class="highlight"><pre><span class="c1">//sample.js (example/convert_image.jsのパクり)</span>
+<span class="kd">var</span> <span class="nx">cv</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;opencv&#39;</span><span class="p">);</span>
+<span class="nx">cv</span><span class="p">.</span><span class="nx">readImage</span><span class="p">(</span><span class="s2">&quot;./mona.png&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">im</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">img_hsv</span> <span class="o">=</span> <span class="nx">im</span><span class="p">.</span><span class="nx">copy</span><span class="p">();</span>
+  <span class="nx">img_gray</span> <span class="o">=</span> <span class="nx">im</span><span class="p">.</span><span class="nx">copy</span><span class="p">();</span>
+
+  <span class="nx">img_hsv</span><span class="p">.</span><span class="nx">convertHSVscale</span><span class="p">();</span>
+  <span class="nx">img_gray</span><span class="p">.</span><span class="nx">convertGrayscale</span><span class="p">();</span>
+
+  <span class="nx">im</span><span class="p">.</span><span class="nx">save</span><span class="p">(</span><span class="s2">&quot;./nor.png&quot;</span><span class="p">);</span>
+  <span class="nx">img_hsv</span><span class="p">.</span><span class="nx">save</span><span class="p">(</span><span class="s2">&quot;./hsv.png&quot;</span><span class="p">);</span>
+  <span class="nx">img_gray</span><span class="p">.</span><span class="nx">save</span><span class="p">(</span><span class="s2">&quot;./gray.png&quot;</span><span class="p">);</span>
+
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Guardado&quot;</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</code></pre>
+<p>実行してみると</p>
+<pre><code class="lang-bash"><div class="highlight"><pre>node sample.js
+</pre></div>
+</code></pre>
+<p>以下のょーに、画像が生成されました！<br>けど、<code>convertHSVscale()</code>ってなんなんだろ…<br>この<code>hsv.png</code>の色、バグってんのか合ってんのかゎかんなぃです／(^o^)＼<br>グレースケールゎ、ちゃんとできてるっぽぃですね</p>
+<p><img src="/images/node-opencv_comvert_image_result.jpg" alt="生成された3枚と元画像1枚"></p>
+<p>まだょくゎかりませんが、これから使ぃこんでみょーかなと思ってます</p>
+]]></description><link>http://ayapi.github.io/posts/node-opencvonwin8x64/</link><guid isPermaLink="true">http://ayapi.github.io/posts/node-opencvonwin8x64/</guid><category><![CDATA[Node]]></category><category><![CDATA[OpenCV]]></category><dc:creator><![CDATA[ぁゃぴ]]></dc:creator><pubDate>Wed, 25 Dec 2013 13:41:00 GMT</pubDate></item><item><title><![CDATA[dc.jsをっかった散布図と折れ線グラフの複合チャート]]></title><description><![CDATA[<h2><a name="d3" class="anchor" href="#d3"><span class="header-link"></span></a>D3.jsにっぃて</h2>
 <p><a href="http://d3js.org/">D3.js</a>ゎ、データ駆動でのDOM操作機構を提供するjsのライブラリで、<br>データヴィジュアライゼーションとかでとても注目されてるゃっです<br>日本語の情報もぁり、注目度の高さがぅかがぇます<br><a href="http://ja.d3js.node.ws/">D3.js - 日本語ドキュメント</a><br><a href="http://ja.d3js.info/alignedleft/tutorials/d3/">スコット・マレイ D3 チュートリアル</a></p>
 <h2><a name="d3" class="anchor" href="#d3"><span class="header-link"></span></a>D3.jsベースのチャート作成ライブラリ</h2>
 <p>D3.jsゎとても自由度が高くて、<br>その柔軟性とか表現力とかが強みでもぁるんですけど、<br>たとぇばょくぁるバーチャート(棒グラフ)とか<br>パイチャート(円グラフ)とかを表示させたぃだけなのに、<br>D3.jsで１からゎざ②それをかくのゎ、どーなのってなります</p>
@@ -163,55 +245,4 @@
 <h3><a name="完成ばん" class="anchor" href="#完成ばん"><span class="header-link"></span></a>完成ばん</h3>
 <p>とゅーゎけで、できたコードがこれですー！</p>
 <p><code data-gist-id="7660869"><a href="https://gist.github.com/ayapi/7660869">https://gist.github.com/ayapi/7660869</a></code></p>
-]]></description><link>http://ayapi.github.io/posts/colorinvertjlayer/</link><guid isPermaLink="true">http://ayapi.github.io/posts/colorinvertjlayer/</guid><category><![CDATA[Java]]></category><category><![CDATA[Swing]]></category><dc:creator><![CDATA[ぁゃぴ]]></dc:creator><pubDate>Tue, 26 Nov 2013 22:27:00 GMT</pubDate></item><item><title><![CDATA[階調反転フィルターCSS Microsoft編]]></title><description><![CDATA[<h2><a name="microsoft編… filter: dximagetransform" class="anchor" href="#microsoft編… filter: dximagetransform"><span class="header-link"></span></a>Microsoft編… filter: DXImageTransform</h2>
-<p>CSSネタでゎまじだるぃIEなんですけど、<br>フィルター関係でゎDirectXをっかった独自実装の<br><code>filter: progid:DXImageTransform.Microsoft</code>が、ぁりました<br>「ぁりました」って過去形なのゎ、IE9の時点で非推奨とされ、<br>IE10からゎ完全に非対応となったからです</p>
-<p>とりぁぇずIE10以降のことゎぉぃとぃて、<br><code>DXImageTransform</code>をっかった階調反転CSSを、<br>教科書どーりなかんじでかくと、以下のとーりです</p>
-<pre><code class="lang-scss"><div class="highlight"><pre><span class="nc">.invert</span><span class="p">{</span>
-  <span class="na">filter</span><span class="o">:</span> <span class="n">progid</span><span class="o">:</span><span class="n">DXImageTransform</span><span class="o">.</span><span class="n">Microsoft</span><span class="o">.</span><span class="nf">BasicImage</span><span class="p">(</span><span class="no">invert</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
-  <span class="na">-ms-filter</span><span class="o">:</span> <span class="s2">&quot;progid:DXImageTransform.Microsoft.BasicImage(invert=1)&quot;</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-</code></pre>
-<p>けど実ゎ、<code>invert</code>のみを適用する今回のょーな場合ゎ、<br>この長ぃ記述ゎまったく必要がなく、フィルター名だけで指定できます</p>
-<pre><code class="lang-scss"><div class="highlight"><pre><span class="nc">.invert</span><span class="p">{</span>
-  <span class="na">filter</span><span class="o">:</span> <span class="nf">invert</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-  <span class="na">-ms-filter</span><span class="o">:</span> <span class="nf">invert</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-<span class="p">}</span>
-</pre></div>
-</code></pre>
-<p>Webkitと同じかんじでかけるってことですね！<br>けどWebkitでゎパーセンテージ指定とかができますが<br>こっちでゎ0か1かしかだめなので気をっける必要がぁります</p>
-<p>IETester v0.5.2をっかって、<br>IE7から9でこのCSSを適用したのが以下です</p>
-<p><img src="/images/invert_old_ie.png" alt="IETester"></p>
-<p>㊧から順番に、IE9、8、7です<br>7とかさすがにもぅ古すぎだし、ょくなぃ？<br>ってぁゃぴゎ思ってるんですけど、せっかく表示できたから載せます<br>非推奨となってるIE9でも、ちゃんと反転してます！</p>
-<p>ただIE特有のブラウザモードとかドキュメントモードとか<br>ぁとWindows7なのか8なのか、とかでも<br>ちがってくるかもしれなぃです…</p>
-<h2><a name="microsoft編… outline-color: invert" class="anchor" href="#microsoft編… outline-color: invert"><span class="header-link"></span></a>Microsoft編… outline-color: invert</h2>
-<p>IE10-11でゎ、SVGフィルターゎぁるみたぃなんですけど、<br>Mozillaでできるょーな、<br>HTML要素にCSSからSVGフィルターを適用することゎ、できなぃみたぃです<br>ぁくまでSVGに対してしかSVGフィルターが適用できなぃです</p>
-<p>じゃーなにSVGにすればぃーゎけ？って思ぅんですけど、<br>SVGの㊥でHTMLを扱ぅための<code>foreignObject</code>も非対応みたぃです</p>
-<p>なのでfilterってゅー概念自体をぁきらめて、<br>かなりひどぃハックをゃらざるをぇません</p>
-<p>かぃてみたんですけど、もぅまじむかっくんで、とりぁぇずみてくださぃ</p>
-<pre><code class="lang-scss"><div class="highlight"><pre><span class="k">@media</span> <span class="nt">screen</span> <span class="nt">and</span> <span class="o">(</span><span class="nt">min-width</span><span class="nd">:0</span><span class="err">\</span><span class="nt">0</span><span class="o">)</span> <span class="p">{</span>
-  <span class="na">_</span><span class="o">::-</span><span class="n">ms-reveal</span><span class="o">,</span>
-  <span class="o">.</span><span class="no">invert</span><span class="o">:</span><span class="n">before</span><span class="p">{</span>
-    <span class="na">content</span><span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
-    <span class="na">width</span><span class="o">:</span> <span class="mi">0</span><span class="p">;</span> <span class="na">height</span><span class="o">:</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="na">position</span><span class="o">:</span> <span class="no">absolute</span><span class="p">;</span>
-    <span class="na">top</span><span class="o">:</span> <span class="mi">50</span><span class="kt">%</span><span class="p">;</span> <span class="na">left</span><span class="o">:</span> <span class="mi">50</span><span class="kt">%</span><span class="p">;</span>
-    <span class="na">z-index</span><span class="o">:</span> <span class="mi">9999</span><span class="p">;</span>
-    <span class="na">outline</span><span class="o">:</span> <span class="mi">2000</span><span class="kt">px</span> <span class="no">solid</span> <span class="no">invert</span><span class="p">;</span>
-  <span class="p">}</span>
-  <span class="na">_</span><span class="o">::-</span><span class="n">ms-reveal</span><span class="o">,</span>
-  <span class="o">.</span><span class="no">invert</span><span class="p">{</span>
-    <span class="na">position</span><span class="o">:</span> <span class="no">relative</span><span class="p">;</span>
-    <span class="na">overflow</span><span class="o">:</span> <span class="no">hidden</span><span class="p">;</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</code></pre>
-<p>自分でかぃてぉきながらですが、なんなんでしょーかこれゎ<br>まず最初のメディアクエリー<code>@media screen and (min-width:0\0)</code>ゎ、<br>IE9以降だけに適用されるハックらしくて、<br>そして<code>_::-ms-reveal,</code>ゎ、<br>IE7とIE10以降とWebkitらへんで適用されるハックみたぃです<br>この2個を組み合ゎせて、<br>IEの10以降のみに適用されるょーになってるみたぃです</p>
-<p>ブラウザハックにっぃてとても詳しぃ、<br>↓GitHubのこのリポジトリで載ってました<br><a href="https://github.com/4ae9b8/browserhacks/issues/39#issuecomment-27563945">4ae9b8/browserhacks #39 New hacks</a></p>
-<p>で、実際に階調反転をしてるのゎ、<br>疑似要素に指定する<code>outline</code>プロパティです<br><code>outline</code>のカラーでしか、階調反転できるょーなものがなさげなんですね<br>それでゃたらと太くして、㊤に重ねてるってゎけです</p>
-<p>この<code>outline</code>を使ぅってアイデア自体ゎ元々、<br>以下のページで提唱されたものです<br><a href="http://lea.verou.me/2011/04/invert-a-whole-webpage-with-css-only/">Invert a whole webpage with CSS only</a><br>けどこれゎ画面全体を階調反転するのを目的としたもので、<br>しかもChromeと干渉したりするから、<br>ぁゃぴがちょっと手を加ぇたってかんじです</p>
-<p>それでWin8のIE10で適用したのが以下です</p>
-<p><img src="/images/invert_newer_ie.png" alt="IE10"></p>
-<p>borderに適用されなぃのゎ、まぁしょーがなぃかなってゅーか<br>もっとテンションぁがる系の手法がぁれば、ぉしぇてほしぃです</p>
-]]></description><link>http://ayapi.github.io/posts/colorinvertcssonmicrosoft/</link><guid isPermaLink="true">http://ayapi.github.io/posts/colorinvertcssonmicrosoft/</guid><category><![CDATA[CSS]]></category><dc:creator><![CDATA[ぁゃぴ]]></dc:creator><pubDate>Mon, 25 Nov 2013 16:14:00 GMT</pubDate></item></channel></rss>
+]]></description><link>http://ayapi.github.io/posts/colorinvertjlayer/</link><guid isPermaLink="true">http://ayapi.github.io/posts/colorinvertjlayer/</guid><category><![CDATA[Java]]></category><category><![CDATA[Swing]]></category><dc:creator><![CDATA[ぁゃぴ]]></dc:creator><pubDate>Tue, 26 Nov 2013 22:27:00 GMT</pubDate></item></channel></rss>

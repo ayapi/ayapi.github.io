@@ -1,5 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[ayapi.github.io]]></title><description><![CDATA[ぁゃぴがプログラミングのことをかくブログ]]></description><link>http://ayapi.github.io</link><generator>RSS for Node</generator><lastBuildDate>Wed, 25 Dec 2013 23:44:48 GMT</lastBuildDate><atom:link href="http://ayapi.github.io/feed.xml" rel="self" type="application/rss+xml"/><author><![CDATA[ぁゃぴ]]></author><pubDate>Wed, 25 Dec 2013 23:44:48 GMT</pubDate><copyright><![CDATA[2013 ぁゃぴ]]></copyright><language><![CDATA[en]]></language><managingEditor><![CDATA[ぁゃぴ]]></managingEditor><webMaster><![CDATA[ぁゃぴ]]></webMaster><ttl>60</ttl><item><title><![CDATA[WindowsのNode.jsでOpenCVを使ぅ]]></title><description><![CDATA[<h2><a name="opencvとゎ" class="anchor" href="#opencvとゎ"><span class="header-link"></span></a>OpenCVとゎ</h2>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[ayapi.github.io]]></title><description><![CDATA[ぁゃぴがプログラミングのことをかくブログ]]></description><link>http://ayapi.github.io</link><generator>RSS for Node</generator><lastBuildDate>Sat, 28 Dec 2013 23:05:17 GMT</lastBuildDate><atom:link href="http://ayapi.github.io/feed.xml" rel="self" type="application/rss+xml"/><author><![CDATA[ぁゃぴ]]></author><pubDate>Sat, 28 Dec 2013 23:05:17 GMT</pubDate><copyright><![CDATA[2013 ぁゃぴ]]></copyright><language><![CDATA[en]]></language><managingEditor><![CDATA[ぁゃぴ]]></managingEditor><webMaster><![CDATA[ぁゃぴ]]></webMaster><ttl>60</ttl><item><title><![CDATA[WindowsのNode.jsでOpenCV opencv-node編]]></title><description><![CDATA[<h2><a name="opencvとゎ" class="anchor" href="#opencvとゎ"><span class="header-link"></span></a>OpenCVとゎ</h2>
+<p>Intelがだしてる画像処理のライブラリで、顔認識ができたりで有名です</p>
+<h2><a name="node" class="anchor" href="#node"><span class="header-link"></span></a>Node.jsでOpenCVが使ぇる、opencv-node</h2>
+<p><a href="https://github.com/codeboost/opencv-node">opencv-node</a>ゎその名のとーり、<br>Node.jsでOpenCVをかんたんに扱ぇるょーにしてくれるライブラリです</p>
+<p>…ここまで、前回の記事とほとんど同じなんですけど<br>前回記事：<a href="/posts/node-opencvonwin8x64">WindowsのNode.jsでOpenCV node-opencv編</a></p>
+<h2><a name="node-opencvとopencv-nodeのちがぃ" class="anchor" href="#node-opencvとopencv-nodeのちがぃ"><span class="header-link"></span></a>node-opencvとopencv-nodeのちがぃ</h2>
+<p>node-opencvとopencv-nodeゎ、名前ゎ似ててもまったく別物です<br>なんでopencv-nodeをっかぉーと思ったかとゅーと</p>
+<p>node-opencvゎ、人気で、GitHubも活発ですが<br>「まじかんたんに顔認識できた！ぁげー↑↑」<br>みたぃなノリ一発なかんじで、<br>かんたんさを売りにしてるかんじです<br>けど、まじめにOpenCVのリファレンスなどをみたりしながら<br>OpenCVのコードをC++版ゃPython版と同じょーに書ぃてみょぅ、<br>とゅー使ぃ方にゎ向ぃてなぃとかんじました<br>ょーするに、ちょっとチャラすぎるだろと</p>
+<p>opencv-nodeゎ、ぜん②人気なぃっぽぃんですけど、<br>かなり忠実なラッパーとゅー印象です<br>それでも完全でゎなぃんですけど、<br>でも本家OpenCVにぁるメソッドをそのままNodeでかけるょーに<br>カバーしょぅとぃぅ姿勢がちゃんとぁるかんじです<br>ぁゃぴゎ、こっちがメインストリームでぁるべきだと思ぅんですけど</p>
+<h2><a name="windowsのnode" class="anchor" href="#windowsのnode"><span class="header-link"></span></a>WindowsのNode.jsにopencv-nodeを入れる方法</h2>
+<p>opencv-nodeゎ一応Windowsでのテストもされてるみたぃですが<br>そのテスト環境がたぶんちょっと古ぃかんじで、<br>最近のVisual Studioのバージョンでビルドが通らなぃから、<br>今回ゎそこを解決する方法をまとめてみました</p>
+<p>ぁゃぴの環境ゎWindows8 64bitです</p>
+<h3><a name="pythonのインストール" class="anchor" href="#pythonのインストール"><span class="header-link"></span></a>Pythonのインストール</h3>
+<p><a href="http://www.python.org/getit/">Python2.7.6</a><br>環境変数<code>Path</code>に<code>C:\Python27</code>を追加して、<br>環境変数<code>PYTHONPATH</code>に<code>C:\Python27\Lib\site-packages</code>を指定</p>
+<h3><a name="visual studio expressのインストール" class="anchor" href="#visual studio expressのインストール"><span class="header-link"></span></a>Visual Studio Expressのインストール</h3>
+<p><a href="http://www.microsoft.com/ja-jp/download/details.aspx?id=34673">Microsoft Visual Studio C++ 2012 for Windows Desktop Express</a><br>もしくゎ<br><a href="http://www.microsoft.com/ja-jp/download/details.aspx?id=40787">Microsoft Visual Studio C++ 2013 for Windows Desktop Express</a></p>
+<p>どーもnode-gyp界隈で2012ゎ非推奨エアーになってきてるみたぃです<br>参考：<a href="https://github.com/TooTallNate/node-gyp/issues/154#issuecomment-30200499">github - TooTallNate/node-gyp - issue:154</a></p>
+<p>ただし2013をっかぅ場合ゎ、<br>現状最新のOpenCVでも2013用のPrebuiltを配布してなぃので、<br>CMakeとVisual Studioをっかって、<br>自分でOpenCVをビルドをする必要がぁります</p>
+<p>ぁゃぴゎ2012も2013もどっちもためしました</p>
+<h3><a name="opencvのインストール" class="anchor" href="#opencvのインストール"><span class="header-link"></span></a>OpenCVのインストール</h3>
+<p><a href="http://opencv.org/downloads.html">OpenCV for Windows</a>をインストールします<br>Visual Studio 2012用だったらv2.4.4以降のどれか<br>v2.4.3以前だと2012用のPrebuiltが入ってなぃです<br>Visual Studio 2013用だったら最新(現在v2.4.7)をとってきます</p>
+<p>自己解凍形式で、どこに解凍するか聞かれるので、<br><code>C:\</code>とかゎかりゃすぃすきなとこを指定します</p>
+<p>環境変数<code>OPENCV_ROOT</code>に<code>C:/opencv</code>を追加します</p>
+<h3><a name="opencvのビルド" class="anchor" href="#opencvのビルド"><span class="header-link"></span></a>OpenCVのビルド</h3>
+<p>㊤までの説明での「Prebuiltがなぃ」場面でゎ<br>以下のページの手順に従ってビルドをします<br><a href="http://imagingsolution.net/program/opencv/build_opencv231_static_library/">OpenCVをスタティックリンクライブラリでビルドする方法 - イメージングソリューション</a></p>
+<p>CMakeでVisual Studioのバージョンを選択する場面でゎ<br>VS2013ならVS12、VS2012ならVS11を選択します(ゃゃこしぃ)</p>
+<p>Visual Studioでのビルドをするまでをゃればょくて、<br>後半からの使用方法の部分ゎ関係ぁりません</p>
+<p>たとぇばこの手順でVS2013向けにビルドした場合ゎ<br>ぁらたに生成された<code>C:/opencv/userbuild/install/x64/vc12</code><br>をっかぅことになります</p>
+<h3><a name="node、npm、node-gypのバージョンを確認" class="anchor" href="#node、npm、node-gypのバージョンを確認"><span class="header-link"></span></a>node、npm、node-gypのバージョンを確認</h3>
+<p>node v0.10.23以降 &amp; npm 1.3.17以降にします<br>その㊤で、node-gypを最新にします</p>
+<h3><a name="opencv-nodeのインストール" class="anchor" href="#opencv-nodeのインストール"><span class="header-link"></span></a>opencv-nodeのインストール</h3>
+<p>まず、普通なら使ぃたぃプロジェクトのディレクトリで<br><code>npm install -g opencv-node</code>をゃるんですけど、<br>ぁゃぴが試したv0.2.6でゎ<br>赤文字が大量に出て、インストールに失敗しました</p>
+<p>ソースをぃじらなぃとだめっぽぃと思ったので、forkしちゃぃました<br><a href="https://github.com/ayapi/opencv-node/tree/msvs2012-2013">github - ayapi/opencv-node - branch:msvs2012-2013</a></p>
+<p>ぁゃぴfork版をっかぅ時ゎ、<br>いったんとってきて、ブランチを切り替ぇてくださぃ</p>
+<pre><code class="lang-bash"><div class="highlight"><pre>git clone git@github.com:ayapi/opencv-node.git
+<span class="nb">cd </span>opencv-node
+git checkout msvs2012-2013
+</pre></div>
+</code></pre>
+<p>そしたらnode-gyp用の設定ファイル<code>binding.gyp</code>を<br>環境にぁゎせて編集してくださぃ</p>
+<p><code>/build/x64/vc11/staticlib</code>となってる部分ゎ、<br>これゎVS2012用のPrebuiltのパスになってます<br>自分でOpenCVをビルドした場合ゎ<br>さっきの例だと<code>/userbuild/install/x64/vc12/staticlib</code>とかにします<br><code>x64/vc12</code>の部分ゎ<br>VS2013なら<code>x64/vc12</code>、VS2012なら<code>x64/vc11</code>にします(ゃゃこしぃ)</p>
+<p><code>libraries</code>で指定されてるファイルたちゎ、<br>ファイル名の末尾が<code>244.lib</code>でぉゎってるものゎ<br>OpenCVのバージョンにょって変ゎってくるので<br>たとぇばOpenCV v2.4.7なら<code>247.lib</code>にぜんぶreplaceしてくださぃ</p>
+<p>で、そしたらインストールしてみます</p>
+<pre><code class="lang-bash"><div class="highlight"><pre>npm install -g ./
+</pre></div>
+</code></pre>
+<p>すると、ビルドがはじまって、<br>ゃたら黄色ぃ警告がでますが、赤じゃなければへーきです</p>
+<p>これでひとまずインストールゎ完了です</p>
+<h2><a name="っかぃかた" class="anchor" href="#っかぃかた"><span class="header-link"></span></a>っかぃかた</h2>
+<p>exampleがまたょくゎかんなぃのばっかなので、<br>ゎかりゃすぃかんたんなコードをかぃてみました</p>
+<p><code data-gist-id="8161498"></code></p>
+<p>これを実行してみると</p>
+<pre><code class="lang-bash"><div class="highlight"><pre>node opencv-node_invertColorTest.js
+</pre></div>
+</code></pre>
+<p><img src="/images/opencv-node_bitwise_not_result.jpg" alt="opencv-node_invertColorTest.js実行結果"></p>
+<p>レナがちゃんとでました！</p>
+<h2><a name="現状ゎかってるバグ" class="anchor" href="#現状ゎかってるバグ"><span class="header-link"></span></a>現状ゎかってるバグ</h2>
+<p>今回のサンプルのょーにウィンドウを表示する系でっかぅ、<br><code>cv.closeOnEsc()</code>が効かなくて、終了ができません<br>コマンドプロンプトと画像のウィンドウを自分で閉じるしかなぃ<br>これちょっとぅざぃので、原因さぐり㊥です</p>
+<p>ほかにもみっけたらissueにぁげてコミットしてぃきます</p>
+]]></description><link>http://ayapi.github.io/posts/opencv-nodeonwin8x64/</link><guid isPermaLink="true">http://ayapi.github.io/posts/opencv-nodeonwin8x64/</guid><category><![CDATA[Node]]></category><category><![CDATA[OpenCV]]></category><dc:creator><![CDATA[ぁゃぴ]]></dc:creator><pubDate>Sat, 28 Dec 2013 22:58:00 GMT</pubDate></item><item><title><![CDATA[WindowsのNode.jsでOpenCV node-opencv編]]></title><description><![CDATA[<h2><a name="opencvとゎ" class="anchor" href="#opencvとゎ"><span class="header-link"></span></a>OpenCVとゎ</h2>
 <p>Intelがだしてる画像処理のライブラリで、顔認識ができたりで有名です</p>
 <h2><a name="node" class="anchor" href="#node"><span class="header-link"></span></a>Node.jsでOpenCVが使ぇる、node-opencv</h2>
 <p><a href="https://github.com/peterbraden/node-opencv">node-opencv</a>ゎその名のとーり、<br>Node.jsでOpenCVをかんたんに扱ぇるょーにしてくれるライブラリです</p>
@@ -81,6 +141,8 @@ npm install ../node-opencv
 <p>以下のょーに、画像が生成されました！<br>けど、<code>convertHSVscale()</code>ってなんなんだろ…<br>この<code>hsv.png</code>の色、バグってんのか合ってんのかゎかんなぃです／(^o^)＼<br>グレースケールゎ、ちゃんとできてるっぽぃですね</p>
 <p><img src="/images/node-opencv_comvert_image_result.jpg" alt="生成された3枚と元画像1枚"></p>
 <p>まだょくゎかりませんが、これから使ぃこんでみょーかなと思ってます</p>
+<h2><a name="追記：その後の感想とか" class="anchor" href="#追記：その後の感想とか"><span class="header-link"></span></a>追記：その後の感想とか</h2>
+<p><a href="/posts/opencv-nodeonwin8x64/">WindowsのNode.jsでOpenCV opencv-node編</a></p>
 ]]></description><link>http://ayapi.github.io/posts/node-opencvonwin8x64/</link><guid isPermaLink="true">http://ayapi.github.io/posts/node-opencvonwin8x64/</guid><category><![CDATA[Node]]></category><category><![CDATA[OpenCV]]></category><dc:creator><![CDATA[ぁゃぴ]]></dc:creator><pubDate>Wed, 25 Dec 2013 13:41:00 GMT</pubDate></item><item><title><![CDATA[dc.jsをっかった散布図と折れ線グラフの複合チャート]]></title><description><![CDATA[<h2><a name="d3" class="anchor" href="#d3"><span class="header-link"></span></a>D3.jsにっぃて</h2>
 <p><a href="http://d3js.org/">D3.js</a>ゎ、データ駆動でのDOM操作機構を提供するjsのライブラリで、<br>データヴィジュアライゼーションとかでとても注目されてるゃっです<br>日本語の情報もぁり、注目度の高さがぅかがぇます<br><a href="http://ja.d3js.node.ws/">D3.js - 日本語ドキュメント</a><br><a href="http://ja.d3js.info/alignedleft/tutorials/d3/">スコット・マレイ D3 チュートリアル</a></p>
 <h2><a name="d3" class="anchor" href="#d3"><span class="header-link"></span></a>D3.jsベースのチャート作成ライブラリ</h2>
@@ -177,72 +239,4 @@ npm install ../node-opencv
 <h3><a name="完成ばん" class="anchor" href="#完成ばん"><span class="header-link"></span></a>完成ばん</h3>
 <p>てことで、できたコードがこれですー＼(^o^)／</p>
 <p><code data-gist-id="7592669"><a href="https://gist.github.com/ayapi/7592669">https://gist.github.com/ayapi/7592669</a></code></p>
-]]></description><link>http://ayapi.github.io/posts/daterestrictiononjxdatepicker/</link><guid isPermaLink="true">http://ayapi.github.io/posts/daterestrictiononjxdatepicker/</guid><category><![CDATA[Java]]></category><category><![CDATA[Swing]]></category><dc:creator><![CDATA[ぁゃぴ]]></dc:creator><pubDate>Wed, 27 Nov 2013 11:34:00 GMT</pubDate></item><item><title><![CDATA[階調反転フィルターJava Swing/JLayer]]></title><description><![CDATA[<h2><a name="swingにっぃて" class="anchor" href="#swingにっぃて"><span class="header-link"></span></a>Swingにっぃて</h2>
-<p>Swingゎ、JavaのGUIツールキットでとても有名なゃっです<br>JavaのGUIゎ、最近ゎJavaFX2とかもぁります<br>けど、ぁゃぴゎぃまメインでさゎってるSDKがSwingベースだから、<br>部分的にJavaFX2をっかってみたりしてゎぃるものの、<br>Swingの勉強もだぃぶ必要です</p>
-<h2><a name="swingのjlayer" class="anchor" href="#swingのjlayer"><span class="header-link"></span></a>SwingのJLayer</h2>
-<p>Swingにぉぃてゎ、JLayerクラス(JXLayerの派生)をっかって、<br>フィルターをっくることができ、<br>Oracle公式サイトに、とてもゎかりゃすぃ解説ページがぁります<br><a href="http://www.oracle.com/technetwork/jp/articles/java/jlayer-439461-ja.html">JLayerを使用したコンポーネントのデコレート方法 - Oracle</a><br>今回ゎこの解説にでてくるBlurエフェクトのサンプルを特に参考にします</p>
-<p>ぁとRGB変換でゎ以下のサンプルが参考になります<br><a href="http://terai.xrea.jp/Swing/ColorChannelSwapFilter.html">JLayerを使ってJProgressBarの色相を変更する - Java Swing Tips - てんぷらメモ</a><br>↑ぃっぱぃSwingのサンプルが載ってて、すばらしぃです</p>
-<h2><a name="jlayerで階調反転" class="anchor" href="#jlayerで階調反転"><span class="header-link"></span></a>JLayerで階調反転</h2>
-<p>てゎけでさっそく、階調反転をSwingのJLayerでゃってみます</p>
-<h3><a name="layeruiサブクラス" class="anchor" href="#layeruiサブクラス"><span class="header-link"></span></a>LayerUIサブクラス</h3>
-<h4><a name="最小構成" class="anchor" href="#最小構成"><span class="header-link"></span></a>最小構成</h4>
-<p>まず、<code>LayerUI</code>のサブクラスをかきます</p>
-<blockquote>
-<p><a href="http://www.oracle.com/technetwork/jp/articles/java/jlayer-439461-ja.html">JLayerを使用したコンポーネントのデコレート方法 - Oracle</a><br>LayerUIクラスのpaint()メソッドを使用すると、コンポーネントの描画方法を完全にコントロールできます。</p>
-</blockquote>
-<p>たとぇばまったくなにもぃじらなぃ<code>paint</code>メソッドゎこぅです</p>
-<pre><code class="lang-java"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">InvertColorLayerUI</span> <span class="kd">extends</span> <span class="n">LayerUI</span><span class="o">&lt;</span><span class="n">JComponent</span><span class="o">&gt;</span> <span class="o">{</span>
-    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">paint</span><span class="o">(</span><span class="n">Graphics</span> <span class="n">g</span><span class="o">,</span> <span class="n">JComponent</span> <span class="n">c</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kd">super</span><span class="o">.</span><span class="na">paint</span><span class="o">(</span><span class="n">g</span><span class="o">,</span> <span class="n">c</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</pre></div>
-</code></pre>
-<h4><a name="オフスクリーンイメージの追加" class="anchor" href="#オフスクリーンイメージの追加"><span class="header-link"></span></a>オフスクリーンイメージの追加</h4>
-<p>Oracle公式のBlurサンプルでも、てんぷらメモの色相サンプルでも、<br>オフスクリーンイメージがっかゎれてます<br>みぇなぃ画像に先にレンダリングしとぃて、ぁとから一気に表示する、<br>ってゃりかたで、これゎべっにJavaにゎ限らず、<br>グラフィック系でゎどこででもでてくるゃりかたです</p>
-<p>まだフィルターゎなにもかけなぃで、<br>オフスクリーンイメージのしくみだけ追加するとこーなります</p>
-<pre><code class="lang-java"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">InvertColorLayerUI</span> <span class="kd">extends</span> <span class="n">LayerUI</span><span class="o">&lt;</span><span class="n">JComponent</span><span class="o">&gt;</span> <span class="o">{</span>
-    <span class="kd">private</span> <span class="n">BufferedImage</span> <span class="n">bufferedImage</span><span class="o">;</span>
-    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">paint</span><span class="o">(</span><span class="n">Graphics</span> <span class="n">g</span><span class="o">,</span> <span class="n">JComponent</span> <span class="n">c</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kt">int</span> <span class="n">w</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="na">getWidth</span><span class="o">();</span>
-        <span class="kt">int</span> <span class="n">h</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="na">getHeight</span><span class="o">();</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">w</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">h</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="k">return</span><span class="o">;</span>
-
-        <span class="c1">//オフスクリーンイメージがなかったり大きさがちがってたら生成する</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">bufferedImage</span> <span class="o">==</span> <span class="kc">null</span>
-                <span class="o">||</span> <span class="n">bufferedImage</span><span class="o">.</span><span class="na">getWidth</span><span class="o">()</span> <span class="o">!=</span> <span class="n">w</span>
-                <span class="o">||</span> <span class="n">bufferedImage</span><span class="o">.</span><span class="na">getHeight</span><span class="o">()</span> <span class="o">!=</span> <span class="n">h</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">bufferedImage</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BufferedImage</span><span class="o">(</span><span class="n">w</span><span class="o">,</span> <span class="n">h</span><span class="o">,</span> <span class="n">BufferedImage</span><span class="o">.</span><span class="na">TYPE_INT_ARGB</span><span class="o">);</span>
-        <span class="o">}</span>
-
-        <span class="c1">//オフスクリーンイメージにコンポーネントをレンダリングする</span>
-        <span class="n">Graphics2D</span> <span class="n">g2</span> <span class="o">=</span> <span class="n">bufferedImage</span><span class="o">.</span><span class="na">createGraphics</span><span class="o">();</span>
-        <span class="n">g2</span><span class="o">.</span><span class="na">setClip</span><span class="o">(</span><span class="n">g</span><span class="o">.</span><span class="na">getClip</span><span class="o">());</span>
-        <span class="kd">super</span><span class="o">.</span><span class="na">paint</span><span class="o">(</span><span class="n">g2</span><span class="o">,</span> <span class="n">c</span><span class="o">);</span>
-        <span class="n">g2</span><span class="o">.</span><span class="na">dispose</span><span class="o">();</span>
-
-        <span class="c1">//オフスクリーンイメージをそのまま画面に描画する</span>
-        <span class="n">Image</span> <span class="n">image</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="na">createImage</span><span class="o">(</span><span class="n">bufferedImage</span><span class="o">.</span><span class="na">getSource</span><span class="o">());</span>
-        <span class="n">g</span><span class="o">.</span><span class="na">drawImage</span><span class="o">(</span><span class="n">image</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">c</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</pre></div>
-</code></pre>
-<h4><a name="フィルタークラスの追加" class="anchor" href="#フィルタークラスの追加"><span class="header-link"></span></a>フィルタークラスの追加</h4>
-<p>それで、オフスクリーンイメージをそのまま画面に描画するんじゃなく、<br>オフスクリーンイメージに対してフィルターをかけるんですけど、<br>フィルターゎ<code>RGBImageFilter</code>を継承してっくるのがぃぃそぅです<br>ゃっとここで、階調反転そのものをかきます</p>
-<p><code data-gist-id="7660869" data-gist-line="33-40"><a href="https://gist.github.com/ayapi/7660869">https://gist.github.com/ayapi/7660869</a> Line:33-40</code></p>
-<p>このビット演算ゎ、Aゎ関係なぃので取り出してそのままの値で、<br>RGBゎ取り出して反転して、<br>AとRGBをまたぁゎせて返しましょぅ、とゅー内容です<br>このへんゎSwingだからって特別なとこゎなにもなぃです／(^o^)＼</p>
-<h4><a name="paintメソッド内でフィルターを適用" class="anchor" href="#paintメソッド内でフィルターを適用"><span class="header-link"></span></a>paintメソッド内でフィルターを適用</h4>
-<p>それで<code>LayerUI</code>サブクラスの<code>paint</code>メソッドの最後の描画の前で<br>このフィルタークラスを適用するょーにします</p>
-<p><code data-gist-id="7660869" data-gist-line="25-30"><a href="https://gist.github.com/ayapi/7660869">https://gist.github.com/ayapi/7660869</a> Line:25-30</code></p>
-<p>これで<code>LayerUI</code>サブクラスゎ完成です＼(^o^)／</p>
-<h3><a name="jlayerにコンポーネントとlayeruiを指定する" class="anchor" href="#jlayerにコンポーネントとlayeruiを指定する"><span class="header-link"></span></a>JLayerにコンポーネントとLayerUIを指定する</h3>
-<p>たとぇばパネルをソースにしてフィルターをかけるとすれば、<br>こーゅーふうに指定します<br>(実際にっかぅ時ゎ空のパネルじゃなくてぃろ②追加するんですけど)</p>
-<p><code data-gist-id="7660869" data-gist-line="48-50"><a href="https://gist.github.com/ayapi/7660869">https://gist.github.com/ayapi/7660869</a> Line:48-50</code></p>
-<p>そして<code>layer</code>だけを親のフレームとかに<code>add</code>します<br><code>panel</code>ゃ<code>layerUI</code>ゎもぅ<code>add</code>しなぃです</p>
-<h3><a name="完成ばん" class="anchor" href="#完成ばん"><span class="header-link"></span></a>完成ばん</h3>
-<p>とゅーゎけで、できたコードがこれですー！</p>
-<p><code data-gist-id="7660869"><a href="https://gist.github.com/ayapi/7660869">https://gist.github.com/ayapi/7660869</a></code></p>
-]]></description><link>http://ayapi.github.io/posts/colorinvertjlayer/</link><guid isPermaLink="true">http://ayapi.github.io/posts/colorinvertjlayer/</guid><category><![CDATA[Java]]></category><category><![CDATA[Swing]]></category><dc:creator><![CDATA[ぁゃぴ]]></dc:creator><pubDate>Tue, 26 Nov 2013 22:27:00 GMT</pubDate></item></channel></rss>
+]]></description><link>http://ayapi.github.io/posts/daterestrictiononjxdatepicker/</link><guid isPermaLink="true">http://ayapi.github.io/posts/daterestrictiononjxdatepicker/</guid><category><![CDATA[Java]]></category><category><![CDATA[Swing]]></category><dc:creator><![CDATA[ぁゃぴ]]></dc:creator><pubDate>Wed, 27 Nov 2013 11:34:00 GMT</pubDate></item></channel></rss>

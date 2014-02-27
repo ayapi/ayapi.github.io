@@ -1,5 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[ayapi.github.io]]></title><description><![CDATA[ぁゃぴがプログラミングのことをかくブログ]]></description><link>http://ayapi.github.io</link><generator>RSS for Node</generator><lastBuildDate>Sun, 02 Feb 2014 17:03:11 GMT</lastBuildDate><atom:link href="http://ayapi.github.io/feed.xml" rel="self" type="application/rss+xml"/><author><![CDATA[ぁゃぴ]]></author><pubDate>Sun, 02 Feb 2014 17:03:11 GMT</pubDate><copyright><![CDATA[2014 ぁゃぴ]]></copyright><language><![CDATA[en]]></language><managingEditor><![CDATA[ぁゃぴ]]></managingEditor><webMaster><![CDATA[ぁゃぴ]]></webMaster><ttl>60</ttl><item><title><![CDATA[メールをトリガーにした処理がかんたんにかけるNode.jsの「inbox」]]></title><description><![CDATA[<p>今回ゎとてもひさびさに、メール受信時にその内容を処理するってゅー、<br>ぃゎゅる空メール登録みたぃな、ぁれが必要になりました</p>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[ayapi.github.io]]></title><description><![CDATA[ぁゃぴがプログラミングのことをかくブログ]]></description><link>http://ayapi.github.io</link><generator>RSS for Node</generator><lastBuildDate>Thu, 27 Feb 2014 21:58:37 GMT</lastBuildDate><atom:link href="http://ayapi.github.io/feed.xml" rel="self" type="application/rss+xml"/><author><![CDATA[ぁゃぴ]]></author><pubDate>Thu, 27 Feb 2014 21:58:37 GMT</pubDate><copyright><![CDATA[2014 ぁゃぴ]]></copyright><language><![CDATA[en]]></language><managingEditor><![CDATA[ぁゃぴ]]></managingEditor><webMaster><![CDATA[ぁゃぴ]]></webMaster><ttl>60</ttl><item><title><![CDATA[node-retryとasync.seriesをっかって非同期逐次処理の再試行]]></title><description><![CDATA[<p>Node.jsにぉぃて、非同期で取ってきたデータを基にして、<br>また更に非同期処理をして、成功したらまた非同期処理をして、<br>とかゅーのを考ぇます</p>
+<h2><a name="caolan/async%E3%81%A7%E9%80%90%E6%AC%A1%E5%87%A6%E7%90%86%E3%82%92%E3%81%8B%E3%81%83%E3%81%A6%E3%81%BF%E3%82%8B" class="anchor" href="#caolan/async%E3%81%A7%E9%80%90%E6%AC%A1%E5%87%A6%E7%90%86%E3%82%92%E3%81%8B%E3%81%83%E3%81%A6%E3%81%BF%E3%82%8B"><span class="header-link"></span></a>caolan/asyncで逐次処理をかぃてみる</h2>
+<p>この場合のコントロールフローとしてゎ<br><a href="https://github.com/caolan/async">caolan/async</a>の<code>series()</code>ゃ<code>waterfall()</code>がぃぃと思ぃます</p>
+<pre><code class="lang-bash"><div class="highlight"><pre>npm install async --save
+</pre></div>
+</code></pre>
+<p><code>async.series()</code>をっかってかくと、こんなふうになります</p>
+<p><code data-gist-id="9257773" data-gist-hide-footer="true" data-gist-hide-line-numbers="true"><a href="https://gist.github.com/ayapi/9257773">https://gist.github.com/ayapi/9257773</a></code></p>
+<p>サンプルなので<code>setTimeout()</code>で結果を渡すょーにしてますが、<br>実際にゎ、httpリクエストとかのコールバックで<code>done</code>を呼びます</p>
+<p><code>get</code>が1秒後に成功してから、<code>send</code>が実行されます<br>けど<code>send</code>でゎ1秒後に必ずエラーが発生して、<br><code>save</code>ゎ実行されずにぉゎり、とゅーかんじです</p>
+<p>出力ゎ以下のょーになります</p>
+<pre><code class="lang-bash"><div class="highlight"><pre>get
+send
+send:failed
+</pre></div>
+</code></pre>
+<h2><a name="node-retry%E3%81%A7%E5%86%8D%E8%A9%A6%E8%A1%8C%E5%87%A6%E7%90%86%E3%82%92%E8%BF%BD%E5%8A%A0%E3%81%99%E3%82%8B" class="anchor" href="#node-retry%E3%81%A7%E5%86%8D%E8%A9%A6%E8%A1%8C%E5%87%A6%E7%90%86%E3%82%92%E8%BF%BD%E5%8A%A0%E3%81%99%E3%82%8B"><span class="header-link"></span></a>node-retryで再試行処理を追加する</h2>
+<p>ネットワークが不安定だったりすると、リトライ処理をしたくなります<br>成功するまで何回もゃらせて、けどN回連続で失敗したら、<br>ちょっともぅぁきらめる、ってかんじのゃっです</p>
+<p><a href="https://github.com/tim-kos/node-retry">tim-kos/node-retry</a>ゎ、<br>日本語の情報がほとんどなぃんですけど、<br>リトライ処理をかんたんにかけるライブラリです</p>
+<p>これをっかって、さっきの<code>async.series()</code>のコードに<br>再試行処理を追加してみます</p>
+<pre><code class="lang-bash"><div class="highlight"><pre>npm install retry --save
+</pre></div>
+</code></pre>
+<p>オプションで、再試行回数の上限と、<br>失敗してから再試行するまでにちょっと時間を空けるってゅー、<br>待ち時間に関する設定ができます</p>
+<p>再試行の回数が増ぇてぃくごとに、<br>待ち時間を長くしてぃくょーな挙動がデフォルトみたぃです<br>ぁたまぃぃーって思ぃます↑</p>
+<p>けど今回ゎ「そーゅーのぃぃから」ってなったので、なしにしてみます</p>
+<p><code data-gist-id="9256588" data-gist-line="2,22-26" data-gist-hide-line-numbers="true"><a href="https://gist.github.com/ayapi/9256588#file-retryseries-js-L22-L26">https://gist.github.com/ayapi/9256588#file-retryseries-js-L22-L26</a></code></p>
+<p>今回のサンプルだと、<code>send</code>で失敗するまでに、<br><code>get</code>で取ってこれるデータの状態が変ゎってるかもしれなぃ、<br>とか考ぇはじめると、<code>send</code>で失敗しちゃった時にゎ、<br>最初に戻ってゃり直したぃ、ってなったりします</p>
+<p>そーゅーのゎ、<code>async.series()</code>をまるごと、<br><code>operation.attempt()</code>に入れたらできます</p>
+<p><code data-gist-id="9256588" data-gist-line="28-40" data-gist-hide-line-numbers="true"><a href="https://gist.github.com/ayapi/9256588#file-retryseries-js-L28-L40">https://gist.github.com/ayapi/9256588#file-retryseries-js-L28-L40</a></code></p>
+<p><code>operation.retry(err)</code>ゎ、<br>引数<code>err</code>にエラーオブジェクトが渡された時にゎ、<br>再試行回数の上限をチェックして、<br>まだゃるなら<code>true</code>、ぁきらめるなら<code>false</code>を返します<br>そして<code>true</code>なら<code>operation.attempt()</code>が再び呼ばれます</p>
+<p>引数<code>err</code>がエラーオブジェクトじゃなぃ時ゎ、<br><code>false</code>を返します</p>
+<p>っまり、<code>false</code>が返る時ゎ、<br>結果ゎどーぁれ、ぉゎる時、とゅーことです</p>
+<p><code>operation.mainError()</code>ゎ、ぃちばん多くでたエラーを返すみたぃです<br><code>error.message</code>の内容にょってカウントしてるみたぃです<br>今回ゎ毎回<code>&#39;send:failed&#39;</code>なのでぁんまり意味なぃですけど、<br>実際にっかぅ時ゎ、<br>試行回数が重なればエラーの内容もちがぅ場合もぁりぇますので<br>こーゅー便利メソッドが用意されてるみたぃです</p>
+<h2><a name="%E5%AE%8C%E6%88%90%E3%81%B0%E3%82%93" class="anchor" href="#%E5%AE%8C%E6%88%90%E3%81%B0%E3%82%93"><span class="header-link"></span></a>完成ばん</h2>
+<p>てことで、かけたコードゎこれです＼(^o^)／</p>
+<p><code data-gist-id="9256588"><a href="https://gist.github.com/ayapi/9256588">https://gist.github.com/ayapi/9256588</a></code></p>
+<p>出力ゎ以下のょーになります</p>
+<pre><code class="lang-bash"><div class="highlight"><pre>get
+send
+get
+send
+get
+send
+get
+send
+get
+send
+send:failed
+</pre></div>
+</code></pre>
+]]></description><link>http://ayapi.github.io/posts/retryseries/</link><guid isPermaLink="true">http://ayapi.github.io/posts/retryseries/</guid><category><![CDATA[Node]]></category><category><![CDATA[JavaScript]]></category><dc:creator><![CDATA[ぁゃぴ]]></dc:creator><pubDate>Thu, 27 Feb 2014 19:21:00 GMT</pubDate></item><item><title><![CDATA[メールをトリガーにした処理がかんたんにかけるNode.jsの「inbox」]]></title><description><![CDATA[<p>今回ゎとてもひさびさに、メール受信時にその内容を処理するってゅー、<br>ぃゎゅる空メール登録みたぃな、ぁれが必要になりました</p>
 <p>まじ大昔にqmailとphpのパイプでそのへんがんばってたことがぁって、<br>そのゃりかたゎなんとなく今でもぉぼぇてるんですけど、<br>Node.jsでIMAPでとてもかんたんに似たょーなのがかけたから、<br>ゃりかたをちょっとかきます</p>
 <h2><a name="imapnode-js" class="anchor" href="#imapnode-js"><span class="header-link"></span></a>IMAPを扱ぅNode.jsライブラリ</h2>
 <p><a href="https://github.com/mscdex/node-imap">node-imap</a>とゅーのがメジャーっぽぃんですけど、<br>けど<a href="https://github.com/andris9/inbox">inbox</a>のほーが、ぱっとゎかりゃすかったから、<br>こっちをっかってみることにしました</p>
@@ -213,18 +264,4 @@ npm install ../node-opencv
 <h3><a name="完成ばん" class="anchor" href="#完成ばん"><span class="header-link"></span></a>完成ばん</h3>
 <p>てゎけで、実際動かしてみたら、こんなかんじになりました！</p>
 <p><img src="/images/dcjs_scatter_and_line.png" alt="dc.jsをっかった散布図と折れ線グラフの複合チャート"></p>
-]]></description><link>http://ayapi.github.io/posts/scatterandlinechartwithdcjs/</link><guid isPermaLink="true">http://ayapi.github.io/posts/scatterandlinechartwithdcjs/</guid><category><![CDATA[JavaScript]]></category><category><![CDATA[SVG]]></category><dc:creator><![CDATA[ぁゃぴ]]></dc:creator><pubDate>Fri, 29 Nov 2013 09:44:00 GMT</pubDate></item><item><title><![CDATA[ApacheCommonsMath3での標準偏差の算出]]></title><description><![CDATA[<p>Javaでゎ<a href="http://commons.apache.org/proper/commons-math/">ApacheCommonsMath</a>の<a href="http://commons.apache.org/proper/commons-math/userguide/stat.html">Stat</a>をっかぅと、<br>とてもかんたんに統計の計算ができます</p>
-<p>標準偏差を求めるのゎ、たったこれだけでできます</p>
-<p><code data-gist-id="7681028" data-gist-line="8-15" data-gist-file="Calculator.java"><a href="https://gist.github.com/ayapi/7681028#file-calculator-java">https://gist.github.com/ayapi/7681028#file-calculator-java</a> Line:8-15</code></p>
-<p>けど、標準偏差を求める時に気をっけなきゃぃけなぃのが、その種類です<br>ひとことで標準偏差って言っても、<br>なんの標準偏差なのかってことがちがぅ時がぁります</p>
-<p>ApacheCommonsMathの<code>SummaryStatistics</code>クラスに用意されてる<br>標準偏差を求める<code>getStandardDeviation()</code>メソッドゎ、<br>不偏標準偏差が返ります<br>\(\bar{x}\)を平均値としたとき</p>
-<p>\begin{equation}<br>u = \sqrt{\sum_{i=1}^n \frac{(x_i - \bar{x})^2}{n - 1}}<br>\end{equation}</p>
-<p>↑こっちのほーです(相当がんばってLaTeXかぃた結果ｗｗｗ)<br>Excelでゅーと<code>STDEV()</code>にぁたります</p>
-<p>で、そーじゃなくて、母標準偏差、<br>\(\mu\)を平均値として</p>
-<p>\begin{equation}<br>\sigma = \sqrt{\sum_{i=1}^N \frac{(x_i - \mu)^2}{N}}<br>\end{equation}</p>
-<p>↑こっちのほー(まだがんばるｗｗｗｗ)<br>Excelでゅー<code>STDEVP()</code>なんですけど、<br>これを算出するメソッドゎ<code>SummaryStatistics</code>クラスにゎなぃです</p>
-<p>けど、母分散を求めるメソッドゎぁるので、<br>それの平方根を取ればできます</p>
-<p><code data-gist-id="7681028" data-gist-line="16-24" data-gist-file="Calculator.java"><a href="https://gist.github.com/ayapi/7681028#file-calculator-java">https://gist.github.com/ayapi/7681028#file-calculator-java</a> Line:16-24</code></p>
-<p>なんで「Excelでゅーと」とか言ってるかってゅーと<br>Spockのテストデータっくるときに<br>Excelでゃればラクなんだってこと、ぃまさら気づぃたからです<br>今まで一生懸命、電卓でゃってました　まじばかすぎます<br>さすがにこーゅー計算ゎ電卓でゃるのたぃへんです</p>
-<p><code data-gist-id="7681028" data-gist-file="CalculatorSpec.groovy"><a href="https://gist.github.com/ayapi/7681028#file-calculatorspec-groovy">https://gist.github.com/ayapi/7681028#file-calculatorspec-groovy</a></code></p>
-]]></description><link>http://ayapi.github.io/posts/stdevapachecommonsmath/</link><guid isPermaLink="true">http://ayapi.github.io/posts/stdevapachecommonsmath/</guid><category><![CDATA[Java]]></category><dc:creator><![CDATA[ぁゃぴ]]></dc:creator><pubDate>Wed, 27 Nov 2013 21:00:00 GMT</pubDate></item></channel></rss>
+]]></description><link>http://ayapi.github.io/posts/scatterandlinechartwithdcjs/</link><guid isPermaLink="true">http://ayapi.github.io/posts/scatterandlinechartwithdcjs/</guid><category><![CDATA[JavaScript]]></category><category><![CDATA[SVG]]></category><dc:creator><![CDATA[ぁゃぴ]]></dc:creator><pubDate>Fri, 29 Nov 2013 09:44:00 GMT</pubDate></item></channel></rss>

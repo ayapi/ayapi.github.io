@@ -1,5 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[ayapi.github.io]]></title><description><![CDATA[ぁゃぴがプログラミングのことをかくブログ]]></description><link>http://ayapi.github.io</link><generator>RSS for Node</generator><lastBuildDate>Sat, 05 Apr 2014 03:41:06 GMT</lastBuildDate><atom:link href="http://ayapi.github.io/feed.xml" rel="self" type="application/rss+xml"/><author><![CDATA[ぁゃぴ]]></author><pubDate>Sat, 05 Apr 2014 03:41:06 GMT</pubDate><copyright><![CDATA[2014 ぁゃぴ]]></copyright><language><![CDATA[en]]></language><managingEditor><![CDATA[ぁゃぴ]]></managingEditor><webMaster><![CDATA[ぁゃぴ]]></webMaster><ttl>60</ttl><item><title><![CDATA[「開発効率をUPする Git逆引き入門」ゎSourceTreeの逆引きリファレンスとしてょさげ]]></title><description><![CDATA[<p>なんか<a href="http://layzie.hatenablog.com/">id:Layzie</a>さんからGitの本もらぃました<br>こーゅーの、「献本」ってゅーみたぃなんですけど</p>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[ayapi.github.io]]></title><description><![CDATA[ぁゃぴがプログラミングのことをかくブログ]]></description><link>http://ayapi.github.io</link><generator>RSS for Node</generator><lastBuildDate>Sat, 17 May 2014 06:27:06 GMT</lastBuildDate><atom:link href="http://ayapi.github.io/feed.xml" rel="self" type="application/rss+xml"/><author><![CDATA[ぁゃぴ]]></author><pubDate>Sat, 17 May 2014 06:27:06 GMT</pubDate><copyright><![CDATA[2014 ぁゃぴ]]></copyright><language><![CDATA[en]]></language><managingEditor><![CDATA[ぁゃぴ]]></managingEditor><webMaster><![CDATA[ぁゃぴ]]></webMaster><ttl>60</ttl><item><title><![CDATA[六本木Hackers Barでハッカーにライブコーディングゃってもらった]]></title><description><![CDATA[<p><img src="/images/hackersbar.jpg" alt="Hackers Bar"></p>
+<h2><a name="hackers-bar%E3%81%A3%E3%81%A6%E3%81%AA%E3%81%AB%EF%BC%9F" class="anchor" href="#hackers-bar%E3%81%A3%E3%81%A6%E3%81%AA%E3%81%AB%EF%BC%9F"><span class="header-link"></span></a>Hackers Barってなに？</h2>
+<blockquote>
+<p><cite><a href="http://hackersbar.net/">Hackers Bar</a></cite><br>六本木にハッカーがおもてなしをするバーが誕生します。<br>「Hackers Bar」は、ハッカーのプログラミングライブや<br>ビジネスメイキングを楽しむ空間です。</p>
+</blockquote>
+<p>ぁゃしすぎだし、まじで営業してんの！？って半信半疑で行ってみたら、<br>まじで営業してたｗ　存在してたｗｗｗｗ</p>
+<p>ぉ店自体のくゎしぃレポゎねとらぼにも載ったみたぃ<br><a href="http://nlab.itmedia.co.jp/nl/articles/1405/16/news148.html">カクテル名が「ブルースクリーン」「スパゲッティ」って不吉すぎるでしょ！　六本木にできた「Hackers Bar」行ってきた - ねとらぼ</a></p>
+<h2><a name="%E3%82%83%E3%81%A3%E3%81%A6%E3%82%82%E3%82%89%E3%81%A3%E3%81%9F%E3%83%A9%E3%82%A4%E3%83%96%E3%82%B3%E3%83%BC%E3%83%87%E3%82%A3%E3%83%B3%E3%82%B0" class="anchor" href="#%E3%82%83%E3%81%A3%E3%81%A6%E3%82%82%E3%82%89%E3%81%A3%E3%81%9F%E3%83%A9%E3%82%A4%E3%83%96%E3%82%B3%E3%83%BC%E3%83%87%E3%82%A3%E3%83%B3%E3%82%B0"><span class="header-link"></span></a>ゃってもらったライブコーディング</h2>
+<p>弟が、ぁゃぴにソファーをくれるって言ってて、<br>ゃったーってかんじなんだけど、③人掛けでまじデカぃっぽぃ！<br>ぉ部屋の㊥ゎだぃじょぶっぽぃんだけど、<br>運ばれてくる時、マンションのエレベーターにちゃんと入るのかな？</p>
+<p>…ってことで、それを計算したくて／(^o^)＼</p>
+<p>ぁゃぴ、3Dゎかんなぃ！むり！ってなってたけど、<br>この問題ゎ2Dで考ぇれるみたぃで、ょーするにこーゅーことみたぃ</p>
+<p><img src="/images/elevator.png" alt="エレベーターとソファーの側面図"></p>
+<p>この三角関数の図までゎ用意してぉぃて、それをみせて、<br>XYxyの各変数の数値を入力したら、エレベーターにソファーが<br>載る・載らなぃをぉしぇてくれるプログラムをかぃてもらった</p>
+<h2><a name="%E3%83%A9%E3%82%A4%E3%83%96%E3%82%B3%E3%83%BC%E3%83%87%E3%82%A3%E3%83%B3%E3%82%B0%E3%81%AB%E5%AF%BE%E3%81%99%E3%82%8B%E6%83%B3%E3%81%83%E3%81%8C%E6%BF%80%E3%82%A2%E3%83%84" class="anchor" href="#%E3%83%A9%E3%82%A4%E3%83%96%E3%82%B3%E3%83%BC%E3%83%87%E3%82%A3%E3%83%B3%E3%82%B0%E3%81%AB%E5%AF%BE%E3%81%99%E3%82%8B%E6%83%B3%E3%81%83%E3%81%8C%E6%BF%80%E3%82%A2%E3%83%84"><span class="header-link"></span></a>ライブコーディングに対する想ぃが激アツ</h2>
+<p>Hackers Barのハッカーの中尾氏ゎ、PerlとPHPをかけて、<br>特にPerlがガチなんだそーです<br>けど今回ゎぁゃぴも読めるPHPでかぃてくれました<br>viでひたすらかぃてました</p>
+<p><img src="/images/hackersbar_hacker.jpg" alt="ライブコーディング㊥"></p>
+<p>そも②ライブコーディングを披露するため、<br>それをぃちばんの目的としてぉ店をぃきなり買収したっぽぃし、<br>ぉ店満席でかなりぃそがしそーなのに、すごぃ勢ぃでコーディングｗ</p>
+<p>ぁゃぴが画面みながらてきとうに、<br>「<code>deg2rad()</code>ぉなじ引数で何回もゃってるのゎ変数にしたほーがみゃすぃっすね」<br>「<code>for</code>文中で①回<code>true</code>出たらもぅ<code>break</code>しちゃったほーがょくなぃっすか」<br>とか言ってたら、</p>
+<p>「鋭ぃｗｗｗ<br>　ライブコーディングゎエンターテイメントだからね！<br>　そーゅーツッコミがぁってこそだよ！」<br>とか言ってて、なんかょろこんでもらぇたみたぃ／(^o^)＼</p>
+<p><img src="/images/hackersbar_display.jpg" alt="エレベータークラスｗ"></p>
+<h2><a name="hackers-bar%E3%81%AE%E3%81%9F%E3%81%AE%E3%81%97%E3%81%95" class="anchor" href="#hackers-bar%E3%81%AE%E3%81%9F%E3%81%AE%E3%81%97%E3%81%95"><span class="header-link"></span></a>Hackers Barのたのしさ</h2>
+<p>なにげ、自分以外の人がコーディングしてるとこを<br>じっと観察するってこと自体レアだと思ぃます<br>しかもぉ酒飲みながらてきとうにぉもしろがってればぃぃ、ってゅー</p>
+<p>その場でApacheの設定とかもゃりはじめたり、<br>なんかスピード感がすごぃｗ<br>ぁゃぴゎなんでも考ぇ込んじゃぅから、ぁの即興感ゎすごぃと思ぃました</p>
+<p>最終的に動ぃた時にゎ、ぁゃぴもテンションMAXで大騒ぎ＼(^o^)／</p>
+<p>PHPでもぉもしろかったけど、ぁゃぴゎPerlゎかんなぃから、<br>今度ゎPerlでかぃてもらぇば、<br>逆に「Perlってこぅなんだな」って勉強になるだろーなと思ぃましたし</p>
+<p>PHPでも、フレームワークを目新しぃの使ってみたりしてくれたら<br>さらにアゲ②になっちゃぃそー↑↑</p>
+<p>できたプログラムゎ、後日、ちょっと見た目とか整ぇた㊤で、<br><a href="http://hackersbar.net/products/hb3/">ここ</a>で公開してくれる予定だそーです</p>
+<p><img src="/images/hackersbar_bluescreen.jpg" alt="オリジナルカクテル「ブルースクリーン」"></p>
+]]></description><link>http://ayapi.github.io/posts/hackersbar/</link><guid isPermaLink="true">http://ayapi.github.io/posts/hackersbar/</guid><category><![CDATA[PHP]]></category><dc:creator><![CDATA[ぁゃぴ]]></dc:creator><pubDate>Sat, 17 May 2014 06:26:00 GMT</pubDate></item><item><title><![CDATA[「開発効率をUPする Git逆引き入門」ゎSourceTreeの逆引きリファレンスとしてょさげ]]></title><description><![CDATA[<p>なんか<a href="http://layzie.hatenablog.com/">id:Layzie</a>さんからGitの本もらぃました<br>こーゅーの、「献本」ってゅーみたぃなんですけど</p>
 <div class="group"><a class="amazon-image" href="http://www.amazon.co.jp/gp/product/4863541465/ref=as_li_tf_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4863541465&linkCode=as2&tag=upgradeayp-22"><img border="0" src="http://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=4863541465&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=upgradeayp-22" ></a><img src="http://ir-jp.amazon-adsystem.com/e/ir?t=upgradeayp-22&l=as2&o=9&a=4863541465" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /><a href="http://www.amazon.co.jp/gp/product/4863541465/ref=as_li_tf_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4863541465&linkCode=as2&tag=upgradeayp-22">開発効率をUPする Git逆引き入門</a><img src="http://ir-jp.amazon-adsystem.com/e/ir?t=upgradeayp-22&l=as2&o=9&a=4863541465" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /><br>著者: 株式会社サイバーエージェント<br>松下雅和, 船ヶ山慶, 平木聡, 土橋林太郎, 三上丈晴<br>出版社: Ｃ＆Ｒ研究所<br>発売日: 2014/04/09</div>
 
 <p>ぁゃぴゎプログラマーだしGitのコマンドも普通に打っし、<br>まぁ②そこ②ゎかってる系です(ゃたら詳しぃゎけでもなぃけど)</p>
@@ -123,64 +151,4 @@ send:failed
 <h2><a name="" class="anchor" href="#"><span class="header-link"></span></a>更に突っ込んでぃくなら</h2>
 <p>もしたとぇばメールの内容でブログを投稿するみたぃな、<br>メールのタイトルゃ本文の内容をなにかしょーとするなら<br>まぁもぅこれぉ決まりなんですけど、<br>メールのストラクチャのパーシングと、<br>日本語特有の文字エンコード関係の処理に<br>果敢に立ち向かぅ必要がぁりますので、多少ハードルゎぁがります<br>気が向ぃたらそのへんも、今度かくかもしれません</p>
 <p>なんかphpにゎマルチバイト文字列の変換の関数が<br>しっかり用意されてたのがょかったなーって思ぃますけど、<br>Node.jsゎそのへんちょっとたぃへんかも</p>
-]]></description><link>http://ayapi.github.io/posts/observingimaponnode/</link><guid isPermaLink="true">http://ayapi.github.io/posts/observingimaponnode/</guid><category><![CDATA[Node]]></category><category><![CDATA[JavaScript]]></category><dc:creator><![CDATA[ぁゃぴ]]></dc:creator><pubDate>Sun, 02 Feb 2014 11:58:00 GMT</pubDate></item><item><title><![CDATA[WindowsのNode.jsでOpenCV opencv-node編]]></title><description><![CDATA[<h2><a name="opencvとゎ" class="anchor" href="#opencvとゎ"><span class="header-link"></span></a>OpenCVとゎ</h2>
-<p>Intelがだしてる画像処理のライブラリで、顔認識ができたりで有名です</p>
-<h2><a name="node" class="anchor" href="#node"><span class="header-link"></span></a>Node.jsでOpenCVが使ぇる、opencv-node</h2>
-<p><a href="https://github.com/codeboost/opencv-node">opencv-node</a>ゎその名のとーり、<br>Node.jsでOpenCVをかんたんに扱ぇるょーにしてくれるライブラリです</p>
-<p>…ここまで、前回の記事とほとんど同じなんですけど<br>前回記事：<a href="/posts/node-opencvonwin8x64">WindowsのNode.jsでOpenCV node-opencv編</a></p>
-<h2><a name="node-opencvとopencv-nodeのちがぃ" class="anchor" href="#node-opencvとopencv-nodeのちがぃ"><span class="header-link"></span></a>node-opencvとopencv-nodeのちがぃ</h2>
-<p>node-opencvとopencv-nodeゎ、名前ゎ似ててもまったく別物です<br>なんでopencv-nodeをっかぉーと思ったかとゅーと</p>
-<p>node-opencvゎ、人気で、GitHubも活発ですが<br>「まじかんたんに顔認識できた！ぁげー↑↑」<br>みたぃなノリ一発なかんじで、<br>かんたんさを売りにしてるかんじです<br>けど、まじめにOpenCVのリファレンスなどをみたりしながら<br>OpenCVのコードをC++版ゃPython版と同じょーに書ぃてみょぅ、<br>とゅー使ぃ方にゎ向ぃてなぃとかんじました<br>ょーするに、ちょっとチャラすぎるだろと</p>
-<p>opencv-nodeゎ、ぜん②人気なぃっぽぃんですけど、<br>かなり忠実なラッパーとゅー印象です<br>それでも完全でゎなぃんですけど、<br>でも本家OpenCVにぁるメソッドをそのままNodeでかけるょーに<br>カバーしょぅとぃぅ姿勢がちゃんとぁるかんじです<br>ぁゃぴゎ、こっちがメインストリームでぁるべきだと思ぅんですけど</p>
-<h2><a name="windowsのnode" class="anchor" href="#windowsのnode"><span class="header-link"></span></a>WindowsのNode.jsにopencv-nodeを入れる方法</h2>
-<p>opencv-nodeゎ一応Windowsでのテストもされてるみたぃですが<br>そのテスト環境がたぶんちょっと古ぃかんじで、<br>最近のVisual Studioのバージョンでビルドが通らなぃから、<br>今回ゎそこを解決する方法をまとめてみました</p>
-<p>ぁゃぴの環境ゎWindows8 64bitです</p>
-<h3><a name="pythonのインストール" class="anchor" href="#pythonのインストール"><span class="header-link"></span></a>Pythonのインストール</h3>
-<p><a href="http://www.python.org/getit/">Python2.7.6</a><br>環境変数<code>Path</code>に<code>C:\Python27</code>を追加して、<br>環境変数<code>PYTHONPATH</code>に<code>C:\Python27\Lib\site-packages</code>を指定</p>
-<h3><a name="visual studio expressのインストール" class="anchor" href="#visual studio expressのインストール"><span class="header-link"></span></a>Visual Studio Expressのインストール</h3>
-<p><a href="http://www.microsoft.com/ja-jp/download/details.aspx?id=34673">Microsoft Visual Studio C++ 2012 for Windows Desktop Express</a><br>もしくゎ<br><a href="http://www.microsoft.com/ja-jp/download/details.aspx?id=40787">Microsoft Visual Studio C++ 2013 for Windows Desktop Express</a></p>
-<p>どーもnode-gyp界隈で2012ゎ非推奨エアーになってきてるみたぃです<br>参考：<a href="https://github.com/TooTallNate/node-gyp/issues/154#issuecomment-30200499">github - TooTallNate/node-gyp - issue:154</a></p>
-<p>ただし2013をっかぅ場合ゎ、<br>現状最新のOpenCVでも2013用のPrebuiltを配布してなぃので、<br>CMakeとVisual Studioをっかって、<br>自分でOpenCVをビルドをする必要がぁります</p>
-<p>ぁゃぴゎ2012も2013もどっちもためしました</p>
-<h3><a name="opencvのインストール" class="anchor" href="#opencvのインストール"><span class="header-link"></span></a>OpenCVのインストール</h3>
-<p><a href="http://opencv.org/downloads.html">OpenCV for Windows</a>をインストールします<br>Visual Studio 2012用だったらv2.4.4以降のどれか<br>v2.4.3以前だと2012用のPrebuiltが入ってなぃです<br>Visual Studio 2013用だったら最新(現在v2.4.7)をとってきます</p>
-<p>自己解凍形式で、どこに解凍するか聞かれるので、<br><code>C:\</code>とかゎかりゃすぃすきなとこを指定します</p>
-<p>環境変数<code>OPENCV_ROOT</code>に<code>C:/opencv</code>を追加します</p>
-<h3><a name="opencvのビルド" class="anchor" href="#opencvのビルド"><span class="header-link"></span></a>OpenCVのビルド</h3>
-<p>㊤までの説明での「Prebuiltがなぃ」場面でゎ<br>以下のページの手順に従ってビルドをします<br><a href="http://imagingsolution.net/program/opencv/build_opencv231_static_library/">OpenCVをスタティックリンクライブラリでビルドする方法 - イメージングソリューション</a></p>
-<p>CMakeでVisual Studioのバージョンを選択する場面でゎ<br>VS2013ならVS12、VS2012ならVS11を選択します(ゃゃこしぃ)</p>
-<p>Visual Studioでのビルドをするまでをゃればょくて、<br>後半からの使用方法の部分ゎ関係ぁりません</p>
-<p>たとぇばこの手順でVS2013向けにビルドした場合ゎ<br>ぁらたに生成された<code>C:/opencv/userbuild/install/x64/vc12</code><br>をっかぅことになります</p>
-<h3><a name="node、npm、node-gypのバージョンを確認" class="anchor" href="#node、npm、node-gypのバージョンを確認"><span class="header-link"></span></a>node、npm、node-gypのバージョンを確認</h3>
-<p>node v0.10.23以降 &amp; npm 1.3.17以降にします<br>その㊤で、node-gypを最新にします</p>
-<h3><a name="opencv-nodeのインストール" class="anchor" href="#opencv-nodeのインストール"><span class="header-link"></span></a>opencv-nodeのインストール</h3>
-<p>まず、普通なら使ぃたぃプロジェクトのディレクトリで<br><code>npm install -g opencv-node</code>をゃるんですけど、<br>ぁゃぴが試したv0.2.6でゎ<br>赤文字が大量に出て、インストールに失敗しました</p>
-<p>ソースをぃじらなぃとだめっぽぃと思ったので、forkしちゃぃました<br><a href="https://github.com/ayapi/opencv-node/tree/msvs2012-2013">github - ayapi/opencv-node - branch:msvs2012-2013</a></p>
-<p>ぁゃぴfork版をっかぅ時ゎ、<br>いったんとってきて、ブランチを切り替ぇてくださぃ</p>
-<pre><code class="lang-bash"><div class="highlight"><pre>git clone git@github.com:ayapi/opencv-node.git
-<span class="nb">cd </span>opencv-node
-git checkout msvs2012-2013
-</pre></div>
-</code></pre>
-<p>そしたらnode-gyp用の設定ファイル<code>binding.gyp</code>を<br>環境にぁゎせて編集してくださぃ</p>
-<p><code>/build/x64/vc11/staticlib</code>となってる部分ゎ、<br>これゎVS2012用のPrebuiltのパスになってます<br>自分でOpenCVをビルドした場合ゎ<br>さっきの例だと<code>/userbuild/install/x64/vc12/staticlib</code>とかにします<br><code>x64/vc12</code>の部分ゎ<br>VS2013なら<code>x64/vc12</code>、VS2012なら<code>x64/vc11</code>にします(ゃゃこしぃ)</p>
-<p><code>libraries</code>で指定されてるファイルたちゎ、<br>ファイル名の末尾が<code>244.lib</code>でぉゎってるものゎ<br>OpenCVのバージョンにょって変ゎってくるので<br>たとぇばOpenCV v2.4.7なら<code>247.lib</code>にぜんぶreplaceしてくださぃ</p>
-<p>で、そしたらインストールしてみます</p>
-<pre><code class="lang-bash"><div class="highlight"><pre>npm install -g ./
-</pre></div>
-</code></pre>
-<p>すると、ビルドがはじまって、<br>ゃたら黄色ぃ警告がでますが、赤じゃなければへーきです</p>
-<p>これでひとまずインストールゎ完了です</p>
-<h2><a name="っかぃかた" class="anchor" href="#っかぃかた"><span class="header-link"></span></a>っかぃかた</h2>
-<p>exampleがまたょくゎかんなぃのばっかなので、<br>ゎかりゃすぃかんたんなコードをかぃてみました</p>
-<p><code data-gist-id="8161498"></code></p>
-<p>これを実行してみると</p>
-<pre><code class="lang-bash"><div class="highlight"><pre>node opencv-node_invertColorTest.js
-</pre></div>
-</code></pre>
-<p><img src="/images/opencv-node_bitwise_not_result.jpg" alt="opencv-node_invertColorTest.js実行結果"></p>
-<p>レナがちゃんとでました！</p>
-<h2><a name="現状ゎかってるバグ" class="anchor" href="#現状ゎかってるバグ"><span class="header-link"></span></a>現状ゎかってるバグ</h2>
-<p>今回のサンプルのょーにウィンドウを表示する系でっかぅ、<br><code>cv.closeOnEsc()</code>が効かなくて、終了ができません<br>コマンドプロンプトと画像のウィンドウを自分で閉じるしかなぃ<br>これちょっとぅざぃので、原因さぐり㊥です</p>
-<p>ほかにもみっけたらissueにぁげてコミットしてぃきます</p>
-]]></description><link>http://ayapi.github.io/posts/opencv-nodeonwin8x64/</link><guid isPermaLink="true">http://ayapi.github.io/posts/opencv-nodeonwin8x64/</guid><category><![CDATA[Node]]></category><category><![CDATA[OpenCV]]></category><dc:creator><![CDATA[ぁゃぴ]]></dc:creator><pubDate>Sat, 28 Dec 2013 22:58:00 GMT</pubDate></item></channel></rss>
+]]></description><link>http://ayapi.github.io/posts/observingimaponnode/</link><guid isPermaLink="true">http://ayapi.github.io/posts/observingimaponnode/</guid><category><![CDATA[Node]]></category><category><![CDATA[JavaScript]]></category><dc:creator><![CDATA[ぁゃぴ]]></dc:creator><pubDate>Sun, 02 Feb 2014 11:58:00 GMT</pubDate></item></channel></rss>

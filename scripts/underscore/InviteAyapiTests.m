@@ -19,7 +19,7 @@
     sendUser.comeFrom    = @"Fukuoka";
     sendUser.mail        = @"tumiki0ituki";
     sendUser.emailDomain = @"@gmail.com";
-    
+
     sendUser.firstProgramming = @"Cycling 74 Max/MSP/Jitter 4.6, Processing";
     sendUser.nowMainLanguage  = @"Objective-C";
     sendUser.SubLanguage      = @"Java, Swift";
@@ -36,12 +36,12 @@
     // 6 月 20, 21 日に渋谷である
     // やついフェスに誘ってみた。
     receiveUser.festivalInfo = @"http://yatsui-fes.com";
-    
+
     // めげずに誘う
     // 2015/07/10 (fri) open: 19:00, start: 19:30
-    receiveUser.superDeluxeCannel12        = https://www.super-deluxe.com/room/3923/
+    receiveUser.superDeluxeCannel12        = @"https://www.super-deluxe.com/room/3923/";
     // 2015/06/28 (sun) open: 18:00, start: 19:00
-    receiveUser.Early21stCenturysMusicVol3 = http://torpedoo.net/21music_3/
+    receiveUser.Early21stCenturysMusicVol3 = @"http://torpedoo.net/21music_3/";
 }
 
 - (void)tearDown
